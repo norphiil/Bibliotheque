@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque du Relais</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --dark-brown: #654321;
+            --light-brown: #DEB887;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: 
+                /* Gothic stone texture */
+                radial-gradient(circle at 25% 25%, rgba(45, 24, 16, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(26, 15, 10, 0.9) 0%, transparent 50%),
+                /* Stone blocks pattern */
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(139, 69, 19, 0.03) 0px,
+                    rgba(139, 69, 19, 0.03) 2px,
+                    transparent 2px,
+                    transparent 50px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(101, 67, 33, 0.05) 0px,
+                    rgba(101, 67, 33, 0.05) 3px,
+                    transparent 3px,
+                    transparent 80px
+                ),
+                /* Main gradient */
+                linear-gradient(135deg, #1A0F0A 0%, #2C1810 20%, #3D2414 40%, #2C1810 60%, #1A0F0A 100%);
+            color: #F5DEB3;
+            overflow: hidden;
+            height: 100vh;
+            cursor: grab;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                /* Gothic arches */
+                radial-gradient(ellipse 200px 400px at 20% 0%, rgba(139, 69, 19, 0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 200px 400px at 50% 0%, rgba(101, 67, 33, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 200px 400px at 80% 0%, rgba(139, 69, 19, 0.1) 0%, transparent 70%),
+                /* Mystical particles */
+                radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 2px),
+                radial-gradient(circle at 70% 30%, rgba(138, 43, 226, 0.03) 0%, transparent 2px),
+                radial-gradient(circle at 60% 80%, rgba(255, 69, 0, 0.02) 0%, transparent 2px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 300px 300px, 250px 250px, 400px 400px;
+            animation: mysticalMovement 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                /* Gothic columns */
+                linear-gradient(to bottom, 
+                    transparent 0%,
+                    rgba(139, 69, 19, 0.15) 10%,
+                    rgba(139, 69, 19, 0.08) 50%,
+                    rgba(139, 69, 19, 0.15) 90%,
+                    transparent 100%),
+                /* Flame light effects */
+                radial-gradient(ellipse at 10% 20%, rgba(255, 140, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 80%, rgba(255, 69, 0, 0.08) 0%, transparent 35%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 60%);
+            background-size: 80px 100%, 300px 200px, 250px 180px, 400px 300px;
+            background-position: 0 0, 0 0, 100% 0, 50% 50%;
+            animation: flameFlicker 8s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes mysticalMovement {
+            0%, 100% { 
+                transform: translateY(0px) scale(1); 
+                opacity: 0.8;
+            }
+            33% { 
+                transform: translateY(-10px) scale(1.02); 
+                opacity: 0.9;
+            }
+            66% { 
+                transform: translateY(5px) scale(0.98); 
+                opacity: 0.85;
+            }
+        }
+
+        @keyframes flameFlicker {
+            0% { 
+                opacity: 0.7; 
+                transform: scale(1) rotate(0deg);
+            }
+            25% { 
+                opacity: 0.9; 
+                transform: scale(1.03) rotate(0.5deg);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: scale(0.97) rotate(-0.3deg);
+            }
+            75% { 
+                opacity: 0.95; 
+                transform: scale(1.02) rotate(0.2deg);
+            }
+            100% { 
+                opacity: 0.75; 
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        body:active {
+            cursor: grabbing;
+        }
+
+        .library-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            perspective: 1200px;
+            overflow: hidden;
+            background: 
+                /* Medieval tapestry pattern */
+                repeating-linear-gradient(
+                    45deg,
+                    transparent 0px,
+                    transparent 20px,
+                    rgba(139, 69, 19, 0.02) 20px,
+                    rgba(139, 69, 19, 0.02) 25px
+                );
+        }
+
+        .bookshelf-wrapper {
+            position: absolute;
+            width: 900%; /* Plus large pour accommoder les copies */
+            height: 900%; /* Plus haut pour accommoder les copies */
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-out;
+        }
+
+        .bookshelf {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+
+        .shelf {
+            position: relative;
+            height: 200px;
+            margin: 20px 50px;
+            background: 
+                /* Wood grain texture */
+                linear-gradient(90deg, 
+                    transparent 0%,
+                    rgba(101, 67, 33, 0.1) 20%,
+                    transparent 25%,
+                    rgba(139, 69, 19, 0.15) 45%,
+                    transparent 50%,
+                    rgba(101, 67, 33, 0.1) 70%,
+                    transparent 75%,
+                    rgba(139, 69, 19, 0.1) 95%,
+                    transparent 100%
+                ),
+                /* Main wood color */
+                linear-gradient(to bottom, 
+                    var(--primary-color) 0%,
+                    color-mix(in srgb, var(--primary-color) 90%, black) 15%,
+                    var(--dark-brown) 30%,
+                    color-mix(in srgb, var(--dark-brown) 95%, white) 45%,
+                    var(--primary-color) 70%,
+                    color-mix(in srgb, var(--primary-color) 85%, black) 85%,
+                    var(--dark-brown) 100%);
+            border-radius: 12px;
+            box-shadow: 
+                0 15px 30px var(--shadow-color),
+                inset 0 3px 6px rgba(255, 255, 255, 0.15),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+                /* Gothic carved details */
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            overflow: visible;
+            border: 2px solid var(--dark-brown);
+            position: relative;
+        }
+
+        .shelf::before {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 5px;
+            right: 5px;
+            height: 25px;
+            background: 
+                /* Stone base texture */
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.3) 0px,
+                    rgba(0, 0, 0, 0.3) 1px,
+                    transparent 1px,
+                    transparent 8px
+                ),
+                linear-gradient(to bottom, 
+                    var(--dark-brown) 0%,
+                    #2C1810 50%,
+                    #1A0F0A 100%);
+            border-radius: 0 0 12px 12px;
+            transform: rotateX(45deg);
+            transform-origin: top;
+            z-index: -1;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .shelf::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            background: 
+                /* Gothic ornamental line */
+                repeating-linear-gradient(
+                    to right,
+                    rgba(255, 215, 0, 0.3) 0px,
+                    rgba(255, 215, 0, 0.3) 2px,
+                    transparent 2px,
+                    transparent 10px,
+                    rgba(255, 215, 0, 0.2) 10px,
+                    rgba(255, 215, 0, 0.2) 12px,
+                    transparent 12px,
+                    transparent 20px
+                ),
+                linear-gradient(to right, 
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.2) 20%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0.2) 80%,
+                    transparent 100%);
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .books-container {
+            position: absolute;
+            top: -140px;
+            left: 30px;
+            right: 30px;
+            height: 140px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            padding: 10px;
+            background: linear-gradient(to bottom, 
+                transparent 0%,
+                rgba(0, 0, 0, 0.1) 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .book-slot {
+            position: relative;
+            width: 50px;
+            height: 130px;
+            background: 
+                /* Gothic arch pattern */
+                radial-gradient(ellipse at top, 
+                    rgba(139, 69, 19, 0.15) 0%, 
+                    rgba(139, 69, 19, 0.08) 40%, 
+                    transparent 70%),
+                /* Stone texture */
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(101, 67, 33, 0.05) 0px,
+                    rgba(101, 67, 33, 0.05) 1px,
+                    transparent 1px,
+                    transparent 6px
+                ),
+                linear-gradient(to bottom, 
+                    rgba(139, 69, 19, 0.12) 0%,
+                    rgba(139, 69, 19, 0.08) 30%,
+                    rgba(139, 69, 19, 0.05) 50%,
+                    rgba(101, 67, 33, 0.08) 70%,
+                    transparent 100%);
+            border: 1px solid rgba(139, 69, 19, 0.4);
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 5px;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.15),
+                inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+                /* Gothic carved shadow */
+                0 1px 3px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .book-slot::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 2px;
+            right: 2px;
+            height: 3px;
+            background: 
+                /* Medieval floor pattern */
+                repeating-linear-gradient(
+                    to right,
+                    rgba(139, 69, 19, 0.4) 0px,
+                    rgba(139, 69, 19, 0.4) 1px,
+                    transparent 1px,
+                    transparent 4px
+                ),
+                linear-gradient(to right, 
+                    transparent 0%,
+                    rgba(139, 69, 19, 0.3) 20%,
+                    rgba(101, 67, 33, 0.4) 50%,
+                    rgba(139, 69, 19, 0.3) 80%,
+                    transparent 100%);
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-slot::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom,
+                rgba(255, 215, 0, 0.2) 0%,
+                rgba(255, 215, 0, 0.1) 50%,
+                transparent 100%);
+            border-radius: 1px;
+            opacity: 0.6;
+        }
+
+        .book {
+            position: relative;
+            width: 42px;
+            height: var(--book-height, 110px);
+            min-height: 90px;
+            background: linear-gradient(90deg, 
+                var(--book-color, #8B4513) 0%,
+                color-mix(in srgb, var(--book-color, #8B4513) 80%, black) 20%,
+                color-mix(in srgb, var(--book-color, #8B4513) 90%, white) 40%,
+                color-mix(in srgb, var(--book-color, #8B4513) 85%, black) 60%,
+                var(--book-color, #8B4513) 100%);
+            border-radius: 3px 3px 0 0;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            box-shadow: 
+                4px 0 8px rgba(0, 0, 0, 0.5),
+                inset 3px 0 3px rgba(255, 255, 255, 0.3),
+                inset -2px 0 2px rgba(0, 0, 0, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            margin: 0 1px;
+            overflow: hidden;
+        }
+
+        /* Texture du dos du livre */
+        .book::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.6) 0%,
+                rgba(0, 0, 0, 0.8) 30%,
+                rgba(0, 0, 0, 0.9) 50%,
+                rgba(0, 0, 0, 0.8) 70%,
+                rgba(0, 0, 0, 0.6) 100%);
+            transform: rotateY(90deg);
+            transform-origin: left;
+            border-radius: 0 3px 0 0;
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Base du livre (ombre portée) */
+        .book::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, 
+                rgba(0, 0, 0, 0.6) 0%,
+                rgba(0, 0, 0, 0.8) 20%,
+                rgba(0, 0, 0, 0.9) 50%,
+                rgba(0, 0, 0, 0.8) 80%,
+                rgba(0, 0, 0, 0.6) 100%);
+            transform: rotateX(90deg);
+            transform-origin: top;
+            border-radius: 0 0 3px 3px;
+        }
+
+        .book:hover {
+            transform: translateY(-20px) scale(1.08) rotateY(2deg);
+            z-index: 10;
+            box-shadow: 
+                6px -10px 25px rgba(0, 0, 0, 0.7),
+                inset 3px 0 4px rgba(255, 255, 255, 0.4),
+                inset -2px 0 3px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 215, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .book:hover .book-title {
+            text-shadow: 
+                1px 1px 2px rgba(0, 0, 0, 0.8),
+                0 0 5px rgba(255, 215, 0, 0.8),
+                0 0 10px rgba(255, 215, 0, 0.6),
+                0 0 15px rgba(255, 215, 0, 0.4);
+            animation: titleGlow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { 
+                text-shadow: 
+                    1px 1px 2px rgba(0, 0, 0, 0.8),
+                    0 0 5px rgba(255, 215, 0, 0.8),
+                    0 0 10px rgba(255, 215, 0, 0.6);
+            }
+            100% { 
+                text-shadow: 
+                    1px 1px 2px rgba(0, 0, 0, 0.8),
+                    0 0 8px rgba(255, 215, 0, 1),
+                    0 0 15px rgba(255, 215, 0, 0.8),
+                    0 0 20px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        .book-spine {
+            position: absolute;
+            top: 8px;
+            left: 3px;
+            right: 3px;
+            bottom: 8px;
+            padding: 8px 3px;
+            overflow: hidden;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(0, 0, 0, 0.1) 10%,
+                transparent 20%,
+                rgba(255, 255, 255, 0.1) 40%,
+                transparent 60%,
+                rgba(0, 0, 0, 0.1) 80%,
+                transparent 100%);
+            border-left: 1px solid rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .book-spine::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80%;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(255, 215, 0, 0.6) 10%,
+                rgba(255, 215, 0, 0.3) 50%,
+                rgba(255, 215, 0, 0.6) 90%,
+                transparent 100%);
+            box-shadow: 0 0 2px rgba(255, 215, 0, 0.4);
+        }
+
+        .book-spine::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            bottom: 15%;
+            left: 2px;
+            right: 2px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 215, 0, 0.1) 50%,
+                transparent 100%);
+        }
+
+        .book-title {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 8px;
+            font-weight: bold;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: var(--title-color, #FFD700);
+            text-shadow: 
+                1px 1px 2px rgba(0, 0, 0, 0.8),
+                0 0 3px rgba(255, 215, 0, 0.5),
+                0 0 6px rgba(255, 215, 0, 0.3);
+            line-height: 1.0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            letter-spacing: 0.8px;
+            position: relative;
+            z-index: 2;
+            padding: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(0, 0, 0, 0.2) 20%,
+                rgba(0, 0, 0, 0.1) 50%,
+                rgba(0, 0, 0, 0.2) 80%,
+                transparent 100%);
+            border-radius: 1px;
+        }
+
+        .book-title::before {
+            content: '✦';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6px;
+            color: var(--title-color, #FFD700);
+            text-shadow: 0 0 3px rgba(255, 215, 0, 0.8);
+        }
+
+        .book-title::after {
+            content: '✦';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6px;
+            color: var(--title-color, #FFD700);
+            text-shadow: 0 0 3px rgba(255, 215, 0, 0.8);
+        }
+
+        .ui-overlay {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--dark-brown));
+            color: var(--accent-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-box {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: inherit;
+            width: 250px;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 215, 0, 0.6);
+        }
+
+        .navigation-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes magicalPulse {
+            0%, 100% { 
+                opacity: 0;
+                transform: scale(1);
+            }
+            25% { 
+                opacity: 0.3;
+                transform: scale(1.02);
+            }
+            50% { 
+                opacity: 0.5;
+                transform: scale(1.01);
+            }
+            75% { 
+                opacity: 0.2;
+                transform: scale(1.03);
+            }
+        }
+
+        .book-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border: 3px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 24px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-title {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-text {
+            color: #F5DEB3;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* Parallax background effects */
+        .library-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                /* Gothic cathedral windows */
+                radial-gradient(ellipse 150px 300px at 15% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 120px 250px at 85% 30%, rgba(138, 43, 226, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 180px 350px at 50% 10%, rgba(255, 69, 0, 0.05) 0%, transparent 70%),
+                /* Mystical floating particles */
+                radial-gradient(circle 2px at 20% 40%, rgba(255, 215, 0, 0.4) 0%, transparent 100%),
+                radial-gradient(circle 1px at 60% 20%, rgba(138, 43, 226, 0.5) 0%, transparent 100%),
+                radial-gradient(circle 3px at 80% 70%, rgba(255, 69, 0, 0.3) 0%, transparent 100%),
+                radial-gradient(circle 1px at 30% 80%, rgba(255, 215, 0, 0.6) 0%, transparent 100%),
+                radial-gradient(circle 2px at 70% 50%, rgba(138, 43, 226, 0.4) 0%, transparent 100%),
+                /* Medieval tapestry pattern */
+                repeating-conic-gradient(
+                    from 45deg at 50% 50%,
+                    transparent 0deg,
+                    rgba(139, 69, 19, 0.02) 10deg,
+                    transparent 20deg
+                );
+            background-size: 
+                100% 100%, 100% 100%, 100% 100%,
+                400px 300px, 350px 250px, 300px 400px, 450px 350px, 380px 280px,
+                200px 200px;
+            background-position:
+                0 0, 0 0, 0 0,
+                0 0, 100% 0, 50% 100%, 0 100%, 100% 50%,
+                0 0;
+            pointer-events: none;
+            z-index: -3;
+            animation: etherealMovement 25s ease-in-out infinite;
+        }
+
+        .library-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                /* Gothic stone pillars */
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 80px,
+                    rgba(139, 69, 19, 0.1) 80px,
+                    rgba(139, 69, 19, 0.15) 85px,
+                    rgba(101, 67, 33, 0.1) 90px,
+                    rgba(139, 69, 19, 0.15) 95px,
+                    rgba(139, 69, 19, 0.1) 100px,
+                    transparent 100px,
+                    transparent 180px
+                ),
+                /* Ancient runes pattern */
+                repeating-linear-gradient(
+                    45deg,
+                    transparent 0px,
+                    transparent 200px,
+                    rgba(255, 215, 0, 0.02) 200px,
+                    rgba(255, 215, 0, 0.02) 205px,
+                    transparent 205px,
+                    transparent 300px
+                );
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.7;
+        }
+
+        @keyframes etherealMovement {
+            0%, 100% { 
+                transform: translate(0px, 0px) scale(1); 
+                opacity: 0.8;
+            }
+            25% { 
+                transform: translate(-5px, -10px) scale(1.01); 
+                opacity: 0.9;
+            }
+            50% { 
+                transform: translate(5px, -5px) scale(0.99); 
+                opacity: 0.85;
+            }
+            75% { 
+                transform: translate(-3px, 8px) scale(1.02); 
+                opacity: 0.95;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="library-container" id="libraryContainer">
+        <div class="bookshelf-wrapper" id="bookshelfWrapper">
+            <div class="bookshelf" id="bookshelf">
+                <!-- Les étagères seront générées dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-overlay">
+        <div class="controls">
+            <button class="btn" onclick="goToTraditionalView()">Vue Traditionnelle</button>
+            <button class="btn" onclick="refreshLibrary()">Actualiser</button>
+        </div>
+        <input type="text" class="search-box" placeholder="Rechercher dans les grimoires..." 
+               id="searchInput" onkeyup="handleSearch(event)">
+    </div>
+
+    <div class="navigation-hint">
+        🖱️ Glissez pour explorer • ⌨️ Flèches directionnelles • 📚 Cliquez sur les livres pour les ouvrir
+    </div>
+
+    <div class="book-modal" id="bookModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Titre du Document</h2>
+            <div class="modal-text" id="modalText">Contenu du document...</div>
+        </div>
+    </div>
+
+    <script>
+        class LibraryInterface {
+            constructor() {
+                this.wrapper = document.getElementById('bookshelfWrapper');
+                this.container = document.getElementById('libraryContainer');
+                this.bookshelf = document.getElementById('bookshelf');
+                this.modal = document.getElementById('bookModal');
+                
+                this.isDragging = false;
+                this.startX = 0;
+                this.startY = 0;
+                this.currentX = 0;
+                this.currentY = 0;
+                this.translateX = 0;
+                this.translateY = 0;
+                this.maxTranslateX = 0;
+                this.maxTranslateY = 0;
+                this.minTranslateX = 0;
+                this.minTranslateY = 0;
+                
+                this.sectionWidth = 0;
+                this.sectionHeight = 0;
+                
+                this.documents = [];
+                this.bookColors = [
+                    '#8B0000', '#006400', '#4B0082', '#B8860B', '#2F4F4F',
+                    '#8B4513', '#483D8B', '#008B8B', '#9932CC', '#8B008B',
+                    '#FF6347', '#4682B4', '#D2691E', '#CD853F', '#DDA0DD',
+                    '#228B22', '#DC143C', '#00CED1', '#FF8C00', '#9370DB',
+                    '#556B2F', '#800000', '#2E8B57', '#8B4726', '#663399',
+                    '#8B7355', '#A0522D', '#5D4E75', '#6B8E23', '#8B3626'
+                ];
+                
+                this.grimoire_types = [
+                    'ancient', 'mystical', 'forbidden', 'sacred', 'dark', 'elemental'
+                ];
+                
+                this.init();
+            }
+
+            init() {
+                console.log('Initialisation de la bibliothèque...');
+                
+                // Afficher un message de chargement
+                this.bookshelf.innerHTML = `
+                    <div style="color: #FFD700; text-align: center; padding: 50px; font-size: 18px;">
+                        📚 Chargement de la bibliothèque...<br>
+                        <small>Récupération des grimoires du relais</small>
+                    </div>
+                `;
+                
+                this.loadDocuments();
+                this.setupEventListeners();
+            }
+
+            async loadDocuments() {
+                try {
+                    console.log('Chargement des documents...');
+                    const response = await fetch('/api/documents');
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log('Documents reçus:', data.length, 'documents');
+                    
+                    this.documents = data;
+                    this.generateLibrary();
+                } catch (error) {
+                    console.error('Erreur lors du chargement des documents:', error);
+                    // Afficher un message d'erreur à l'utilisateur
+                    this.bookshelf.innerHTML = `
+                        <div style="color: #FFD700; text-align: center; padding: 50px; font-size: 18px;">
+                            ⚠️ Erreur lors du chargement des documents<br>
+                            <small>${error.message}</small>
+                        </div>
+                    `;
+                }
+            }
+
+            generateLibrary() {
+                if (!this.documents || this.documents.length === 0) {
+                    console.log('Aucun document à afficher');
+                    return;
+                }
+                
+                console.log(`Génération de ${this.documents.length} livres`);
+                
+                const booksPerShelf = 8;
+                const shelvesPerRow = 6;
+                const rowsNeeded = Math.ceil(this.documents.length / (booksPerShelf * shelvesPerRow));
+                const actualRows = Math.max(rowsNeeded, 4);
+                
+                this.bookshelf.innerHTML = '';
+                
+                // Calculer les dimensions d'une section
+                this.sectionWidth = window.innerWidth * 3;
+                this.sectionHeight = window.innerHeight * 3;
+                
+                // Créer une grille 3x3 de copies pour l'effet de boucle infinie
+                for (let gridY = 0; gridY < 3; gridY++) {
+                    for (let gridX = 0; gridX < 3; gridX++) {
+                        const section = document.createElement('div');
+                        section.style.cssText = `
+                            position: absolute;
+                            left: ${gridX * this.sectionWidth}px;
+                            top: ${gridY * this.sectionHeight}px;
+                            width: ${this.sectionWidth}px;
+                            height: ${this.sectionHeight}px;
+                        `;
+                        
+                        // Générer le contenu de cette section
+                        this.generateSection(section, actualRows, booksPerShelf, shelvesPerRow);
+                        this.bookshelf.appendChild(section);
+                    }
+                }
+                
+                // Configurer les limites pour la boucle infinie
+                this.maxTranslateX = 0;
+                this.minTranslateX = -this.sectionWidth;
+                this.maxTranslateY = 0;
+                this.minTranslateY = -this.sectionHeight;
+                
+                // Positionner au centre (section du milieu)
+                this.translateX = -this.sectionWidth;
+                this.translateY = -this.sectionHeight;
+                this.wrapper.style.transform = `translate(${this.translateX}px, ${this.translateY}px)`;
+                
+                this.wrapper.style.width = `${this.sectionWidth * 3}px`;
+                this.wrapper.style.height = `${this.sectionHeight * 3}px`;
+            }
+
+            generateSection(section, actualRows, booksPerShelf, shelvesPerRow) {
+                let documentIndex = 0;
+                
+                for (let row = 0; row < actualRows; row++) {
+                    const shelfRow = document.createElement('div');
+                    shelfRow.style.cssText = `
+                        display: flex;
+                        flex-direction: column;
+                        margin-bottom: 40px;
+                        min-height: 250px;
+                    `;
+                    
+                    for (let shelfInRow = 0; shelfInRow < shelvesPerRow; shelfInRow++) {
+                        const shelf = document.createElement('div');
+                        shelf.className = 'shelf';
+                        
+                        const booksContainer = document.createElement('div');
+                        booksContainer.className = 'books-container';
+                        
+                        // Ajouter les cases et livres à cette étagère
+                        for (let slot = 0; slot < booksPerShelf; slot++) {
+                            const bookSlot = document.createElement('div');
+                            bookSlot.className = 'book-slot';
+                            
+                            if (documentIndex < this.documents.length) {
+                                const doc = this.documents[documentIndex];
+                                const book = this.createBook(doc, documentIndex);
+                                bookSlot.appendChild(book);
+                                documentIndex++;
+                            } else {
+                                // Recommencer depuis le début pour remplir l'espace
+                                documentIndex = 0;
+                                if (this.documents.length > 0) {
+                                    const doc = this.documents[documentIndex];
+                                    const book = this.createBook(doc, documentIndex);
+                                    bookSlot.appendChild(book);
+                                    documentIndex++;
+                                }
+                            }
+                            
+                            booksContainer.appendChild(bookSlot);
+                        }
+                        
+                        shelf.appendChild(booksContainer);
+                        shelfRow.appendChild(shelf);
+                    }
+                    
+                    section.appendChild(shelfRow);
+                }
+            }
+
+            createBook(doc, index) {
+                console.log(`Création du livre ${index + 1}:`, doc.name);
+                
+                const book = document.createElement('div');
+                book.className = 'book';
+                
+                const height = 90 + Math.random() * 35;
+                const colorIndex = index % this.bookColors.length;
+                const color = this.bookColors[colorIndex];
+                const titleColor = this.getTitleColor(color);
+                const grimoireType = this.grimoire_types[index % this.grimoire_types.length];
+                
+                book.style.setProperty('--book-height', `${height}px`);
+                book.style.setProperty('--book-color', color);
+                book.style.setProperty('--title-color', titleColor);
+                book.dataset.grimoireType = grimoireType;
+                
+                // Ajouter une texture de cuir
+                const leatherTexture = document.createElement('div');
+                leatherTexture.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: 
+                        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                        radial-gradient(circle at 80% 70%, rgba(0,0,0,0.1) 1px, transparent 1px),
+                        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.05) 1px, transparent 1px);
+                    background-size: 8px 8px, 12px 12px, 6px 6px;
+                    opacity: 0.6;
+                    pointer-events: none;
+                `;
+                book.appendChild(leatherTexture);
+                
+                // Ajouter des clous décoratifs
+                const decorativeStuds = document.createElement('div');
+                decorativeStuds.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    bottom: 10px;
+                    left: 1px;
+                    width: 2px;
+                    background: linear-gradient(to bottom,
+                        transparent 0%,
+                        rgba(255, 215, 0, 0.4) 10%,
+                        transparent 15%,
+                        rgba(255, 215, 0, 0.4) 25%,
+                        transparent 30%,
+                        rgba(255, 215, 0, 0.4) 70%,
+                        transparent 75%,
+                        rgba(255, 215, 0, 0.4) 85%,
+                        transparent 90%,
+                        rgba(255, 215, 0, 0.4) 100%);
+                    border-radius: 1px;
+                    box-shadow: 0 0 2px rgba(255, 215, 0, 0.3);
+                `;
+                book.appendChild(decorativeStuds);
+                
+                const spine = document.createElement('div');
+                spine.className = 'book-spine';
+                
+                const title = document.createElement('div');
+                title.className = 'book-title';
+                title.textContent = this.truncateTitle(doc.name || doc.id);
+                
+                spine.appendChild(title);
+                book.appendChild(spine);
+                
+                book.addEventListener('click', () => this.openBook(doc));
+                
+                // Ajouter un effet de scintillement aléatoire
+                if (Math.random() > 0.7) {
+                    this.addMagicalGlow(book);
+                }
+                
+                return book;
+            }
+
+            addMagicalGlow(book) {
+                const glow = document.createElement('div');
+                glow.style.cssText = `
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    background: linear-gradient(45deg, 
+                        rgba(255, 215, 0, 0.2) 0%,
+                        rgba(255, 255, 255, 0.1) 25%,
+                        rgba(138, 43, 226, 0.1) 50%,
+                        rgba(255, 255, 255, 0.1) 75%,
+                        rgba(255, 215, 0, 0.2) 100%);
+                    border-radius: 4px;
+                    opacity: 0;
+                    animation: magicalPulse 4s ease-in-out infinite;
+                    pointer-events: none;
+                    z-index: -1;
+                `;
+                book.appendChild(glow);
+            }
+
+            getTitleColor(bookColor) {
+                // Couleurs mystiques pour les titres selon la couleur du livre
+                const colorMap = {
+                    '#8B0000': '#FFD700', // Rouge sang -> Or
+                    '#006400': '#ADFF2F', // Vert sombre -> Vert lime
+                    '#4B0082': '#DDA0DD', // Indigo -> Prune
+                    '#8B4513': '#F4A460', // Brun -> Sable
+                    '#2F4F4F': '#20B2AA', // Gris sombre -> Turquoise
+                    '#483D8B': '#E6E6FA', // Violet sombre -> Lavande
+                    '#8B008B': '#FF69B4', // Magenta sombre -> Rose vif
+                    '#DC143C': '#FFB6C1', // Crimson -> Rose clair
+                    '#8B7355': '#DDBF94', // Beige sombre -> Beige clair
+                };
+                
+                return colorMap[bookColor] || '#FFD700';
+            }
+
+            truncateTitle(title) {
+                return title.length > 20 ? title.substring(0, 17) + '...' : title;
+            }
+
+            async openBook(doc) {
+                try {
+                    const response = await fetch(`/api/document/${encodeURIComponent(doc.id)}`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        document.getElementById('modalTitle').textContent = doc.name || doc.id;
+                        document.getElementById('modalText').textContent = data.content;
+                        this.modal.style.display = 'flex';
+                    } else {
+                        alert('Erreur lors du chargement du document: ' + data.error);
+                    }
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    alert('Erreur lors du chargement du document');
+                }
+            }
+
+            setupEventListeners() {
+                // Mouse events
+                this.container.addEventListener('mousedown', (e) => this.startDrag(e));
+                this.container.addEventListener('mousemove', (e) => this.drag(e));
+                this.container.addEventListener('mouseup', () => this.endDrag());
+                this.container.addEventListener('mouseleave', () => this.endDrag());
+
+                // Touch events
+                this.container.addEventListener('touchstart', (e) => this.startDrag(e.touches[0]));
+                this.container.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    this.drag(e.touches[0]);
+                });
+                this.container.addEventListener('touchend', () => this.endDrag());
+
+                // Prevent context menu
+                this.container.addEventListener('contextmenu', (e) => e.preventDefault());
+
+                // Modal events
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) this.closeModal();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') this.closeModal();
+                    
+                    // Navigation au clavier
+                    if (!this.modal.style.display || this.modal.style.display === 'none') {
+                        const step = 100;
+                        switch(e.key) {
+                            case 'ArrowLeft':
+                                e.preventDefault();
+                                this.smoothMove(-step, 0);
+                                break;
+                            case 'ArrowRight':
+                                e.preventDefault();
+                                this.smoothMove(step, 0);
+                                break;
+                            case 'ArrowUp':
+                                e.preventDefault();
+                                this.smoothMove(0, -step);
+                                break;
+                            case 'ArrowDown':
+                                e.preventDefault();
+                                this.smoothMove(0, step);
+                                break;
+                        }
+                    }
+                });
+            }
+
+            startDrag(e) {
+                this.isDragging = true;
+                this.startX = e.clientX;
+                this.startY = e.clientY;
+                this.wrapper.style.transition = 'none';
+                document.body.style.cursor = 'grabbing';
+            }
+
+            drag(e) {
+                if (!this.isDragging) return;
+                
+                const deltaX = e.clientX - this.startX;
+                const deltaY = e.clientY - this.startY;
+                
+                let newTranslateX = this.translateX + deltaX;
+                let newTranslateY = this.translateY + deltaY;
+                
+                this.wrapper.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`;
+            }
+
+            endDrag() {
+                if (!this.isDragging) return;
+                
+                this.isDragging = false;
+                this.wrapper.style.transition = 'transform 0.5s ease-out';
+                document.body.style.cursor = 'grab';
+                
+                const transform = this.wrapper.style.transform;
+                const matches = transform.match(/translate\(([^,]+),\s*([^)]+)\)/);
+                if (matches) {
+                    this.translateX = parseFloat(matches[1]);
+                    this.translateY = parseFloat(matches[2]);
+                }
+                
+                // Vérifier si on doit repositionner pour la boucle infinie
+                this.checkInfiniteLoop();
+            }
+
+            checkInfiniteLoop() {
+                let needsReposition = false;
+                let newTranslateX = this.translateX;
+                let newTranslateY = this.translateY;
+                
+                // Vérification horizontale
+                if (this.translateX <= -this.sectionWidth * 2) {
+                    newTranslateX = this.translateX + this.sectionWidth;
+                    needsReposition = true;
+                } else if (this.translateX >= 0) {
+                    newTranslateX = this.translateX - this.sectionWidth;
+                    needsReposition = true;
+                }
+                
+                // Vérification verticale
+                if (this.translateY <= -this.sectionHeight * 2) {
+                    newTranslateY = this.translateY + this.sectionHeight;
+                    needsReposition = true;
+                } else if (this.translateY >= 0) {
+                    newTranslateY = this.translateY - this.sectionHeight;
+                    needsReposition = true;
+                }
+                
+                if (needsReposition) {
+                    this.wrapper.style.transition = 'none';
+                    this.translateX = newTranslateX;
+                    this.translateY = newTranslateY;
+                    this.wrapper.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`;
+                    
+                    // Rétablir la transition après un court délai
+                    setTimeout(() => {
+                        this.wrapper.style.transition = 'transform 0.5s ease-out';
+                    }, 50);
+                }
+            }
+
+            smoothMove(deltaX, deltaY) {
+                let newTranslateX = this.translateX + deltaX;
+                let newTranslateY = this.translateY + deltaY;
+                
+                this.translateX = newTranslateX;
+                this.translateY = newTranslateY;
+                
+                this.wrapper.style.transition = 'transform 0.3s ease-out';
+                this.wrapper.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`;
+                
+                // Vérifier le repositionnement après l'animation
+                setTimeout(() => {
+                    this.checkInfiniteLoop();
+                    if (!this.isDragging) {
+                        this.wrapper.style.transition = 'transform 0.5s ease-out';
+                    }
+                }, 300);
+            }
+
+            closeModal() {
+                this.modal.style.display = 'none';
+            }
+
+            async refresh() {
+                await this.loadDocuments();
+            }
+        }
+
+        // Initialiser l'interface quand le DOM est prêt
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM prêt, initialisation de la bibliothèque...');
+            window.library = new LibraryInterface();
+        });
+
+        // Backup si DOMContentLoaded a déjà été déclenché
+        if (document.readyState === 'loading') {
+            // Le document est encore en train de charger
+            // DOMContentLoaded sera déclenché
+        } else {
+            // Le document a déjà fini de charger
+            console.log('Document déjà chargé, initialisation immédiate...');
+            window.library = new LibraryInterface();
+        }
+
+        // Fonctions globales
+        function closeModal() {
+            if (window.library) window.library.closeModal();
+        }
+
+        function refreshLibrary() {
+            if (window.library) window.library.refresh();
+        }
+
+        function goToTraditionalView() {
+            window.location.href = '/traditional';
+        }
+
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                const query = event.target.value;
+                if (query.trim()) {
+                    // Implémenter la recherche si nécessaire
+                    console.log('Recherche:', query);
+                }
+            }
+        }
+
+        // Empêcher la sélection de texte lors du glissement
+        document.addEventListener('selectstart', (e) => {
+            if (window.library && window.library.isDragging) e.preventDefault();
+        });
+    </script>
+</body>
+</html>

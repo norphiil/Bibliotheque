@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque du Relais</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Initial loading screen -->
+    <div id="initialLoader" class="initial-loading-screen">
+        <div class="loader-background"></div>
+        <div class="loader-content">
+            <div class="loader-icon">
+                <i class="fas fa-book-open"></i>
+                <div class="loader-glow"></div>
+            </div>
+            <h1 class="loader-title">Bibliothèque du Relais</h1>
+            <p class="loader-subtitle">Ouverture des grimoires anciens...</p>
+            <div class="loader-progress">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-particles"></div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <i class="fas fa-book-open"></i>
+                    Bibliothèque du Relais
+                </h1>
+                <div class="header-controls">
+                    <button id="refreshBtn" class="btn btn-secondary">
+                        <i class="fas fa-sync-alt"></i>
+                        Actualiser
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content avec système d'onglets -->
+        <div class="main-container">
+            <!-- Onglets médiévaux -->
+            <div class="tabs-container">
+                <div class="tab-navigation">
+                    <button class="tab-button active" data-tab="library">
+                        <div class="tab-icon">
+                            <i class="fas fa-books"></i>
+                        </div>
+                        <span class="tab-text">Bibliothèque</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-button" data-tab="keyword-search">
+                        <div class="tab-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <span class="tab-text">Recherche</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-button" data-tab="search">
+                        <div class="tab-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <span class="tab-text">Recherche Approfondie</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <div class="tab-indicator"></div>
+                </div>
+                
+                <!-- Contenu des onglets -->
+                <div class="tab-content">
+                    <!-- Onglet Bibliothèque -->
+                    <div class="tab-pane active" id="library-tab">
+                        <div class="tab-header">
+                            <h2>
+                                <i class="fas fa-books"></i>
+                                Documents Disponibles
+                            </h2>
+                            <div class="document-controls">
+                                <div class="library-search-box">
+                                    <input type="text" id="librarySearchInput" placeholder="Rechercher parmi les documents..." class="library-search-input">
+                                    <button id="clearLibrarySearchBtn" class="btn btn-clear" style="display: none;" title="Effacer la recherche">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div class="library-sort-controls">
+                                    <label for="sortSelect">Trier par :</label>
+                                    <select id="sortSelect" class="sort-select">
+                                        <option value="name">Nom (A-Z)</option>
+                                        <option value="name-desc">Nom (Z-A)</option>
+                                    </select>
+                                </div>
+                                <button id="refreshDocBtn" class="btn btn-secondary">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Actualiser
+                                </button>
+                                <div class="document-count">
+                                    <span id="docCount">{{ documents|length }}</span> documents
+                                    <span id="filteredCount" style="display: none;"> (<span id="filteredCountNumber">0</span> affichés)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-nav">
+                            <div class="document-tree" id="documentTree">
+                                {% for doc in documents %}
+                                <div class="document-item" data-doc-id="{{ doc.id }}">
+                                    <div class="doc-icon">
+                                        {% if doc.type == 'PDF' %}
+                                            <i class="fas fa-file-pdf"></i>
+                                        {% elif doc.type == 'DOCX' %}
+                                            <i class="fas fa-file-word"></i>
+                                        {% elif doc.type in ['MD', 'MARKDOWN'] %}
+                                            <i class="fas fa-file-alt"></i>
+                                        {% else %}
+                                            <i class="fas fa-file"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="doc-info">
+                                        <div class="doc-name">{{ doc.name }}</div>
+                                        <div class="doc-meta">{{ doc.type }} • {{ doc.folder if doc.folder else 'Racine' }}</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Onglet Recherche par Mots-clés -->
+                    <div class="tab-pane" id="keyword-search-tab">
+                        <div class="tab-header">
+                            <h2>
+                                <i class="fas fa-search"></i>
+                                Recherche par Mots-clés
+                            </h2>
+                            <div class="search-box">
+                                <input type="text" id="keywordSearchInput" placeholder="Entrez vos mots-clés (ex: dragon, magie, bataille)..." class="search-input">
+                                <button id="keywordSearchBtn" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="search-controls">
+                                <div class="search-sort-controls">
+                                    <label for="keywordSearchSortSelect">Trier par :</label>
+                                    <select id="keywordSearchSortSelect" class="sort-select">
+                                        <option value="document">Document (A-Z)</option>
+                                        <option value="document-desc">Document (Z-A)</option>
+                                    </select>
+                                </div>
+                                <div class="keyword-search-filters">
+                                    <label>
+                                        <input type="checkbox" id="caseSensitiveCheck">
+                                        Recherche sensible à la casse
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="wholeWordsCheck">
+                                        Mots entiers uniquement
+                                    </label>
+                                </div>
+                                <div class="context-info">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Le contexte extrait automatiquement les phrases complètes contenant les mots-clés</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="search-results" id="keywordSearchResults">
+                            <div class="no-results">
+                                <i class="fas fa-key"></i>
+                                <p>Saisissez des mots-clés pour rechercher dans les documents...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Onglet Chat avec le Sage --><!-- 
+                    <div class="tab-pane" id="sage-tab">
+                        <div class="tab-header">
+                            <h2>
+                                <i class="fas fa-hat-wizard"></i>
+                                Consultation du Sage
+                            </h2>
+                            <button id="clearChatBtn" class="btn btn-small">
+                                <i class="fas fa-trash"></i>
+                                Effacer
+                            </button>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message ai-message">
+                                <div class="message-content">
+                                    <i class="fas fa-hat-wizard"></i>
+                                    Salutations, noble chercheur ! Je suis le gardien de cette bibliothèque mystique. 
+                                    Comment puis-je vous aider dans votre quête de connaissance ?
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <div class="search-box">
+                                <input type="text" id="chatInput" placeholder="Posez votre question au sage..." class="search-input">
+                                <button id="sendChatBtn" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                    <!-- Onglet Recherche -->
+                    <div class="tab-pane" id="search-tab">
+                        <div class="tab-header">
+                            <h2>
+                                <i class="fas fa-magic"></i>
+                                Recherche Approfondie
+                            </h2>
+                            <div class="search-box">
+                                <input type="text" id="searchInput" placeholder="Rechercher dans les documents..." class="search-input">
+                                <button id="searchBtn" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="search-controls">
+                                <div class="search-sort-controls">
+                                    <label for="searchSortSelect">Trier par :</label>
+                                    <select id="searchSortSelect" class="sort-select">
+                                        <option value="score-desc">Score (élevé → bas)</option>
+                                        <option value="score-asc">Score (bas → élevé)</option>
+                                        <option value="document">Document (A-Z)</option>
+                                        <option value="document-desc">Document (Z-A)</option>
+                                    </select>
+                                </div>
+                                <button id="historyToggle" class="btn btn-secondary">
+                                    <i class="fas fa-history"></i>
+                                    Afficher l'historique
+                                </button>
+                                <button id="clearHistoryBtn" class="btn btn-secondary">
+                                    <i class="fas fa-trash"></i>
+                                    Vider l'historique
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Barre de progression inline -->
+                        <div class="inline-progress-container" id="inlineProgressContainer" style="display: none;">
+                            <div class="progress-header">
+                                <div class="progress-icon">
+                                    <i class="fas fa-magic spinning"></i>
+                                </div>
+                                <div class="progress-info">
+                                    <div class="progress-title">Recherche en cours...</div>
+                                    <div class="progress-description" id="inlineProgressText">Initialisation...</div>
+                                </div>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="inlineProgressFill"></div>
+                                </div>
+                                <div class="progress-percentage" id="inlineProgressPercentage">0%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Panel d'historique des recherches -->
+                        <div class="search-history-panel" id="searchHistoryPanel" style="display: none;">
+                            <div class="history-header">
+                                <h3>
+                                    <i class="fas fa-history"></i>
+                                    Historique des Recherches
+                                </h3>
+                            </div>
+                            <div class="history-container" id="searchHistoryContainer">
+                                <!-- L'historique sera chargé ici -->
+                            </div>
+                        </div>
+                        
+                        <div class="search-results" id="searchResults">
+                            <div class="no-results">
+                                <i class="fas fa-scroll"></i>
+                                <p>Utilisez la recherche pour explorer les mystères de la bibliothèque...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingIndicator">
+        <div class="loading-spinner">
+            <i class="fas fa-magic spinning"></i>
+            <p>Le sage consulte les anciens grimoires...</p>
+        </div>
+    </div>
+
+    <!-- Document modal popup -->
+    <div class="modal-overlay" id="documentModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalDocumentTitle">
+                    <i class="fas fa-book-open"></i>
+                    Document
+                </h3>
+                <div class="modal-controls">
+                    <button id="modalFullscreenBtn" class="btn btn-secondary" title="Plein écran">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                    <button id="modalCloseBtn" class="btn btn-secondary" title="Fermer">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="document-content" id="modalDocumentContent">
+                    <div class="loading-placeholder">
+                        <i class="fas fa-magic spinning"></i>
+                        <p>Chargement du document...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

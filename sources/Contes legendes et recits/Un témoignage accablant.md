@@ -1,0 +1,9 @@
+Un témoignage accablant...
+--------------------------------
+Premiers froids, Solstice d'Hiver, année 5 de la colonisation de Kandorya,
+Un individu louche circule depuis quelque temps, aux alentours de la taverne du Haut-Fanal.
+Des rumeurs indiquent qu'il chercherait à monnayer un document accablant à propos des événements survenus à Lunargent.
+
+La lumière serait faite sur la mise à mort des derniers magiocrates de l'Arcanium à la faveur d'une alliance politique et stratégique aussi improbable que très temporaire.
+Un trouvère anonyme assure que le parchemin concerné permettrait d'éclairer les questions sans réponse de la chronique les Mystères de Lunargent, rédigée il y a peu par le magicien Nohmäs de Darivelle...
+Le même trouvère prévient qu'il faudra débourser une certaine somme pour pouvoir se procurer un brûlot aux effluves dévastatrices...

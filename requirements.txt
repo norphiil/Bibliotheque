@@ -1,0 +1,16 @@
+flask
+werkzeug
+pymupdf
+pypandoc
+langchain
+langchain-groq
+langchain-ollama
+langchain-together
+python-dotenv
+beautifulsoup4
+markdown
+bleach
+requests
+python-docx
+regex
+tiktoken
