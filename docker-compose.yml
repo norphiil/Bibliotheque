@@ -25,12 +25,6 @@ services:
       - GROQ_API_KEY=${GROQ_API_KEY}
       - TOGETHER_API_KEY=${TOGETHER_API_KEY:-}
       - OLLAMA_SERVER_URL=${OLLAMA_SERVER_URL:-}
-    volumes:
-      # Monter le dossier sources pour persister les documents
-      - sources:/app/sources:ro
-      # Monter les fichiers statiques si vous voulez les modifier à chaud
-      - static:/app/static:ro
-      - templates:/app/templates:ro
     networks:
       - bibliotheque-network
       - traefik_default
@@ -49,8 +43,3 @@ networks:
     driver: bridge
   traefik_default:
     external: true
-
-volumes:
-  sources:
-  static:
-  templates:
