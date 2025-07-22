@@ -22,6 +22,11 @@ class LibraryApp {
         this.currentKeywordSortBy = 'document';
         this.currentKeywordSearch = null; // Stocker les mots-clés actuels pour le surlignage
         
+        // Gestion des positions de scroll par document
+        this.scrollPositions = new Map(); // Cache mémoire pour la session
+        this.scrollSaveTimeout = null; // Pour debouncer la sauvegarde
+        this.currentModalDocId = null; // ID du document actuellement ouvert
+        
         // Gérer l'écran de chargement initial
         this.handleInitialLoading();
         
@@ -29,6 +34,9 @@ class LibraryApp {
         this.initializeTabs();
         this.loadInitialData();
         this.loadSearchHistory();
+        
+        // Nettoyer les anciennes positions de scroll au démarrage
+        this.cleanupOldScrollPositions();
     }
     
     handleInitialLoading() {
@@ -64,6 +72,203 @@ class LibraryApp {
             window.addEventListener('load', hideLoader);
         }
     }
+    
+    // ========== GESTION DES POSITIONS DE SCROLL ==========
+    
+    /**
+     * Génère une clé unique pour le localStorage basée sur l'ID du document
+     */
+    getScrollStorageKey(docId) {
+        // Créer un hash simple de l'ID du document pour éviter les problèmes d'encodage
+        let hash = 0;
+        const str = docId.toString();
+        
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convertir en entier 32-bit
+        }
+        
+        // Convertir en string positive et ajouter un préfixe
+        const hashStr = Math.abs(hash).toString(36); // Base 36 pour plus de compacité
+        return `library_scroll_${hashStr}`;
+    }
+    
+    /**
+     * Sauvegarde la position de scroll dans localStorage et cache mémoire
+     */
+    saveScrollPosition(docId, scrollTop) {
+        if (!docId) return;
+        
+        try {
+            const storageKey = this.getScrollStorageKey(docId);
+            const scrollData = {
+                position: scrollTop,
+                timestamp: Date.now(),
+                docId: docId // Garder l'ID original pour référence
+            };
+            
+            // Sauvegarder dans le cache mémoire
+            this.scrollPositions.set(docId, scrollData);
+            
+            // Sauvegarder dans localStorage avec gestion d'erreur
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(scrollData));
+                console.log(`Position de scroll sauvegardée pour ${docId}: ${scrollTop}px (clé: ${storageKey})`);
+            } catch (storageError) {
+                console.warn('Impossible de sauvegarder la position de scroll dans localStorage:', storageError);
+                // La sauvegarde dans le cache mémoire a réussi, donc on continue
+            }
+        } catch (error) {
+            console.error('Erreur lors de la sauvegarde de la position de scroll:', error);
+        }
+    }
+    
+    /**
+     * Récupère la position de scroll depuis le cache mémoire ou localStorage
+     */
+    getScrollPosition(docId) {
+        if (!docId) return 0;
+        
+        // Vérifier d'abord le cache mémoire
+        if (this.scrollPositions.has(docId)) {
+            const scrollData = this.scrollPositions.get(docId);
+            console.log(`Position récupérée du cache mémoire pour ${docId}: ${scrollData.position}px`);
+            return scrollData.position;
+        }
+        
+        // Sinon, vérifier localStorage
+        try {
+            const storageKey = this.getScrollStorageKey(docId);
+            const storedData = localStorage.getItem(storageKey);
+            
+            if (storedData) {
+                const scrollData = JSON.parse(storedData);
+                
+                // Vérifier que les données ne sont pas trop anciennes (7 jours max)
+                const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 jours en millisecondes
+                if (scrollData.timestamp && Date.now() - scrollData.timestamp < maxAge) {
+                    // Mettre à jour le cache mémoire
+                    this.scrollPositions.set(docId, scrollData);
+                    console.log(`Position récupérée du localStorage pour ${docId}: ${scrollData.position}px (clé: ${storageKey})`);
+                    return scrollData.position;
+                } else {
+                    // Supprimer les données expirées
+                    localStorage.removeItem(storageKey);
+                    console.log(`Position expirée supprimée pour ${docId}`);
+                }
+            }
+        } catch (error) {
+            console.warn('Impossible de récupérer la position de scroll depuis localStorage:', error);
+        }
+        
+        console.log(`Aucune position sauvegardée trouvée pour ${docId}, utilisation de 0`);
+        return 0; // Position par défaut : tout en haut
+    }
+    
+    /**
+     * Nettoie les anciennes positions de scroll du localStorage
+     */
+    cleanupOldScrollPositions() {
+        try {
+            const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 jours
+            const keysToRemove = [];
+            
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('library_scroll_')) {
+                    try {
+                        const storedData = localStorage.getItem(key);
+                        if (storedData) {
+                            const scrollData = JSON.parse(storedData);
+                            if (scrollData.timestamp && Date.now() - scrollData.timestamp >= maxAge) {
+                                keysToRemove.push(key);
+                            }
+                        }
+                    } catch (parseError) {
+                        // Si on ne peut pas parser les données, les supprimer
+                        console.warn(`Données corrompues trouvées pour la clé ${key}, suppression`);
+                        keysToRemove.push(key);
+                    }
+                }
+            }
+            
+            keysToRemove.forEach(key => {
+                try {
+                    localStorage.removeItem(key);
+                } catch (removeError) {
+                    console.warn(`Impossible de supprimer la clé ${key}:`, removeError);
+                }
+            });
+            
+            if (keysToRemove.length > 0) {
+                console.log(`${keysToRemove.length} anciennes positions de scroll supprimées`);
+            }
+        } catch (error) {
+            console.warn('Erreur lors du nettoyage des positions de scroll:', error);
+        }
+    }
+    
+    /**
+     * Configure l'écoute des événements de scroll pour la modal
+     */
+    setupScrollListener() {
+        const modalContent = document.getElementById('modalDocumentContent');
+        if (!modalContent) return;
+        
+        // Supprimer l'ancien listener s'il existe
+        if (this.scrollListener) {
+            modalContent.removeEventListener('scroll', this.scrollListener);
+        }
+        
+        // Créer le nouveau listener avec debouncing
+        this.scrollListener = () => {
+            if (!this.currentModalDocId) return;
+            
+            // Debouncer la sauvegarde pour éviter trop d'écritures
+            if (this.scrollSaveTimeout) {
+                clearTimeout(this.scrollSaveTimeout);
+            }
+            
+            this.scrollSaveTimeout = setTimeout(() => {
+                const scrollTop = modalContent.scrollTop;
+                this.saveScrollPosition(this.currentModalDocId, scrollTop);
+            }, 300); // Attendre 300ms après le dernier scroll
+        };
+        
+        modalContent.addEventListener('scroll', this.scrollListener, { passive: true });
+        console.log('Listener de scroll configuré pour la modal');
+    }
+    
+    /**
+     * Restaure la position de scroll pour un document
+     */
+    restoreScrollPosition(docId) {
+        if (!docId) return;
+        
+        const modalContent = document.getElementById('modalDocumentContent');
+        if (!modalContent) return;
+        
+        const savedPosition = this.getScrollPosition(docId);
+        
+        // Utiliser requestAnimationFrame pour s'assurer que le contenu est rendu
+        requestAnimationFrame(() => {
+            // Double vérification que le contenu est bien chargé
+            setTimeout(() => {
+                if (modalContent.scrollHeight > modalContent.clientHeight) {
+                    modalContent.scrollTo({
+                        top: savedPosition,
+                        behavior: 'auto' // Pas d'animation pour la restauration
+                    });
+                    console.log(`Position de scroll restaurée pour ${docId}: ${savedPosition}px`);
+                } else {
+                    console.log(`Contenu trop court pour ${docId}, pas de scroll nécessaire`);
+                }
+            }, 100);
+        });
+    }
+    
+    // ========== FIN GESTION DES POSITIONS DE SCROLL ==========
     
     initializeEventListeners() {
         // Chat functionality
@@ -786,6 +991,17 @@ class LibraryApp {
         // Afficher la modale
         modal.classList.add('active');
         
+        // Sauvegarder la position de scroll du document précédent
+        if (this.currentModalDocId && this.currentModalDocId !== docId) {
+            const modalContent = document.getElementById('modalDocumentContent');
+            if (modalContent) {
+                this.saveScrollPosition(this.currentModalDocId, modalContent.scrollTop);
+            }
+        }
+        
+        // Mettre à jour l'ID du document courant
+        this.currentModalDocId = docId;
+        
         // Afficher le placeholder de chargement
         modalContent.innerHTML = `
             <div class="loading-placeholder">
@@ -853,14 +1069,18 @@ class LibraryApp {
         }
         
         console.log('Contenu détecté:', { 
-            htmlContent: htmlContent ? 'HTML disponible' : 'Pas de HTML',
-            rawContent: rawContent ? 'Raw disponible' : 'Pas de Raw'
+            htmlContent: htmlContent ? `HTML disponible (${htmlContent.length} chars)` : 'Pas de HTML',
+            rawContent: rawContent ? `Raw disponible (${rawContent.length} chars)` : 'Pas de Raw',
+            htmlContentPreview: htmlContent ? htmlContent.substring(0, 200) + '...' : 'N/A'
         });
         
         // Si on n'a pas de HTML valide, traiter le contenu brut
         if (!htmlContent && rawContent) {
+            console.log('Conversion markdown nécessaire car htmlContent manquant');
             htmlContent = this.convertMarkdownToHtml(rawContent);
             console.log('HTML généré depuis raw content');
+        } else if (htmlContent) {
+            console.log('Utilisation du htmlContent du backend');
         }
         
         // Afficher le contenu
@@ -897,6 +1117,14 @@ class LibraryApp {
         
         // Ajouter des event listeners aux numéros de ligne
         this.initializeLineNumbers();
+        
+        // Configurer la gestion du scroll pour ce document
+        this.setupScrollListener();
+        
+        // Restaurer la position de scroll pour ce document
+        if (docId) {
+            this.restoreScrollPosition(docId);
+        }
     }
     
     convertMarkdownToHtml(rawText) {
@@ -907,6 +1135,23 @@ class LibraryApp {
         html = html.replace(/\\n/g, '\n');
         html = html.replace(/\\t/g, '    ');
         
+        // Convertir les images AVANT les liens pour éviter les conflits
+        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
+            console.log('Image trouvée dans JS:', { alt, src });
+            return `<div class="document-image-container">
+                <img src="${src}" alt="${alt}" class="document-image" 
+                     loading="lazy" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="image-error-fallback" style="display: none;">
+                    <i class="fas fa-image"></i>
+                    <p>Image non disponible: ${alt}</p>
+                </div>
+            </div>`;
+        });
+        
+        // Convertir les liens
+        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+        
         // Convertir les titres
         html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
         html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
@@ -915,7 +1160,7 @@ class LibraryApp {
         // Convertir les paragraphes (lignes séparées par des retours à la ligne multiples)
         html = html.split('\n\n').map(paragraph => {
             paragraph = paragraph.trim();
-            if (paragraph && !paragraph.startsWith('<h')) {
+            if (paragraph && !paragraph.startsWith('<h') && !paragraph.startsWith('<div class="document-image-container">')) {
                 return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
             }
             return paragraph;
@@ -925,7 +1170,7 @@ class LibraryApp {
         html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
         html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
         
-        console.log('Markdown converti:', html.substring(0, 200) + '...');
+        console.log('Markdown converti avec images:', html.substring(0, 500) + '...');
         return html;
     }
     
@@ -1041,8 +1286,27 @@ class LibraryApp {
     }
     
     closeModal() {
+        // Sauvegarder la position de scroll du document actuel avant de fermer
+        if (this.currentModalDocId) {
+            const modalContent = document.getElementById('modalDocumentContent');
+            if (modalContent) {
+                this.saveScrollPosition(this.currentModalDocId, modalContent.scrollTop);
+            }
+        }
+        
         const modal = document.getElementById('documentModal');
         modal.classList.remove('active', 'fullscreen');
+        
+        // Supprimer le listener de scroll
+        if (this.scrollListener) {
+            const modalContent = document.getElementById('modalDocumentContent');
+            if (modalContent) {
+                modalContent.removeEventListener('scroll', this.scrollListener);
+            }
+        }
+        
+        // Réinitialiser l'état
+        this.currentModalDocId = null;
         
         // Réinitialiser l'état actif des documents
         const documentItems = document.querySelectorAll('.document-item');

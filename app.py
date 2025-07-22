@@ -245,6 +245,33 @@ def refresh_documents():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
+@app.route('/api/refresh-document/<path:doc_id>')
+def refresh_single_document(doc_id):
+    """API pour rafraîchir un document spécifique."""
+    try:
+        # Supprimer du cache
+        if doc_id in doc_processor.documents_cache:
+            del doc_processor.documents_cache[doc_id]
+            print(f"Document {doc_id} supprimé du cache")
+        
+        # Recharger le document
+        document_data = doc_processor.get_document_content(doc_id)
+        
+        if document_data:
+            return jsonify({
+                'success': True,
+                'message': f'Document {doc_id} rafraîchi avec succès',
+                'document': {
+                    'id': doc_id,
+                    'type': document_data.get('type', 'N/A'),
+                    'line_count': document_data.get('line_count', 'N/A')
+                }
+            })
+        else:
+            return jsonify({'success': False, 'error': 'Document non trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 @app.route('/api/search/history')
 def get_search_history():
     """API pour obtenir l'historique des recherches."""
@@ -347,6 +374,281 @@ def get_cache_stats():
         })
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/debug/images')
+def debug_images():
+    """Page de débogage pour tester l'affichage des images."""
+    import os
+    from pathlib import Path
+    
+    images_folder = Path('static/images')
+    images = []
+    
+    if images_folder.exists():
+        for img_file in images_folder.glob('*.png'):
+            images.append({
+                'name': img_file.name,
+                'url': f'/static/images/{img_file.name}',
+                'size': img_file.stat().st_size
+            })
+    
+    html_content = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Test Images</title>
+        <style>
+            body {{ font-family: Arial, sans-serif; margin: 20px; }}
+            .image-test {{ margin: 20px 0; padding: 10px; border: 1px solid #ccc; }}
+            .image-test img {{ max-width: 500px; border: 1px solid #ddd; }}
+            .image-info {{ margin: 10px 0; font-size: 14px; color: #666; }}
+        </style>
+    </head>
+    <body>
+        <h1>Test des Images Extraites</h1>
+        <p>Total d'images trouvées: {}</p>
+    """.format(len(images))
+    
+    for img in images[:10]:  # Afficher seulement les 10 premières pour le test
+        html_content += f"""
+        <div class="image-test">
+            <div class="image-info">
+                <strong>{img['name']}</strong> - {img['size']} bytes
+                <br>URL: {img['url']}
+            </div>
+            <div>
+                <img src="{img['url']}" alt="{img['name']}" onload="console.log('Image chargée: {img['name']}')" onerror="console.error('Erreur image: {img['name']}')">
+            </div>
+        </div>
+        """
+    
+    html_content += """
+    </body>
+    </html>
+    """
+    
+    return html_content
+
+@app.route('/debug/document/<path:doc_id>')
+def debug_document(doc_id):
+    """Page de débogage pour tester le traitement d'un document spécifique."""
+    try:
+        # Traiter le document
+        document_data = doc_processor.get_document_content(doc_id)
+        
+        if not document_data or 'error' in document_data:
+            return f"""
+            <html><body>
+                <h1>Erreur</h1>
+                <p>Impossible de charger le document: {doc_id}</p>
+                <p>Erreur: {document_data.get('error', 'Document non trouvé') if document_data else 'Document non trouvé'}</p>
+            </body></html>
+            """
+        
+        # Extraire des informations de débogage
+        raw_content = document_data.get('raw_content', '')
+        html_content = document_data.get('html_content', '')
+        
+        # Compter les références d'images
+        import re
+        markdown_imgs = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', raw_content)
+        html_imgs = re.findall(r'<img[^>]*>', html_content)
+        
+        return f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Debug Document: {doc_id}</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 20px; }}
+                .section {{ margin: 20px 0; padding: 15px; border: 1px solid #ccc; background: #f9f9f9; }}
+                .content {{ max-height: 300px; overflow-y: auto; background: white; padding: 10px; border: 1px solid #ddd; }}
+                pre {{ white-space: pre-wrap; }}
+                .stats {{ background: #e6f3ff; }}
+            </style>
+        </head>
+        <body>
+            <h1>Debug Document: {doc_id}</h1>
+            
+            <div class="section stats">
+                <h2>Statistiques</h2>
+                <p><strong>Type:</strong> {document_data.get('type', 'N/A')}</p>
+                <p><strong>Nombre de lignes:</strong> {document_data.get('line_count', 'N/A')}</p>
+                <p><strong>Références markdown d'images trouvées:</strong> {len(markdown_imgs)}</p>
+                <p><strong>Balises HTML img trouvées:</strong> {len(html_imgs)}</p>
+            </div>
+            
+            <div class="section">
+                <h2>Références Markdown d'images</h2>
+                <div class="content">
+                    {'<br>'.join([f"Alt: '{img[0]}', Src: '{img[1]}'" for img in markdown_imgs]) if markdown_imgs else 'Aucune trouvée'}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Balises HTML img</h2>
+                <div class="content">
+                    {'<br>'.join(html_imgs) if html_imgs else 'Aucune trouvée'}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Contenu Markdown (premiers 2000 caractères)</h2>
+                <div class="content">
+                    <pre>{raw_content[:2000]}</pre>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Contenu HTML (premiers 2000 caractères)</h2>
+                <div class="content">
+                    <pre>{html_content[:2000]}</pre>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Rendu HTML Final</h2>
+                <div style="border: 2px solid #333; padding: 10px; background: white;">
+                    {html_content[:5000]}
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+    except Exception as e:
+        import traceback
+        return f"""
+        <html><body>
+            <h1>Erreur de débogage</h1>
+            <p>Erreur: {str(e)}</p>
+            <pre>{traceback.format_exc()}</pre>
+        </body></html>
+        """
+
+@app.route('/test/markdown')
+def test_markdown():
+    """Test simple de conversion markdown vers HTML avec images."""
+    test_markdown = """
+# Test de Conversion Markdown
+
+Voici un test simple.
+
+![Image de test](/static/images/[Kandorya-Fiefs]_2017_-_Récit_des_conflits_de_la_7eme_année_des_colons_img_p0_0_7af37624.png)
+
+Et voici encore du texte.
+
+![Autre image](/static/images/test.png)
+"""
+    
+    # Test de conversion markdown
+    import markdown
+    html_result = markdown.markdown(
+        test_markdown,
+        extensions=['tables', 'fenced_code', 'toc', 'attr_list']
+    )
+    
+    # Test de notre fonction d'amélioration
+    enhanced_html = doc_processor._enhance_image_display(html_result)
+    
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Test Markdown</title>
+        <style>
+            body {{ font-family: Arial, sans-serif; margin: 20px; }}
+            .section {{ margin: 20px 0; padding: 15px; border: 1px solid #ccc; background: #f9f9f9; }}
+            pre {{ white-space: pre-wrap; background: #f0f0f0; padding: 10px; }}
+        </style>
+    </head>
+    <body>
+        <h1>Test de Conversion Markdown</h1>
+        
+        <div class="section">
+            <h2>Markdown Original</h2>
+            <pre>{test_markdown}</pre>
+        </div>
+        
+        <div class="section">
+            <h2>HTML après conversion markdown</h2>
+            <pre>{html_result}</pre>
+        </div>
+        
+        <div class="section">
+            <h2>HTML après amélioration</h2>
+            <pre>{enhanced_html}</pre>
+        </div>
+        
+        <div class="section">
+            <h2>Rendu Final</h2>
+            <div style="border: 2px solid #333; padding: 10px; background: white;">
+                {enhanced_html}
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+
+@app.route('/debug/documents')
+def debug_documents_list():
+    """Page pour lister tous les documents et permettre un accès direct."""
+    try:
+        documents = doc_processor.scan_documents()
+        
+        html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Liste des Documents</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .document { margin: 10px 0; padding: 10px; border: 1px solid #ccc; background: #f9f9f9; }
+                .document-id { font-family: monospace; color: #666; font-size: 0.9em; }
+                .links { margin-top: 5px; }
+                .links a { margin-right: 10px; color: #007bff; text-decoration: none; }
+                .links a:hover { text-decoration: underline; }
+            </style>
+        </head>
+        <body>
+            <h1>Documents Disponibles</h1>
+            <p>Total: {} documents</p>
+        """.format(len(documents))
+        
+        for doc in documents:
+            # Encoder l'ID pour l'URL
+            import urllib.parse
+            encoded_id = urllib.parse.quote(doc['id'], safe='')
+            
+            html += f"""
+            <div class="document">
+                <h3>{doc['name']}</h3>
+                <div class="document-id">ID: {doc['id']}</div>
+                <p><strong>Type:</strong> {doc['type']} | <strong>Dossier:</strong> {doc['folder'] or 'Racine'} | <strong>Taille:</strong> {doc['size']} bytes</p>
+                <div class="links">
+                    <a href="/debug/document/{encoded_id}" target="_blank">Debug Document</a>
+                    <a href="/api/document/{encoded_id}" target="_blank">API JSON</a>
+                    <a href="/api/refresh-document/{encoded_id}" target="_blank">Refresh Cache</a>
+                </div>
+            </div>
+            """
+        
+        html += """
+        </body>
+        </html>
+        """
+        
+        return html
+        
+    except Exception as e:
+        import traceback
+        return f"""
+        <html><body>
+            <h1>Erreur</h1>
+            <p>Erreur: {str(e)}</p>
+            <pre>{traceback.format_exc()}</pre>
+        </body></html>
+        """
 
 if __name__ == '__main__':
     # Créer le dossier sources s'il n'existe pas

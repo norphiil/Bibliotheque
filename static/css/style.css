@@ -3608,3 +3608,128 @@ body::after {
         align-self: center;
     }
 }
+
+/* === STYLES POUR LES IMAGES DANS LES DOCUMENTS === */
+.document-image-container {
+    margin: 20px 0;
+    text-align: center;
+    border: 2px solid var(--wood-brown);
+    border-radius: 12px;
+    padding: 15px;
+    background: linear-gradient(135deg, 
+        rgba(244, 232, 193, 0.95) 0%, 
+        rgba(232, 215, 168, 0.95) 100%);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.document-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(139, 69, 19, 0.1) 1px,
+            rgba(139, 69, 19, 0.1) 2px
+        );
+    pointer-events: none;
+}
+
+.document-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--wood-dark);
+    background: white;
+    padding: 5px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.document-image-container img:hover {
+    transform: scale(1.02);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.document-image-container img[src*="error"] {
+    border-color: var(--fire-red);
+    background: #ffe6e6;
+    opacity: 0.7;
+}
+
+.document-image-container > div:last-child {
+    margin-top: 10px;
+    font-style: italic;
+    color: var(--wood-dark);
+    font-size: 0.9em;
+    font-family: 'Cinzel', serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+/* Style pour les images en cas d'erreur */
+.document-image-error {
+    background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+    border-color: var(--fire-red);
+    color: var(--fire-red);
+}
+
+.document-image-error::before {
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(220, 20, 60, 0.1) 1px,
+            rgba(220, 20, 60, 0.1) 2px
+        );
+}
+
+/* Responsive pour les images */
+@media (max-width: 768px) {
+    .document-image-container {
+        margin: 15px 0;
+        padding: 10px;
+    }
+    
+    .document-image-container img {
+        border-width: 2px;
+        padding: 3px;
+    }
+    
+    .document-image-container > div:last-child {
+        font-size: 0.8em;
+    }
+}
+
+/* Animation pour le chargement des images */
+@keyframes imageLoad {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.document-image-container img {
+    animation: imageLoad 0.5s ease-out;
+}
