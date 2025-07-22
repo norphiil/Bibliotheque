@@ -1,0 +1,67 @@
+# Docker ignore file pour la Bibliothèque de Kandorya
+# Exclure les fichiers et dossiers qui ne doivent pas être copiés dans l'image Docker
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Git
+.git/
+.gitignore
+
+# Documentation et README locaux (gardés dans l'image)
+# README.md est gardé
+
+# Fichiers temporaires
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Node modules (si présents)
+node_modules/
+
+# Fichiers de build
+build/
+dist/
+
+# Données locales qui ne doivent pas être dans l'image
+data/
+logs/
+*.sqlite
+*.db
+
+# Fichiers Docker eux-mêmes (éviter la récursion)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Scripts de développement local
+run.sh
+start.sh
+dev.sh

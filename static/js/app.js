@@ -82,18 +82,18 @@ class LibraryApp {
         // clearChatBtn.addEventListener('click', () => this.clearChat());
         
         // Search functionality (pour onglet Recherche)
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const searchSortSelect = document.getElementById('searchSortSelect');
+        // const searchInput = document.getElementById('searchInput');
+        // const searchBtn = document.getElementById('searchBtn');
+        // const searchSortSelect = document.getElementById('searchSortSelect');
         
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                this.performSearch();
-            }
-        });
+        // searchInput.addEventListener('keypress', (e) => {
+        //     if (e.key === 'Enter') {
+        //         e.preventDefault();
+        //         this.performSearch();
+        //     }
+        // });
         
-        searchBtn.addEventListener('click', () => this.performSearch());
+        // searchBtn.addEventListener('click', () => this.performSearch());
         
         // Keyword search functionality (pour onglet Recherche par mots-clés)
         const keywordSearchInput = document.getElementById('keywordSearchInput');
@@ -120,12 +120,12 @@ class LibraryApp {
             });
         }
         
-        if (searchSortSelect) {
-            searchSortSelect.addEventListener('change', (e) => {
-                this.currentSearchSortBy = e.target.value;
-                this.sortSearchResults();
-            });
-        }
+        // if (searchSortSelect) {
+        //     searchSortSelect.addEventListener('change', (e) => {
+        //         this.currentSearchSortBy = e.target.value;
+        //         this.sortSearchResults();
+        //     });
+        // }
 
         // Library search functionality (pour onglet Bibliothèque)
         const librarySearchInput = document.getElementById('librarySearchInput');

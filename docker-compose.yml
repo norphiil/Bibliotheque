@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  bibliotheque:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kandorya-bibliotheque
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      # Flask Configuration
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=5000
+      - SECRET_KEY=${SECRET_KEY:-kandorya-secret-key-change-in-production}
+      
+      # Application Configuration
+      - UPLOAD_FOLDER=sources
+      - LLM_PROVIDER=${LLM_PROVIDER:-groq}
+      
+      # API Keys - À définir dans un fichier .env
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - TOGETHER_API_KEY=${TOGETHER_API_KEY:-}
+      - OLLAMA_SERVER_URL=${OLLAMA_SERVER_URL:-http://host.docker.internal:11434}
+    volumes:
+      # Monter le dossier sources pour persister les documents
+      - ./sources:/app/sources:ro
+      # Monter les fichiers statiques si vous voulez les modifier à chaud
+      - ./static:/app/static:ro
+      - ./templates:/app/templates:ro
+    networks:
+      - bibliotheque-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  bibliotheque-network:
+    driver: bridge
