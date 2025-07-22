@@ -24,22 +24,33 @@ services:
       # API Keys - À définir dans un fichier .env
       - GROQ_API_KEY=${GROQ_API_KEY}
       - TOGETHER_API_KEY=${TOGETHER_API_KEY:-}
-      - OLLAMA_SERVER_URL=${OLLAMA_SERVER_URL:-http://host.docker.internal:11434}
+      - OLLAMA_SERVER_URL=${OLLAMA_SERVER_URL:-}
     volumes:
       # Monter le dossier sources pour persister les documents
-      - ./sources:/app/sources:ro
+      - sources:/app/sources:ro
       # Monter les fichiers statiques si vous voulez les modifier à chaud
-      - ./static:/app/static:ro
-      - ./templates:/app/templates:ro
+      - static:/app/static:ro
+      - templates:/app/templates:ro
     networks:
       - bibliotheque-network
+      - traefik_default
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.library.rule=Host(`library.voulkai.nocturlab.fr`)"
+      - "traefik.http.services.library.loadbalancer.server.port=5000"
 networks:
   bibliotheque-network:
     driver: bridge
+  traefik_default:
+    external: true
+
+volumes:
+  sources:
+  static:
+  templates:
