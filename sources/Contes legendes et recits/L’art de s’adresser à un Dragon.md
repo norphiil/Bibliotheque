@@ -1,6 +1,6 @@
-L’art de s’adresser à un Dragon
+# L’art de s’adresser à un Dragon
 
-                                                       Kersiskal, mois des Nuits, An IX
+## Kersiskal, mois des Nuits, An IX
 
 Au cours des trois dernières foires d’été qui se sont déroulées, j’ai observé combien nombre de colons venaient solliciter les Grands Dragons et ce, même si ces derniers  se sont au fil du temps désintéressés des affaires de Kersiskal. J’ai aussi noté  à quel point les colons ne savaient pas s’adresser à eux sans parler de ceux qui ont des paroles discourtoises et/ou inconvenantes à leur égard.
 

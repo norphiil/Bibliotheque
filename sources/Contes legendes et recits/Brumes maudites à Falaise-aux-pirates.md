@@ -1,6 +1,7 @@
 # Brumes maudites à Falaise-aux-pirates
 
-Edenorya, mois des Grands froids, An VII de la Colonisation
+## Edenorya, mois des Grands froids, An VII de la Colonisation
+
 Je m’en retournais du Dispensaire des Apôtres de l’Amour prochain par une froide soirée du Mois des Grands Froids, peu après mon retour de Fubuki, quand on annonça l’arrivée de plusieurs esquifs ennéens en provenance de Falaise-aux-pirates. En soi, cela n’aurait rien eu d’extraordinaire, les Ennéens sont des navigateurs, et ce n’est pas étonnant de les voir se rendre sur les côtes des terres de la Cassandre, s’il ne s’était pas trouvé que des blessés venaient d’être amenés aux portes de l’hôpital. Je reconnus parmi eux la jeune et charmante elfe Aroree Cutter, dont j’ai déjà parlé dans une chronique précédente. La malheureuse était couverte de plaies et d’hématomes, et je distinguai même au creux de l’une de ses paumes des traces de brûlure. Une rapide inspection me permit de comprendre que de la magie avait été à l’oeuvre pour lui infliger la cicatrice qu’elle portait alors.
 D’autres colons qui venaient de débarquer des navires des voiles Féole et Mascaret ou encore du Trolpillon des Mers, l’embarcation de la compagnie Grand-Griffe, évoquèrent les effets de brumes maléfiques pour expliquer leur terreur et leurs blessures, car certains étaient dans un état indescriptible.
 Intrigué, après avoir pris soin d’Aroree et lui avoir administré en fait de boisson du suc de boyau de ver pourpre des profondeurs, une boisson communément consommée chez les Trolls Ardents, j’entrepris de l’interroger et elle me narra alors ce qu’il lui était advenu ainsi qu’à ses compagnons d’infortune.

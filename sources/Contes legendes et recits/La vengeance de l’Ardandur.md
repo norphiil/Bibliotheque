@@ -1,6 +1,6 @@
-La vengeance de l’Ardandur
+# La vengeance de l’Ardandur
 
-                                              Edenorya, foire d’automne de l’an VIII
+## Edenorya, foire d’automne de l’an VIII
 
 Quand vint la foire d’été de l’an VII, ce qu’avait porté en germes celle de printemps vint à éclore. Quelques téméraires gardes de la Garnison étaient au printemps revenus avec une marque et un nom : Ghox.
 

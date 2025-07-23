@@ -1,4 +1,4 @@
-Le mariage de Courtes-pattes et les Pillards
+# Le mariage de Courtes-pattes et les Pillards
 
 Il était une fois, sous les montagnes d'Edenorya, un clan de Barbus caché derrière de lourdes portes en pierre.
 

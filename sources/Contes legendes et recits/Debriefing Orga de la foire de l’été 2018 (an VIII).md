@@ -1,4 +1,5 @@
-Debriefing Orga de la foire de l’été 2018 (an VIII)
+# Debriefing Orga de la foire de l’été 2018 (an VIII)
+
 Ce message (comme tous les briefes/débriefes des évent) encore une fois est posé devant vos quartiers, tentes, maisons, sur vos fiefs, dans les tavernes ou accroché au mur, poteau et tout autres endroit ou il y a du passage. ce message n'est pas signé, il n'y a aucune magie le lieu d’où il provient est indétectable et aucune personne trouvable.
 
 "La Grande Foire débuta sous des auspices maussades.

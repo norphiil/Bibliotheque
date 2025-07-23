@@ -1,6 +1,6 @@
-Giels : le temps de l’Exil
+# Giels : le temps de l’Exil
 
-La vision obtenue par le prêtre Maru Tejner Vind lors de la Foire e l’An IX était claire.
+## La vision obtenue par le prêtre Maru Tejner Vind lors de la Foire e l’An IX était claire.
 
 Silicor, l’île des Giels, s’est éteinte emportée par la destruction d’Orya.
 

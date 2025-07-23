@@ -1,5 +1,7 @@
-Voyage au pays des Shins et des Seikos
-Fubuki, Dix-neuvième jour du Mois de la Nuit, An VI de la Colonisation
+# Voyage au pays des Shins et des Seikos
+
+## Fubuki, Dix-neuvième jour du Mois de la Nuit, An VI de la Colonisation
+
 Il est devenu très difficile de mettre la main sur les Pérégrinations de Crisos Erolios. C’est l’un des tous premiers colons à avoir arpenté les fiefs des nouveaux habitants de Kandorya à leur arrivée sur l’île. Il décrit dans un chapitre consacré à Fubuki l’installation des premiers Shins et Seikos sur ce territoire.
 Je n’ai pu en disposer que de très courts extraits avant de me rendre là-bas, mais j’avoue ma stupéfaction en arrivant sur place. Les montagnes sauvages et les forêts dangereuses bien que giboyeuses ont laissé la place à des habitations ordonnées, des temples de bois colorés et des jardins aussi minutieusement que délicieusement arrangés. La carrière aux minerais inconnus que signalait Crisos Erolios s’est avérée receler des métaux précieux, contribuant à assurer la prospérité aux Shins et aux Seikos. Fubuki n’est pas le seul fief de ces deux nations, mais c’est le plus ancien, et c’est le clan Hachisu qui en détient la gestion.
 La Montagne mystique est le principal sanctuaire de cette terre presque vierge.  Cinq chemins de pélerinage différents y mènent : le petit sentier, le sentier moyen, le grand sentier, le sentier du sanctuaire et le sentier de la montagne. C'est  le sentier du sanctuaire qu'empruntent les prêtresses qui se rendent vers le Monastère. Personne d'autre ne peut s'y aventurer. Cette sentine a une particularité : plusieurs petits ruisselets la traversent, naturellement, mais elle passe aussi à côté du principal torrent de ce cours d’eau. Les saumons eux-mêmes, ne peuvent en remonter le cours, tant il est impétueux et vivace.

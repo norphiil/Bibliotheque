@@ -1,8 +1,6 @@
-Contre Mialtus
+# Mialtus Premier, l’Usurpateur
 
-Mialtus Premier, l’Usurpateur
-
-                                                                    Hiver de l'an 1255
+## Hiver de l'an 1255
 
 Remise en cause de Mialtus 1er l'Usurpateur
 

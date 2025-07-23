@@ -1,6 +1,6 @@
-Lettre aux prêtres de Mialtus
+# Lettre aux prêtres de Mialtus
 
- Suite au Texte du Chroniqueur Nohmas de Darivelle, j’ai pu constater un certain émoi à Quiquosternum parmi les prêtres de Mialtus.
+Suite au Texte du Chroniqueur Nohmas de Darivelle, j’ai pu constater un certain émoi à Quiquosternum parmi les prêtres de Mialtus.
 
 J’ai toujours considéré les Prêtres de Mialtus comme des instruments de la puissance des Empereurs, car après tout, ce sont eux qui réalisent la cérémonie du Transfert et connaissent la véritable nature de l’Empereur ainsi que tous ses secrets.
 

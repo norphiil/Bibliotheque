@@ -1,6 +1,6 @@
-Lettre aux Paysans en colère
+# Lettre aux Paysans en colère
 
-Edenorya, mois des Chaleurs, An VII de la Colonisation
+## Edenorya, mois des Chaleurs, An VII de la Colonisation
 
 Il serait aisé de prouver, Messieurs les Laboureurs, Mesdames les Fermières, que la cherté des grains dont on se plaint en quelques endroits, n’a pour cause que la mauvaise récolte, et les entraves qui gênent encore l’expérimentation scientifique. L’ignorance ou l’avidité peuvent accuser de ces maux cette même science qui, si elle était entière, les aurait prévenus. Laissons-les dire. J’aurai vu, Mesdames et Messieurs, des troupes de fermiers en colère tout au long de l’année. On vous entend conspuer entités et autorités depuis le printemps dernier au chant de «FLP, on en a plein les pieds, on va chasser toutes les entités» . Le Dracosire en a éprouvé quelques contrariété aux premières heures du printemps de sorte que vous avez subi quelques pertes, ce dont, croyez-moi, vous me voyez marri.
 

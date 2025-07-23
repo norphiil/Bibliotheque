@@ -1,4 +1,5 @@
-Debriefing Orga années VII-VIII (2017-2018)
+# Debriefing Orga années VII-VIII (2017-2018)
+
 Débrief rp : petite précision, ce débrief rp (et ceux qui ont déjà vu le jour lors des événements passés) sont rp dans tous les sens des termes.
 Ils sont rp dans la forme et dans le fond. Vous vous retrouvez à connaitre ces informations par des parchemins qui sont posés partout dans les villes, les chemins, les villages, tavernes ou tous autres endroits existant dans l’univers de kandorya. Personnes n’ayant jamais vue qui les posait et ils ne sont pas signés jamais…voilà fin de la petite introduction..
 

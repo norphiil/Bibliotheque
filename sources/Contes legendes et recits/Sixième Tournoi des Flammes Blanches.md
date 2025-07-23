@@ -1,7 +1,7 @@
-Sixième Tournoi des Flammes Blanches
+# Sixième Tournoi des Flammes Blanches
 
--------------------------------------------------
-                                       Verte-Garde, An VI de la Colonisation, Solstice d'été
+## Verte-Garde, An VI de la Colonisation, Solstice d'été
+
 Chaque Solstice, c'est un rituel désormais bien établi sur l'île de Kersiskal, le Chapitre des Flammes Banches réunit les siens afin de décerner titres et récompenses. Les hommes de foi et d'armes présents s'affrontent ensuite dans des épreuves martiales et artistiques.
 C'est à Verte-Garde que sont déroulés les sixièmes jeux du Chapitre, sous le haut patronage de figures éminentes : Aëltas Derelowen, le Grand Maître du Chapitre, Aegius de Brume, le Commandeur, a Haute-Prêtresse Dame Élune et  Evans Veritas Capitaine de compagnie des Vouivres pour citer les plus fameux. D'autres visages connus se sont prêtés à la fête : le très érudit Éric de Sanglebotte, la magicienne experte en son art Mélissandre Boutefeu et son compagnon draconique, Pyro, le Baron Krokenstein, le Haut Juge Sire Philippe  de Kelastren, ancien Capitaine des Lévathians et quelques autres encore.
 Bien peu d'étrangers avaient fait le déplacement sur les terres de Verte-Garde, mais, Vendavel avait délégué ce jour-là pas moins de quatre représentants : l'ambassadeur Louis Maixent et trois hommes du Guet, le chroniqueur Nohmäs de Darivelle, Facile Longuegarde dit "Sil" et Héraklius Kanguerd.

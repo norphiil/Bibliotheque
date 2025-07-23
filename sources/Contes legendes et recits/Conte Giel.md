@@ -1,6 +1,6 @@
-Conte Giel
+# Conte Giel
 
-                                                               Edenorya, Mois du MuguetVoici une histoire que racontent les grand-mères Giels, à la tombée de la nuit, aux enfants pour les endormir :
+## Edenorya, Mois du MuguetVoici une histoire que racontent les grand-mères Giels, à la tombée de la nuit, aux enfants pour les endormir :
 
 « Tout cela commence dans des temps reculés où l’homme n’avait pas sa place. Des temps sombres de violence et de désespoir où les races du passé se disputaient le pouvoir. Une époque où les ténèbres avaient conquis le Monde, une époque de volcans, de déluges et de tremblements de terre.Une époque où régnait, et noire était son âme, la Nécromancienne TAKAR, la mère des enfers. Un règne sans gloire, triste comme la suie, puant comme un marécage, d’un geste elle flétrissait toute beauté et d’un autre elle absorbait toute vie et toute lumière. Et malgré les efforts de la Vie, si puissante, la nuit régnait, la mort aussi.
 

@@ -1,4 +1,4 @@
-Encyclopedia Geographica Kandorica,
+# Encyclopedia Geographica Kandorica,
 
 Catégorie "Fiefs de la Fédaration", Article : "Er'Kéles"
 Auteur : Nohmäs de Darivelle

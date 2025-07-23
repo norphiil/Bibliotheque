@@ -1,10 +1,10 @@
-Les Litanies de Negens
+# Les Litanies de Negens
 
-                                 Edenorya, foire de printemps, An IX de la Colonisation
+## Edenorya, foire de printemps, An IX de la Colonisation
 
- O toi, le plus illustre, des Dragons, le Premier
+O toi, le plus illustre, des Dragons, le Premier
 
- Toi que l’on a trahi , de tous, le cimier,
+Toi que l’on a trahi , de tous, le cimier,
 
 O Negens, prends pitié de ma longue misère!
 

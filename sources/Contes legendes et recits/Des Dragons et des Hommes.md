@@ -1,5 +1,7 @@
-Des Dragons et des Hommes...
-                                          Été de l’An VI de la Colonisation, Vendavel
+# Des Dragons et des Hommes...
+
+## Été de l’An VI de la Colonisation, Vendavel
+
 Habitants de Rives-Corail/Habitants de Vendavel
 J’ai écrit dans l’Éveil des Dragons combien je pressentais leur retour, tablant en premier lieu sur celui de Dohubald. A l’heure où j’écris ces lignes les quatre dragons chromatiques sont tous parmi nous, les hommes et autres espèces pensantes et il y a une spécificité de leur présence.
 Deux forces se sont illustrées pendant cette foire d’été pour mettre les espèces pensantes à l’abri du danger : le Vide, avec lequel Elkan le régent de Vendavel a passé une alliance aussi perspicace que judicieuse et les dragons auxquels l’on doit d’avoir pu mettre Kersiskal à l’abri d’un danger mortel dont on sait encore bien peu de choses, le Dévoreur de Mondes.

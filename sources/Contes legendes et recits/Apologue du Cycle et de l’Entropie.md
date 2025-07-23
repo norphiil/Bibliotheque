@@ -1,5 +1,7 @@
 # Apologue du Cycle et de l’Entropie
 
+## Deuxieme apologue
+
 Il fut un temps où tout naissait de soi-même pour l’usage des hommes, il n’appartient pas du tout au cours actuel du monde, mais bien, comme le reste, à celui qui a précédé. Car, en ce temps-là,  un Grand Dragon commandait et surveillait le mouvement de l’ensemble, et toutes les parties du monde étaient divisées par régions et, à chacune d’entre-elles pourvoyait un Dragon.
 
 Le Grand Dragon veillait lui-même sur les hommes et les nourrissait. Sous sa gouverne, il n’y avait ni États ni possession d’autres êtres humains ; car c’est du sein de la terre que tous, après avoir accompli leur cycle,  remontaient à la vie, sans garder aucun souvenir de leur passé. Ils avaient à profusion des fruits que leur donnaient les arbres et beaucoup d’autres plantes, fruits qui poussaient sans culture et que la terre produisait d’elle-même. Ils vivaient la plupart du temps en plein air sans habit et sans lit ; car les saisons étaient si bien tempérées qu’ils n’en souffraient aucune incommodité et ils trouvaient des lits moelleux dans l’épais gazon qui sortait de la terre.

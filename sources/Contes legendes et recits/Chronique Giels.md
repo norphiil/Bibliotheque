@@ -1,6 +1,7 @@
 # Chronique Giels
 
-L’île cachée des Giels
+## L’île cachée des Giels
+
 Découverte par hasard en 1066 par l’équipage du Dzarf, le premier bateau volant, l’île Silicor est située sur la bordure extérieure d’Orya. Surmontée d’un volcan peu actif d’où coulent des laves rouges et noires, elle s’allonge sur 30 km sur sa partie la plus grande orientée NO/SE. Le vent de NE y est glacial et fort tout au long de l’année ce qui ne l’empêche pas d’être à la fois surmontée de nuages et de brumes si épaisses que sa découverture tient du miracle. Ce vent frappe de plein fouet de hautes falaises abruptes et une belle forêt d’arbres forts et puissants qui semblent avoir été comme posés là pour protéger du vent le reste de l’île. On découvre à l’ouest un port naturel et au sud une plage de sable noir et fin alors que le volcan est plein est. Au centre une déesse paraît avoir prévue la venue des Ennéens car on y trouve une plaine riche et fertile. Le décor ainsi planté était idyllique et c’est comme cela que les premiers Ennéens de la  Voile Raf’AlGuard la virent et la racontèrent à leur retour.
 
 A la même époque, les deux ingrédients du carburant achetés dans le désert Medjay commencent à se raréfier. Alertés de notre besoin, sans pour autant savoir de quoi il retourne, nos vendeurs se décident à les vendre à prix d’or. Une rapine permet toutefois de récupérer des graines de la fameuse épice mais toutes les tentatives pour les faire pousser sont un échec. Pour l’huile minérale la situation est pire, elle ne peut être trouvée que dans le désert Medjay qui est sous surveillance étroite. Il paraît impossible d’envoyer une expédition en récupérer tant les quantités nécessaires sont importantes.

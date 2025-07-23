@@ -1,8 +1,8 @@
-Debriefing Orga Inter-Kando printemps 2017
+# Debriefing Orga Inter-Kando printemps 2017
 
- HRP : ceci n’est pas l’oeuvre d’un joueur mais  la rumeur qui circule RP sur Kersiskal à l’issue de l’Inter-Kando du printemps 2017. Elle est délivrée par l’Organisation.
+HRP : ceci n’est pas l’oeuvre d’un joueur mais  la rumeur qui circule RP sur Kersiskal à l’issue de l’Inter-Kando du printemps 2017. Elle est délivrée par l’Organisation.
 
-                                                                            Ne Faillissez Pas !
+Ne Faillissez Pas !
 
 Il tremble. Et avec lui, les colons.
 

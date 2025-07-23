@@ -1,10 +1,10 @@
-Prophétie Mogrime
+# Prophétie Mogrime
 
-                                                                                                           Edenorya, quelques jours après   la fête de l’Équinoxe de Printemps de l’an VII
+## Edenorya, quelques jours après la fête de l’Équinoxe de Printemps de l’an VII
 
 La foire de printemps a écrit de nouvelles lignes. Et c'est le vent de Kersis'kal qui a porté selon son gré de nouveaux textes sur ses terres...
 
-                     « Ne craignez aucune de vos failles, car c'est par elles que passe la lumière... »
+« Ne craignez aucune de vos failles, car c'est par elles que passe la lumière... »
 
 Ainsi se terminait le dernier de mes écrits. Je pensais réellement qu'il serait épitaphe. Pourtant je vis encore. Resterait-il quelques centimètres à la mèche de ma bougie ? Nos doigts tremblants, enivrés, par les vapeurs d'encens délivrés auraient-ils à ce point modifiés le destin ?
 

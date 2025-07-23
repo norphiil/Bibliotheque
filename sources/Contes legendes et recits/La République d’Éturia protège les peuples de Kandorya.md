@@ -1,6 +1,6 @@
-La République d’Éturia protège les peuples de Kandorya
+# La République d’Éturia protège les peuples de Kandorya
 
- Peuples de Kandorya,
+Peuples de Kandorya,
 
 Moi Marcus Blairus, Légat du Fief de Quiquosternum, Réclusiarque de Mialtus et Doigt de la magie de Son Excellence le Père de la République Belartus me présente à vous à l’aube d’heures terribles.
 

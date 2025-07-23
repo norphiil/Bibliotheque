@@ -1,6 +1,6 @@
-Lettre à Polémicus
+# Lettre à Polémicus
 
- Avé cher Polémicus,
+Avé cher Polémicus,
 
 J’ai pu lire votre texte, que vous avez disséminé un peu partout, et je me permets humblement d’y répondre par ces quelques lignes.
 

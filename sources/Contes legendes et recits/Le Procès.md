@@ -1,8 +1,6 @@
-Le Procès
+# Le Procès: Minutes du procès de quatre membres de l’Ordre Kelevra
 
- Minutes du procès de quatre membres de l’Ordre Kelevra
-
-                                                                                                1251, Baronnie de Hurlevent
+## 1251, Baronnie de Hurlevent
 
 Lord Fordel, le dernier fondateur vivant de l’Ordre Kelevra, entra dans la salle de réception du fort de Symkorn, transformé pour l'occasion en cour de justice. Arrivé la veille depuis la capitale, avec la triste nouvelle de l'assassinat du Haut Baron et de la quasi-totalité de sa famille, il avait voulu s'entretenir rapidement avec quelques membres de l'Ordre présents sur place.
 

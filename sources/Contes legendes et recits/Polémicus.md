@@ -1,6 +1,6 @@
-Polémicus
+# Polémicus
 
-                                              Edenorya,  Mois des Vendanges de l’an VII
+## Edenorya,  Mois des Vendanges de l’an VII
 
 Chez les Éturiens, la fin d’Orya a amené des questionnements et...leurs premiers éléments de réponse. La grande figure de ce peuple est sans contestation aucune celle du consul Celsius Belartus. Durant l’été de l’an VI, il s’est dit que les Éturiens avaient essayé d’amener à eux l’empereur Mialtus Thorence IV. Malheureusement, en fait de Mialtus, les Éturiens n’ont eu qu’une coulée de lave, moins chanceux que leurs alliés Triganes qui sont parvenus à récupérer leur Lucrétia et Shinseikos qui ont pu faire venir le fils du Mikado. Toutefois, deux Éturiens ont été amenés par l’intermédiaire du rituel. Ils ont été mis au secret  sur le fief de Nova Velotia. Nul ne sait ce qu’il est exactement advenu d’eux par la suite. Si l’autorité de Belartus Celsius est reconnue par tous les Éturiens, les écrits d’un philosophe font depuis quelque temps du remue-ménage sur quelques uns des fiefs de la République. L’individu signe ses feuillets du nom de Polémicus. A ce jour, je n’ai pas déterminé s’il ne s’agit que d’un pseudonyme ou si c’est son nom véritable. Polémicus, dans son premier livre pose  ouvertement une question qui doit certainement traverser l’esprit d’un nombre non-négligeable d’Éturiens : s’il ne reste rien d’Éturia sur la terre d’Orya, qu’adviendra-t-il de leur civilisation ?
 

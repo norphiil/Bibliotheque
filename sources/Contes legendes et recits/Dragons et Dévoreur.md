@@ -1,7 +1,7 @@
-Dragons et Dévoreur,
+# Dragons et Dévoreur: l'affrontement
 
-                                                  l'affrontement.
-                                 Edenorya, solstice d’hiver, An VI de la Colonisation
+## Edenorya, solstice d’hiver, An VI de la Colonisation
+
 Quand les jours viennent à raccourcir, et les nuits à s’allonger au tout début de l’Hiver, période propice aux terreurs nocturnes de toute nature surtout quand les étoiles et la Lune font défaut,  il est de tradition, depuis la récente colonisation de Kandorya, de festoyer.
 Les coteaux du Haut-Fanal ont accueilli à plusieurs reprises ce rendez-vous et nombre de colons devaient gagner le Relais ces jours derniers. Un récent incendie ayant endommagé le bâtiment, et le fief hôte ne pouvant assurer la sécurité de ses invités, il se résolut donc , en cette fin de la Sixième année, à annuler les festivités.
 

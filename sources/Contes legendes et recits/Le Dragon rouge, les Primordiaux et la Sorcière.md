@@ -1,6 +1,6 @@
-Le Dragon rouge, les Primordiaux et la Sorcière
+# Le Dragon rouge, les Primordiaux et la Sorcière
 
-                                                                Edenorya, mois des Fleurs, an VII de la Colonisation
+## Edenorya, mois des Fleurs, an VII de la Colonisation
 
 On sait l’acte de folie et de bravoure du Troll ardentTyn’go qui périt après avoir défié le Golem Crossyus, auto-proclamé Dévoreur de Mondes non sans lui avoir craché à la face. En dehors de cet éclat, on sait assez peu de choses sur les actions des Primordiaux pendant l’inter-foire du printemps. Ils furent pourtant bien plus actifs qu’on pourrait le penser de prime abord.
 

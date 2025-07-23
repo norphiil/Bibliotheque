@@ -1,8 +1,6 @@
-Le commerce des âmes
+# Le commerce des âmes: Les morts peuvent danser
 
-                          Les morts peuvent danser
-
-                                         Mois des Massacres, an VIII de la Colonisation
+## Mois des Massacres, an VIII de la Colonisation
 
 De nombreux systèmes métaphysiques, et bien sûr, la plupart des religions, donnent une vie à l’esprit après la mort du corps. Pour tout magicien qui se respecte, l’existence de l’âme ne fait pas de doute : il ne s’agit pas d’une hypothèse mais d’un fait établi et de puissants sortilèges de l’école de nécromancie permettent d’intercepter l’âme au moment où elle quitte le corps, ou encore de communiquer avec elle car elle semble demeurer à proximité immédiate du corps au moins le temps d’une révolution solaire autour de notre planète.
 

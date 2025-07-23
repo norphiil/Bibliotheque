@@ -1,5 +1,7 @@
-Temps d’orage pour Vendavel
-An VI de la Colonisation,  Solstice d’été, Vendavel
+# Temps d’orage pour Vendavel
+
+## An VI de la Colonisation,  Solstice d’été, Vendavel
+
 Quand on analyse les origines des guerres qui opposent les espèces pensantes entre elles on trouve des causes diverses. L’historien est souvent tenté de voir dans les grands affrontements des chocs entre nations que tout pousse à conquérir un espace vital.
 Au risque de paraître proférer un affreux sacrilège, je tends à penser qu’il n’en va pas fondamentalement autrement quand de grandes entités, qu’on les appelle divinités ou non, entrent en confrontation les unes avec les autres.
 Leurs instruments favoris, les espèces pensantes mènent alors des guerres au nom de leur foi, de leurs idéaux et de leurs convictions.

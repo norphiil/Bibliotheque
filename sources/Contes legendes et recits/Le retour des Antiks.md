@@ -1,5 +1,5 @@
-Le retour des Antiks
-------------------------
+# Le retour des Antiks
+
 Peu de Kandoryens sont encore en vie après avoir croisé le chemin d'un Antik. Ils peuvent avoir eu la chance de le rencontrer sur terrain neutre ou tout simplement que l'Antik les aient dédaignés pour une proie ou un objet plus intéressants.
 Un Antik a généralement les yeux rouges, des crocs sur la partie supérieure de la mâchoire, et une marque sur le cou, souvent de couleur bleue. Il n'existe en principe que quatre marques, mais dans la pratique, de très anciens Antiks dérogent à la règle.
 

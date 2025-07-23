@@ -1,7 +1,7 @@
-L'épopée avortée de l'Empereur-Dieu Gilgomesh,
-Kandorya au bord du désastre.
---------------------------------------------------------------
-A l'insu de ses habitants, c'est peut-être le sort de Kandorya qui a reposé entre les mains des forces éturiennes et de quelques shamanes Mogrims à la foire de l'été 1254.
+# L'épopée avortée de l'Empereur-Dieu Gilgomesh: Kandorya au bord du désastre
+
+## A l'insu de ses habitants, c'est peut-être le sort de Kandorya qui a reposé entre les mains des forces éturiennes et de quelques shamanes Mogrims à la foire de l'été 1254.
+
 Les services de renseignement éturiens étaient formels : un important détachement mulkesh faisait route vers Kandorya écrasant tout sur son passage.
 
 Les nations de Kandorya semblaient l'avoir quelque peu oublié, mais au cours de la troisième foire d'été, le Général Goran, chef militaire hors-pair et excellent tacticien, nommé par l'Empereur-Dieu en personne, s'était largement avancé sur les terres des Provinces libres et avait établi suffisamment de positions pour bâtir des campements loin d'être provisoires. Kandorya vivait donc sous la menace d'une nouvelle poussée mulkesh sans le savoir...

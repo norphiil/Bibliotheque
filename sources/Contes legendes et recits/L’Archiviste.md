@@ -1,6 +1,7 @@
 # L’Archiviste
 
-Edenorya, Mois des Nuits, an X de la Colonisation
+## Edenorya, Mois des Nuits, an X de la Colonisation
+
 Je crois bien avoir lu le nom de l’Archiviste pour la première fois en faisant des recherches sur Baldar, peu avant la foire d’été de l’an V, la première à laquelle j’ai assisté. Encore peu au fait de la réalité de Kersiskal à cette époque, j’avoue ne pas avoir du tout compris de quoi et de qui il s’agissait dans les premiers temps. Nous autres, Éturiens, n’avons rien de comparable dans notre religion.
 
 C’est au détour d’une conversation avec le veilleur Crime, dans une taverne entre deux foires, celle d’automne de l’an V, et celle de printemps de l’an VI, que je pus progresser dans la compréhension de cette entité. J’entendis le fossoyeur de l’aube sanglante  évoquer Kersiskal comme la matérialisation de l’Archiviste auquel il donna alors le nom de IL. Il  me parla aussi longuement d’ELLE qu’il associa à IL. A ses yeux, ELLE était Orya, ou plus exactement, Orya était la matérialisation d’ELLE. Je compris par la suite que Crime désignait Séphérie sous le nom d’ELLE.

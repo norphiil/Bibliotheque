@@ -1,6 +1,7 @@
 # Intrusion dans la Bibliothèque du Vide
 
-Dixième mois, An XI de la Colonisation
+## Dixième mois, An XI de la Colonisation
+
 Foire d’automne et après...
 Quand, à la foire d’automne de l’an IX, le Dracosire Negens indiqua à son frère, le Pyrosire, et aux Obsidiens Blancs, qu’ils auraient à le combattre car son pacte avec le Vide ne lui laissait plus d’autres choix que d’attaquer ce qui lui avait été cher, la consternation s’abattit sur le camp Dragon puis la Terre des Dragons.
 Le Pyrosire savait de quelle trempe était l’adversaire que nous aurions à affronter et il nous invita à ne pas avoir d’hésitation ni marquer le moindre signe de mollesse ou de faiblesse car le Dracosire, lui, n’en montrerait pas.

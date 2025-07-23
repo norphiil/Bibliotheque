@@ -1,10 +1,8 @@
-Le Procès, deuxième volumen
+# Le Procès, deuxième volumen: Minutes du procès de quatre membres de l’Ordre
 
-                                                                  Minutes du procès de quatre membres de l’Ordre
+## 1251, Baronnie de Hurlevent
 
-                                                                                1251, Baronnie de Hurlevent
-
-                               Rathmuth Galendar, alchimiste, chroniqueur de l’Ordre Kelevra
+Rathmuth Galendar, alchimiste, chroniqueur de l’Ordre Kelevra
 
 Seconde partie
 

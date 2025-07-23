@@ -1,6 +1,6 @@
 # Chronique de Vel’Céris, printemps 1256
 
-Vendavel, printemps 1256
+## Vendavel, printemps 1256
 
 Enfin... les murs de Vendavel sont en vue. Voilà maintenant plusieurs semaines que je marche dans leur direction avec l'espoir d'y retrouver des membres de l'ordre.
 

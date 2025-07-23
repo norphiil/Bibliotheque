@@ -1,5 +1,5 @@
-Organismes Magiquement Modifiés
---------------------------------------------
+# Organismes Magiquement Modifiés
+
 Une avancée scientifique sans précédent est passée inaperçue à la dernière foire d’été d’Edenorya. Pourtant, elle pourrait avoir des conséquences majeures sur le mode de vie de tous les habitants de l’île de Kandorya.
 Il a été dit dans une chronique précédente comment la Guilde des Arts Magiques était partie à la recherche d’ingrédients magiques afin de constituer un dôme de protection pour la cité d’Edenorya en cas d’attaque mulkesh. Mais ce qu’ignore le commun des mortels c’est que l’un des composants requis était l’oeuf d’une poule provenant d’un élevage géré par des hobbits.
 Pourquoi des hobbits ? Les Hobbits sont nombreux sur Kandorya et leurs intérêts sont divers. En réalité, c’est une petite communauté qui réside sur le fief de Vertegarde qui a attiré l’attention de la Guilde des Arts magiques.

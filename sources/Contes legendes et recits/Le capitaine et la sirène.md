@@ -1,4 +1,5 @@
-Le capitaine et la sirène
+# Le capitaine et la sirène
+
 Il était une fois en Edenorya, une jolie sirène qui tournait dans l'eau à la recherche de marins à séduire. Elle croisa le chemin d'un majestueux bâtiment et aperçut sur le pont le grand et fort Capitaine du navire.
 La sirène s'approcha de la coque, souriant de toute ses canines au puissant Capitaine. Le soleil se reflétait sur sa peau bleu couverte d'écailles, elle était belle au milieu du royaume de son père, Océanos.
 

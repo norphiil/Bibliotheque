@@ -1,4 +1,4 @@
-L'Aveugle et les Enfants maudits
+# L'Aveugle et les Enfants maudits
 
 Il était une fois, un très vaste désert au centre d'Orya, une véritable mer de sable. Plusieurs peuples vivaient en périphérie de ce désert, mais peu savaient qu'au plein milieu, on avait construit autour des oasis, quelques cités et autres routes commerciales, afin de former un réseau de sultanats, formant presque un petit pays. Hors des concernés, nul ne savait que les Enfants maudits subissaient un envoûtement, ni qui avait jeté sur eux cette malédiction. Étaient-ils eux aussi frappés par le mal des marins masqués ? Allaient-ils tous mourir avant de devenir vieux ? Ou bien allaient-ils, à l'image de ceux ayant pactisé avec l'Amiral, voir leur âme dévorée ou prisonnière lorsqu'ils allaient mourir ? Les Enfants maudits n'ont jamais dévoilé l'origine du mal dont ils souffraient, mais les effets sur eux étaient plus que visibles :
 

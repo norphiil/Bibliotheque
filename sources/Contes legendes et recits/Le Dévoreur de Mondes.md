@@ -1,5 +1,7 @@
-Le Dévoreur de Mondes
-                                        Edenorya, Solstice d'Hiver de l'an VI
+# Le Dévoreur de Mondes
+
+## Edenorya, Solstice d'Hiver de l'an VI
+
 Tout ce qui a un début a une fin. Voilà un axiome relativement commun en mathématiques, mais aussi en philosophie et en métaphysique. Appliqué au monde dans lequel nous vivons, cela signifie qu’il doit périr et disparaître, tôt ou tard. Contre toute attente, aucune des traditions religieuses d’Orya n’indique la fin des temps. Rien ne permet de s’y préparer sinon la sagacité d’esprits attentifs et éveillés qui guettent les signes annonciateurs de destruction.
 
 On sait ainsi, depuis l’équinoxe de Printemps de l’an VI,  qu’Orya est en proie aux flammes et aux ravages. Des coulées de lave remontent des entrailles de la terre et submergent le monde que les colons ont connu avant de se rendre à Kersiskal. Lors d’un rituel de vision effectué sur une faille magique, les participants ont eu des visions très claires du destin de notre terre. Des régions entières dévastées, quelques unes d’entre-elles ne subsistant que par la force d’une puissante magie. Une empreinte de dragon sans ailes laisse les érudits les plus avertis perplexes. Certains ont cru dans un premier temps y voir une trace de Negens, mais la dernière foire d’été a surtout montré à tous les colons que, comme nous, les dragons fuient le cataclysme, Negens y compris.

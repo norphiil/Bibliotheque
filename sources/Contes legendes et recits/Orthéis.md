@@ -1,6 +1,5 @@
-ORTHÉIS
+# ORTHÉIS
 
---------------
 Pour pouvoir comprendre ce que représente Orthéis, la soeur et compagne de Negens, le Seigneur des Dragons, il faut quitter l’approche chronologique habituelle et préférer la psychologie et l’analyse des mots à celle des faits.
 Orthéis était là quand l’homme fut créé. Le cadre que Negens avait choisi lui parut cohérent. Elle était toujours là quand les hommes se rebellèrent. Comme Dohubald, elle éprouva de la compassion pour des créatures qu’elle voyait si faibles et si limitées, mais, là où l’Historien et le Chroniqueur rentrent habituellement dans l’Histoire des espèces pensantes, ce serait plutôt au médecin des âmes qu’il faudrait faire appel.
 

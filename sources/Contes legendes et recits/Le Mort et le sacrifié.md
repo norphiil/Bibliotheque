@@ -1,4 +1,4 @@
-Le Mort et le sacrifié
+# Le Mort et le sacrifié
 
 Il était une fois, près du bosquet d'Edenorya, une troupe de brigands à la peau verte, qui chassaient les futurs marchandises, pour leurs étals esclavagistes.
 

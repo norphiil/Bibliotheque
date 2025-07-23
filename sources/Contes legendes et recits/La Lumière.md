@@ -1,8 +1,9 @@
-La Lumière
+# La Lumière
 
-                            « Ne craignez aucune de vos failles, car c'est par elle que passe la lumière.. »                                   Prophétie de l’Oracle Mogrime, quelques jours avant la Foire de     l’Équinoxe
+« Ne craignez aucune de vos failles, car c'est par elle que passe la lumière.. »
+Prophétie de l’Oracle Mogrime, quelques jours avant la Foire de l’Équinoxe
 
-                                                                                                       Edenorya, Hôpital des Apôtres,                                                                                                       Équinoxe de Printemps de l’an VII,
+## Edenorya, Hôpital des Apôtres, Équinoxe de Printemps de l’an VII
 
 A l’aube du premier jour de la Fête de l’Équinoxe de Printemps des rumeurs persistantes se firent l’écho de phénomènes surnaturels survenus dans le campement Rastor. Il s’avéra que les mercenaires qui y vivaient avaient du l’évacuer en urgence sous la pression de spectres, de fantômes et autres esprits des ténèbres venus prendre possession des lieux. Pendant longtemps, nul n’osa y mettre les pieds jusqu’à ce que deux fidèles de Fortunus y tentassent leur chance. A vrai dire, ils avaient de bonne raison d’y faire intrusion : on trouvait au beau milieu du campement un calice enchanté. Cet artefact avait comme particularité d’absorber l’essence des âmes et il semblait bien que le maître lige de ces deux fidèles se nourrît ainsi depuis fort longtemps.
 

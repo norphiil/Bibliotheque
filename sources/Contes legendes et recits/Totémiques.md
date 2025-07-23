@@ -1,4 +1,5 @@
-Totémiques
+# Totémiques
+
 Le développement de la spiritualité et de la foi sur Kersiskal est un objet d’étonnement et de perplexité pour moi depuis que j’ai posé le pied sur le Port d’Edenorya après avoir débarqué de la Louve.
 L’une des factions les plus connues de Kandorya est cette assemblée de clans issus des monts du Mainorat que l’on appelle Cymbroghi.
 Avant de parler du culte qu’ils vouent aux Totémiques, il me semble indispensable, pour ne pas perdre mon estimé lecteur (et/ou auditoire) d’introduire quelques notions sur le fonctionnement politique de ce peuple, particulier à bien des égards.

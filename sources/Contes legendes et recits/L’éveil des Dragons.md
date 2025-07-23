@@ -1,6 +1,7 @@
-L’éveil des Dragons
-------------------------
-Équinoxe de Printemps, Sixième année de la Colonisation, Vendavel
+# L’éveil des Dragons
+
+## Équinoxe de Printemps, Sixième année de la Colonisation, Vendavel
+
 Les plus anciennes légendes disent que Negens, le dragon blanc, fut le premier à émerger à la conscience sur l’île de Kersiskal. Il vivait en couple avec Orthéis, la Bleue et avait deux frères, Dohubald le Vert et Kairan le Rouge. Orthéis s’unit à Negens et de leur union naquirent les premiers Pragmas, vraisemblablement Salamos et Daerys Pragma. Mais Orthéis, profitant d’un long sommeil de Negens, trompa le Grand Ver, et s’unit aussi à Stigmatus, le dieu des hommes-bêtes. Les Totémiques furent leur descendance.
 Bien que toutes ces entités fussent natives de Kersiskal, il semble que les premiers hommes qui peuplèrent cette île essaimèrent en Orya si bien que certaines d’entre-elles apparurent dans plusieurs théologies du Continent.
 Les fidèles de l’Unique, un culte du Nord d’Orya, en firent ainsi l’ennemi personnel de leur dieu suprême et assurèrent qu’il ne devait sa forme qu’à sa chute, alors qu’il portait encore le nom et le titre de l’ange Ethéris.

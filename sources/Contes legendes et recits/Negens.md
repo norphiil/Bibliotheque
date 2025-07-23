@@ -1,6 +1,5 @@
-NEGENS
+# NEGENS
 
--------------
 Negens dit : que l’homme soit ! Et l’homme fut…Il le créa alors selon dix principes que des pierres magiques, les cistallines ( Lectine, Verrine, Rosine, Soline, Obscurantine, Azurine, Sanguine, Espérantine, Lorentine, Profondine), symbolisèrent : Connaissance, Loi, Imagination, Création,  Destruction, Rébellion, Harmonie, Désir, Destin et Cycle. Ainsi, un dixième de chaque être humain fut consacré à chacun d’entre eux sans qu’il pût en excéder cette proportion. Mais quand ils se furent développés, leur conscience crût et ils cherchèrent à sortir du cadre qu’avait fixé leur créateur. Est-ce que l’un de leurs principes fondateurs était la rébellion ? Peut-être. Ils se révoltèrent alors et menèrent une lutte sans merci contre leur démiurge.
 Dans un premier temps, il obtint le soutien de ses deux frères et de sa soeur, mais au fil du temps et des exactions, son propre camp se divisa, et, il n’eut bientôt plus que le soutien d’Airain, son cadet.
 D’autres entités avaient émergés entre-temps, issues par ricochet des dragons chromatiques. Moins puissantes mais déterminées, elles menèrent une guerre sans merci à Negens, et, parmi celles-là, la famille Pragma se singularisa.

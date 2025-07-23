@@ -1,8 +1,8 @@
 # Chroniques de Kragark, printemps 1256
 
-Vendavel, Foire de printemps 1256
+## Vendavel, Foire de printemps 1256
 
-Vendavel
+### Vendavel
 
 Moi, Kragark, je reprends ici les chroniques de l’Ordre Kelevra.
 

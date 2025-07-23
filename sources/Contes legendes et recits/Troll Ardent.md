@@ -1,6 +1,6 @@
-Troll Ardent
+# Troll Ardent
 
-                    Montagne de Feu, Mois des Grands froids, an VIII de la Colonisation
+## Montagne de Feu, Mois des Grands froids, an VIII de la Colonisation
 
 « La paix est un mensonge, il n’y a que la passion.
 

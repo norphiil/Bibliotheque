@@ -1,6 +1,7 @@
-Infernalisme à Edenorya
---------------------------------
-        Cinquième année de la colonisation de Kandorya, solstice d'Automne,
+# Infernalisme à Edenorya
+
+## Cinquième année de la colonisation de Kandorya, solstice d'Automne,
+
 A quelque distance de la porte nord d'Edenroya on trouve des champs connus des botanistes, herboristes, droguistes, pharmaciens et autres amoureux des plantes. La zone toute entière est réputée pour la diversité de ses herbes. La guilde des herboristes d'Edenorya y pratique souvent des cueillettes, quoiqu'avec parcimonie, ces lieux riches en espèces végétales rares tendant à s'épuiser au fil du temps.
 
 Si le lieu est relativement connu, son accès n'est pas aisé et son parcours dangereux : on n'y trouve pas que des passionnés des essences florales mais aussi de redoutables créatures et il n'est pas si rare d'y trébucher contre le corps refroidi d'un malheureux qui s'est montré bien trop téméraire.

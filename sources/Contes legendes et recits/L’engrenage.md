@@ -1,6 +1,6 @@
-L’engrenage
+# L’engrenage
 
-                                    Terre des Dragons, 1er jour du septième mois, an IX
+## Terre des Dragons, 1er jour du septième mois, an IX
 
 J’ai dit dans une chronique récente combien le peuple Abatucci était désormais entré dans le quotidien de Kersiskal. Il me reste, désormais, à la lueur des événements récents mais aussi du passé de ce peuple, à analyser les conséquences géopolitiques de leur intrusion dans le jeu diplomatique kandoryan.
 

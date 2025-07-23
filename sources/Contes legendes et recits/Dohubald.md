@@ -1,4 +1,5 @@
-DOHUBALD
+# DOHUBALD
+
 Dohubald, ah, Dohubald, le plus humain de tous les dragons ! Le meilleur ami de l’homme et sans doute l’expression la plus accomplie de ses  idéaux éthiques ! Dohubald qui ne veut pas être honoré ni adoré. Dohubald qui n’a de souci que la liberté de l’Homme, Homme qui se soucie fort peu de sa propre liberté la plupart du temps.
 A l’aube de la Création, tant qu’il s’est agi de protéger sa famille et sa descendance, Dohubald a soutenu Negens, son frère, dans toutes ses luttes. Mais quand l’action de son aîné a viré à la guerre de conquête,  a commencé de servir un intérêt égoïste et a cessé de concerner le bien commun de la race draconique, il s’en est détourné.
 

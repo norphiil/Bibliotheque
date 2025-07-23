@@ -1,4 +1,4 @@
-Zyphos, les Hommes, les Vautours et la Mort (conte Giel)
+# Zyphos, les Hommes, les Vautours et la Mort (conte Giel)
 
 Un jour, Zyphos, déesse des sphères inférieures et de la Guerre, décide de sonder le Monde et dit : “Je vais voir parmi les créatures celle qui est disposée à supporter la Mort.”Ce faisant elle fait mourir un Vautour. Et les Vautours se mirent alors à pleurer et à se lamenter. Leur désespoir, sincère, était si grand que par compassion elle lui redonna la vie.Alors Zyphos dit : “En vérité, ceux-ci ne supportent pas l’au-delà.”Et depuis les vautours ne connurent plus la mort. Ils se déplument, qu’il s’agisse du mâle ou de la femelle, dès qu’ils vieillissent, ils se déplument, l’un et l’autre se donnant la becquée jusqu’à ce qu’ils redeviennent tous les deux des enfants.
 

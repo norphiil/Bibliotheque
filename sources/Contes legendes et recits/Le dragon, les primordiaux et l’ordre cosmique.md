@@ -1,4 +1,5 @@
-est expliqué dans cet ouvrage et l’analyse cosmologique du Veilleur de Daerys Pragma.
+## est expliqué dans cet ouvrage et l’analyse cosmologique du Veilleur de Daerys Pragma.
+
 Le Skandaleux , taverne secrète où se sont réunis plusieurs colons récemment,  j’ai rendu compte de cet événement dans la chronique Archivage, a vu le Dragon Negens s’adresser à l’elfe Aroree Cutter, afin qu’elle soit porteuse d’un message à l’intention des tous les Primordiaux.
 Il y explique entre autres les désordres qui frappent Kandorya par la sortie du Cadre qu’il a fixé à sa création, la race humaine. Les paroles de Negens ne sont pas toujours aisées à interpréter et je vais devoir y revenir seulement après avoir exposé les théories de Crime et de Pataguajal.
 Crime distingue un ordre premier qu’il nomme cosmique, s’imposant dans le Cosmos tout entier à toutes les entités, y compris celles qui créent des mondes. Crime écrit ainsi dans son traité :

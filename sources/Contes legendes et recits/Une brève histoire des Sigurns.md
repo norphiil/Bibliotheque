@@ -1,6 +1,7 @@
 # Une brève histoire des Sigurns
 
-An XI de la Colonisation, mois des Grands froids, Edenorya
+## An XI de la Colonisation, mois des Grands froids, Edenorya
+
 La foire d’automne de l’an X vit apparaître sur la terre de Kersiskal de bien étranges invités : un peuple à la peau bleue, présentant certaines similitudes morphologiques apparentes avec les Gobelins au point que certains colons les qualifièrent de Gobelins bleus.
 Il s’avéra assez vite que ce peuple, venu d’un autre monde, était en fuite, pourchassé par un ennemi implacable.
 Averti de leur présence, j’usai de magie pour tenter d’en savoir plus sur leur monde natal. Je découvris une terre aride, à l’exception de quelques marécages encore spongieux et humides du sang et de la décomposition de leurs morts.

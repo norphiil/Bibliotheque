@@ -1,6 +1,7 @@
-Peur sur Edenorya
-------------------------
-Foire d'automne de Kandorya, année 5 de la colonisation
+# Peur sur Edenorya
+
+## Foire d'automne de Kandorya, année 5 de la colonisation
+
 La bonne humeur régnait à Edenorya quand le bourgmestre Buisson-Vert déclara ouverte la cinquième foire d'automne de la cité d'Edenorya. On devisait gaiement çà et là, tout à la joie des retrouvailles depuis le riche été de la foire précédente.
 Ce fut donc d'abord l'étonnement puis la consternation quand une ambassade mulkesh se matérialisa subitement sous les portes de la ville et attaqua instantanément les citoyens et les forces alors rassemblées des différentes factions.
 Inhabituellement résistants mais peu nombreux, les Mulkesh succombèrent sous le nombre mais aussi la vaillance de ceux qui s'opposèrent à eux. Chacun nota toutefois les traits déformés de leur chef et s'interrogea sur ses transformations physiques.

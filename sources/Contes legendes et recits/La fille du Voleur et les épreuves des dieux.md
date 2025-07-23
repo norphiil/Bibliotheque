@@ -1,4 +1,4 @@
-La fille du Voleur et les épreuves des dieux.
+# La fille du Voleur et les épreuves des dieux
 
 Il était une fois, dans la plaine d'Edenorya, un groupe de Samaritains qui avaient traversé la mer pour apporter la paix. Ils proposaient à tous ceux qu'ils rencontraient de cesser les affrontements et de faire la paix. À chaque combat, à chaque guerre, ils étaient présents pour protester et appeler au cessez-le-feu. Un jour, alors qu'ils étaient partis chercher des herbes pour préparer des onguents et des pommades,  ils trouvèrent une grande porte de pierre, recouverte de lierre. Il s'agissait d'une oeuvre du Bâtisseur, laissée à l'abandon. Leur ami le Fauve dévoila aux Samaritains qu'il était possible de se servir de la porte pour voyager plus loin que les yeux voyaient,  qu'il s'agissait là d'une construction magique et ensemble, ils partirent rencontrer un personnage oublié : l'Oracle.
 

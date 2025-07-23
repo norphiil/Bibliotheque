@@ -1,5 +1,5 @@
-Fête du Relais au Haut-Fanal
--------------------------------------
+# Fête du Relais au Haut-Fanal
+
 Saltimbanques, aèdes et aventuriers de tout poil ont convergé vers le nord-ouest d'Edenorya ces derniers jours. On y trouve là-bas, sur de jolis coteaux recouverts de vigne un relais marchand, à la croisée de grandes routes commerciales de Kandorya.
 Les beuveries s'y succèdent aux beuveries en attendant le grand événement de l'après Solstice d'Hiver, la Fête du Relais.
 A cette occasion, l'activité commerciale redémarre à Kandorya, mais pas seulement. On dit que la taverne est le lieu d'échanges diplomatiques intenses.

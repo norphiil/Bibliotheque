@@ -1,5 +1,5 @@
-Reposeras-tu en paix, Capitaine Samuel ?
--------------------------------------------
+# Reposeras-tu en paix, Capitaine Samuel ?
+
 Quand je saluai le Capitaine Vincent au soir du deuxième jour de la Foire d'été, je ne concevais alors pas que je ne le reverrais plus vivant.
 Une jeune femme accorte au fort joli minois l'avait par deux fois demandé au cours de la journée. Comment imaginer que c'était là la messagère de la mort ?
 Je l'appris par la suite, Dame Urse, avait attiré le capitaine dans de trompeurs filets en lui faisant accroire qu'elle pouvait lui donner des nouvelles de son fils Thibault.

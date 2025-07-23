@@ -1,4 +1,4 @@
-La Ritualiste et les monstres
+# La Ritualiste et les monstres
 
 Il était une fois, près du bosquet d'Edenorya, une Ritualiste fort aguerrie. Elle était la plus aguerrie des ritualistes parmi les colons, bien avant la création des guildes. Autour d'elle étaient réunis des ritualistes de chaque Vent, pour une cérémonie bien spéciale :  un appel à la nature, afin d'étudier et de parler avec les animaux de ces terres.
 

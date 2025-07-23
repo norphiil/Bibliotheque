@@ -1,6 +1,6 @@
-Les cycles de la haine et de la vengeance
+# Les cycles de la haine et de la vengeance
 
-              Edenorya, Jour des Messages, Mois de l’Avenir, An VIII de la Colonisation
+## Edenorya, Jour des Messages, Mois de l’Avenir, An VIII de la Colonisation
 
 Toubib, sans doute l’un des plus anciens veilleurs vivants depuis que les Colons ont mis les pieds sur Kersikal a rendu l’âme. Il périt parce qu’il portait au côté une lame que les peuples Shins et Seikos considèrent comme sacrée lorsqu’il vint en ambassade auprès d’eux. Le Shogun le défia, mais au final, ce furent plusieurs shins qui se ruèrent sur lui. Certains n’approuvèrent pas cette action dans laquelle ils voyaient une entorse au code d’honneur mais il était déjà trop tard pour revenir en arrière car peu de choses ne vont aussi vite qu’une lame qui sort de son fourreau. Quand cela se produit, même pour les esprits les plus attentifs et exercés, c’est souvent un état de sidération qui s’abat sur les âmes. Des Innocents du Vide se mêlèrent à l’histoire et s’assuèrent qu’il ne restât rien du veilleur en brûlant intégralement tous ses restes. S’ils agirent ainsi, c’est non seulement en raison de la haine ancestrale qui existe entre le Vide et les Pragmas, mais c’est aussi parce que la Collectionneuse, Dame Daerys, avait exécuté le plus haut dignitaire du Vide à l’été de l’an VII, Antgelogos. Et je ne doute pas que cela venait en représailles à quelque chose d’autre.J’ai raconté dans «Hécatombe» comme le peuple Shin a subi une impitoyable saignée à la dernière grande foire. Les tambours de la guerre roulèrent à nouveau et la fureur des Enfants des Cendres à la tête d’une coalition s’abattit sur eux. Leur campement fut rasé et réduit en cendres, les gardes de l’entrée tués.
 

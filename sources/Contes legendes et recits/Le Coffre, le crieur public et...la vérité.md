@@ -1,4 +1,7 @@
-Le Coffre, le crieur public et...la véritéEdenorya, Mois des Grands feux, an VII de la Colonisation
+# Le Coffre, le crieur public et...la véritéEdenorya
+
+## Mois des Grands feux, an VII de la Colonisation
+
 Il n’aura pas échappé aux oreilles attentives que depuis quelques semaines, contes et fables, parlons de pamphlets dans certains cas, circulent sur les places publiques et dans les tavernes de Kandorya. Plusieurs sont obscures et mystérieuses, faisant référence à de l’histoire ancienne tandis que d’autres nous sont plus proches et évoquent des événements récents. Je m’applique progressivement à les décrypter. Quelques unes d’entre elles m’apparaissent mal informées, ou alors, travestissent la vérité. Le Coffre du Crieur Public a attiré mon attention tant il est lacunaire et/ou mal intentionné. Dans ce petit apologue, trois personnages principaux figurent : le Néant, le Crieur public et un prêtre.
 Le Néant est un jeu de mots pour éviter de nommer Negens, le Dracosire. Le nom que le grand dragon a choisi évoque dans plusieurs langues le refus, la résistance et la négation de ce qui prévalait avant, de l’immobilisme, en somme. C’est sur la base de cette étymologie que notre conteur a choisi ce pseudonyme.
 

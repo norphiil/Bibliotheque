@@ -1,5 +1,5 @@
-La chute du Protectorat
-----------------------------------
+# La chute du Protectorat
+
 Simple voyageur et nouveau venu fraîchement arrivé sur l'île de Kandorya, j'ai eu peine à comprendre les ressorts qui font le jeu politique de cette île. Mais de nombreux entretiens, la consultation de documents secrets et de longues enquêtes m'ont permis de mieux en appréhender les tenants et les aboutissants.
 La chute du Protectorat
 On ne peut comprendre la chute du Protectorat que si l'on appréhende clairement les moeurs et la culture des Éturiens. Quand les premiers colons se sont installés sur l'île de Kandorya et ont fondé Edenorya plusieurs puissances d'Orya ont dépêché des troupes là-bas afin de prendre le contrôle des lieux.

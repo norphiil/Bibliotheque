@@ -1,5 +1,7 @@
-Équinoxe d'automne de l'an VI, Edenorya
-Daerys Pragma, l'âme de Kersiskal
+# Équinoxe d'automne de l'an VI, Edenorya
+
+## Daerys Pragma, l'âme de Kersiskal
+
 Quand l’âge heureux de la République vint en Éturie, bien qu’il ne durât guère, il amena une modification prodigieuse dans le droit de la famille. Une révolution sans pareille telle que jamais l’espèce humaine n’avait connue. Jusque là, le droit éturien, à l’instar des Mulkeshs, n’établissait un enfant en droit que par le sang. Cette vue restrictive de la filiation entraînait des guérillas et des vendettas sans fin dès lors que des soupçons planaient sur l’identité d’un individu. Les premiers républicains abolirent le droit du sang et établirent que seuls ceux qui avaient nourri un enfant pouvaient se déclarer parents de ce dernier. Malgré la chute de la République et l’avènement de l’Empire, les Mialtus maintinrent cette évolution juridique, toujours en vigueur, depuis, en terre éturienne.
 L’anecdote pourrait surprendre dans une chronique qui porte le nom de Daerys Pragma dans son titre. C’est ignorer que le chroniqueur que je suis a ses origines à Darivelle. Mais cela ne suffirait pas à expliquer le rapport de l’anecdote avec celle qu’on appelle la Collectionneuse si on ne s’intéresse pas de près aux rapports exclusifs et très forts que Daerys Pragma entretient avec l’île de Kersiskal et la race humaine.
 Disons-le tout net : Daerys n’a pas créé la race humaine. Le dragon Negens en est le créateur. Elle ne l’a pas créée, mais elle l’a adoptée et protégée, et cela, plus que quiconque si ce n’est peut-être Dohubald.

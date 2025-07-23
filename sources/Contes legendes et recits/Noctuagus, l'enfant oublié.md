@@ -1,6 +1,6 @@
-Noctuagus, l'enfant oublié
+# Noctuagus, l'enfant oublié
 
-                                 Aux alentours du solstice d’automne, Edenorya, An VIII
+## Aux alentours du solstice d’automne, Edenorya, An VIII
 
 Je me suis toujours étonné de la haine particulière que Noctuagus portait à Séphérie, comme s’il eût un grief indicible envers la créatrice. Pendant longtemps, je me suis perdu en conjectures de toutes sortes. J’ai même cru que Noctuagus était l’Archiviste.
 

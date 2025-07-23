@@ -1,4 +1,5 @@
-Éturiens, l’âge de la République
+# Éturiens, l’âge de la République
+
 Au regard de peuples anciens, Éturia n’est pas forte d’une longue histoire. Elle est née d’une sécession : quatre provinces, anciennes nations annexées par l’Empire Mulkeshite ont formé une alliance rebelle pour se séparer d’un pouvoir central jugé inepte et inerte. Les habitants de cette région n’avaient que très modérément apprécié de se retrouver seuls face à une tentative d’invasion d’Elfes sombres, 150 années auparavant, de devoir affronter des disettes et, in fine, de subir des taxes vexatoires de la part d’un pouvoir central devenu envieux et jaloux…
 S’étant défendus seuls, opprimés, laissés économiquement exsangues, ils ne virent plus d’intérêt à demeurer en sujétion et se libérèrent, sous l’égide de son aristocratie marchande qui mena la révolte.
 

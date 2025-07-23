@@ -1,6 +1,8 @@
-Éthique du Cadre
+# Éthique du Cadre
 
-                                                                          Edenorya, mois des fleurs, An VII de la Colonisation                                                           D’échanges fructueux avec Codex, de la fréquentation assidue de la Bibliothèque de l’Arcanium et d’entretiens avec Orthéïs la Maîtresse des Océans et  Negens le Dracosire, j’ai tiré quelques réflexions sur le Cadre.
+## Edenorya, mois des fleurs, An VII de la Colonisation
+
+D’échanges fructueux avec Codex, de la fréquentation assidue de la Bibliothèque de l’Arcanium et d’entretiens avec Orthéïs la Maîtresse des Océans et  Negens le Dracosire, j’ai tiré quelques réflexions sur le Cadre.
 
 Ce qui est fondateur, dans le Cadre, ce sont les principes selon lesquels le Dracosire a créé les humains. Ils sont tous éthiques. Ceci signifie que le Dracosire a créé la race humaine avant toutes choses en vertu d’une philosophie spécifique. De s’être entretenu avec lui j’ai compris que cette philosophie reposait sur dix valeurs et une proportion égale entre chacune d’entre elles. Les voici énumérées :
 

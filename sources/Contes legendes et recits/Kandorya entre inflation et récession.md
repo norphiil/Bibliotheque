@@ -1,6 +1,7 @@
 # Kandorya entre inflation et récession
 
-Terre des Dragons, quelques jours après le Solstice d’été de l’an XIII
+## Terre des Dragons, quelques jours après le Solstice d’été de l’an XIII
+
 La chronique Economica Kandorica dressait un état des lieux de la circulation monétaire et des échanges sur les terres de Kersiskal, il y a de cela cinq ans exactement, saluant l’action de Monsieur de Villanova, le chef d’orchestre de la Banque de Vendavel.
 
 Cette institution a acquis une influence considérable au fil des années, d’autant qu’elle semble ne devoir rendre de comptes à personne, et, de ce fait, dispose d’une marge de manœuvre considérable. On peut se réjouir qu’un homme aussi éclairé et intelligent que l’est Monsieur de Villanova soit à la tête de cette institution. D’ailleurs…quand il est absent…on observe une baisse réelle de la qualité des services bancaires et de l’influence de son pouvoir financier.

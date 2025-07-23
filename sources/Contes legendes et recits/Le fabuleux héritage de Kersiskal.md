@@ -1,8 +1,6 @@
-Le fabuleux héritage de Kersiskal
+# Le fabuleux héritage de Kersiskal: NATIFS et CÉLESTES
 
-             NATIFS et CÉLESTES
-
-                                                                    Edenorya, An VII de la Colonisation, mois des fleurs
+## Edenorya, An VII de la Colonisation, mois des fleurs
 
 Pour comprendre Kersiskal, il faut faire un plongeon de plus de 1300 ans dans le passé. Si l’île de Kandorya porte parfois le nom de Kersiskal, c’est qu’il fut un temps où tout ce territoire était une très grande cité, et pas n’importe laquelle.
 

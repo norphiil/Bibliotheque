@@ -1,6 +1,6 @@
-Lettre à quelques détracteurs
+# Lettre à quelques détracteurs
 
-                                            Edenorya, mois de l’Avenir, an VIII
+## Edenorya, mois de l’Avenir, an VIII
 
 Je ne me suis manifesté à la foire d’été d’Edenorya pour la première fois à  l’été de l’an V. J’ai écrit, depuis, de nombreuses chroniques. A l’instant où j’ai entrepris cette tache, elle s’est accompagnée de récriminations, de menaces de châtiment et de mort. Il n’a plus été une seule foire à laquelle je me sois rendu sans avoir à craindre pour ma sécurité. J’ai figuré sur des listes, agacé des entités et dû mon salut à peu de choses à plusieurs reprises. C’est souvent à mes amis que j’ai dû de demeurer vivant, car il n’y a de bien plus précieux que l’amitié vraie, parfois, à de simples coups de chance.Pour comprendre de telles réactions, il faut analyser le rapport des peuples et des individus à leur propre passé. Chacun, chaque peuple, désire légitimement écrire son Histoire. Et chacun a un et un seul point de vue sur son histoire mais aussi sur l’histoire des autres.On pourrait alors croire que le travail du chroniqueur serait de démêler le vrai du faux. Riez : ce serait trop facile, trop honorable, trop beau. Il y aurait en ce bas-monde un fil conducteur auquel se fier.
 

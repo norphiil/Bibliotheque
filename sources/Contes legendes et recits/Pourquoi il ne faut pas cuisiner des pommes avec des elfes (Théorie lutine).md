@@ -1,6 +1,6 @@
-Pourquoi il ne faut pas cuisiner des pommes avec des elfes ?(Théorie lutine)
+# Pourquoi il ne faut pas cuisiner des pommes avec des elfes ? (Théorie lutine)
 
-                                 Fin de l’été de l’an VII, Mois des Vendanges, Edenorya
+## Fin de l’été de l’an VII, Mois des Vendanges, Edenorya
 
 De retour de la foire d’été, plusieurs interrogations ont pris possession de mon esprit. L’une d’entre elle concerne le dragon rouge et une autre la magie. Mais je vais répondre dans cette théorie lutine, à encore une autre question encore : Pourquoi il ne faut pas cuisiner des pommes avec des elfes ?
 

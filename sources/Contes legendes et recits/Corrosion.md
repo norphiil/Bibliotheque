@@ -1,6 +1,6 @@
-Corrosion
+# Corrosion
 
-An X de la Colonisation, Mois des Moissons, Edenorya, Kersiskal
+## An X de la Colonisation, Mois des Moissons, Edenorya, Kersiskal
 
 La foire de l’été de l’an X commença sous les auspices de l’angoisse : les habitants des fiefs avaient expérimenté un phénomène aussi étrange qu’inquiétant. Lorsque les individus se rassemblaient, s’approchaient les uns des autres, ils subissaient un inexplicable état de faiblesse. La mort était alors toute proche. Dix individus seulement, proches de moins de deux pas les uns des autres suffisaient à envoyer toute une famille au cimetière.
 

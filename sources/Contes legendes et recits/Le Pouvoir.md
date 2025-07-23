@@ -1,6 +1,6 @@
-Le Pouvoir
+# Le Pouvoir
 
-                                 Edenorya, mois des Feuilles, an VII de la Colonisation
+## Edenorya, mois des Feuilles, an VII de la Colonisation
 
 L’automne de l’an VII de la Colonisation a vu une conférence inhabituelle mais passionnante se dérouler à Edenorya : le Consul éturien Belartus Celsius a évoqué les méandres du pouvoir et la délicate gestion des sujets et subordonnés quand on doit l’exercer. Le chroniqueur que je suis ne pouvait manquer un tel événement. Malheureusement, un agenda chargé a amené mon absence pendant les trois quarts de la conférence. Toutefois, grâce à d’heureux témoignages de légionnaires serviables et disciplinés bien qu’intraitables en affaires, j’ai pu récupérer de nombreux éléments. J’avoue avoir parfois dû un peu gloser pour le reste mais l’essentiel est là. Notez que le consul est au pouvoir depuis le premier jour sur les Terres de Kandorya et que c’est l’un des très rares dirigeants inamovibles en Kersiskal. Il parle donc d’expérience et pèse ses mots...
 

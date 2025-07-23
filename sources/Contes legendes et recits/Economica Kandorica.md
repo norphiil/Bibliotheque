@@ -1,6 +1,6 @@
-Economica Kandorica
+# Economica Kandorica
 
-                                Edenorya, Mois du Muguet, An VIII de la Colonisation
+## Edenorya, Mois du Muguet, An VIII de la Colonisation
 
 Depuis le débarquement des Colons en l’an 1250 de l’ancien calendrier, celui d’Orya, les affaires ont cessé d’être aussi prospères que les premiers marchands ne l’avaient souhaité. Quand une première expédition a mis les pieds sur la péninsule en l’an 1242, les lieux étaient très peu habités et les rares Natifs Sud’rons se sont alors assez peu manifestés.
 

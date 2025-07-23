@@ -1,6 +1,6 @@
-Lettre à mes amis Cymbroghis
+# Lettre à mes amis Cymbroghis
 
-                                                         Edenorya, un jour après l’Équinoxe de Pintemps de l’an VII
+## Edenorya, un jour après l’Équinoxe de Pintemps de l’an VII
 
 Amis qui pour la plupart êtes venus des hautes montagnes venteuses des Terres des Mainorats, l’heure est grave.
 

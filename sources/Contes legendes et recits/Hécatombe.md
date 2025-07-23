@@ -1,6 +1,6 @@
-Hécatombe
+# Hécatombe
 
- Edenorya, mois des Chaleurs de l’an VII
+## Edenorya, mois des Chaleurs de l’an VII
 
 Je suis certaine que vous connaissez cette sensation vengeresse, ce feu dans vos tripes et cette rage dans la gorge. Songez à cette souffrance quand vous tuerez à nouveau. Dans le sang, ne s'obtient que le sang. En détruisant, en tuant et en haïssant, vous ne trouverez au bout du chemin que la destruction, la mort et la haine.Prophétie de l’Oracle Mogrime peu avant la foire d’été de l’an VII
 

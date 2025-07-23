@@ -1,6 +1,7 @@
 # Clair-obscur à Lunargent
 
-Kandorya, année 1255, Premier Mois après le Solstice
+## Kandorya, année 1255, Premier Mois après le Solstice
+
 Quand le mage Nohmäs de Darivelle écrivit une chronique sur les événements de Lunargent il n’était pas en possession des éléments qui lui permettaient de faire éclater la vérité aux yeux et au su de tous. Sans doute est-ce pour cette raison qu’elle s’intitule les Mystères de Lunargent et qu’elle conclut en affirmant « qu’il manque un fin mot à l’histoire» et qu’il ne sait «si nul ne l’aura un jour».
 Moi, Aristotélès Fourchelangue, poète et rimailleur à mes heures, j’ai pris la responsabilité d’écrire ce que ce chroniqueur n’aurait sans doute pas manqué de faire savoir s’il l’avait pu.
 On sait par cette chronique et une autre du même auteur que la chute du Protectorat, à l’été de la cinquième foire d’Edenroya, est le probable effet d’une alliance secrète entre factions pour provoquer sa ruine.  Nohmäs de Darivelle a eu vent d’entretiens plus ou moins secrets entre le Protectorat et l’Arcanium survenus sur l’antique fief d’Aléthèïa, renommé Lunargent par Chasseur, l’ancien Protecteur. Il sait aussi qu’il y a eu des morts, mais il ignore les tenants et les aboutissants…

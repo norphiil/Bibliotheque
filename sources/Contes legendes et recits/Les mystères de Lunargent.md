@@ -1,5 +1,5 @@
-Les mystères de Lunargent
-----------------------------------
+# Les mystères de Lunargent
+
 S'il est bien des événements survenus qui demeureront pour longtemps mystérieux, ce sont bien survenus dans le fief de Lunargent, une possession de la faction dissoute le Clos-Métayer, prise, à l'été de l'année 5 de la colonisation, par une coalition du Protectorat et de la Fédération.
 La chronique «la chute du Protectorat» a longuement évoqué ces circonstances mais n'a pu élucider le mystère des noces de Lunargent.
 Bien des motivations ont été énoncées pour justifier l'attaque du Protectorat, mais dans toute relation il faut bien avoir présent à l'esprit que l'histoire n'est jamais écrite que par les vainqueurs.

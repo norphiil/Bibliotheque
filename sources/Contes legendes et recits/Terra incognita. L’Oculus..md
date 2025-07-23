@@ -1,6 +1,6 @@
-Terra incognita. L’Oculus.
+# Terra incognita: L’Oculus
 
-                                   Edenorya, Mois du Muguet, An VIII de la Colonisation
+## Edenorya, Mois du Muguet, An VIII de la Colonisation
 
 S’il y a bien des écrits qui rendent compte de l’aura de mystère qui nimbe le nord de Kersiskal, ce sont les récits des navigateurs, des premiers Colons à leur débarquement et des explorateurs. Toute l’ambiguité de la terre à laquelle nous avons affaire tient dans l’évolution du vocabulaire qui la qualifie.Pendant longtemps, j’ai lu que Kandorya était une île. Mais, au fil de mes lectures, je me suis rendu compte que ce n’était  que ce que l’on avait supposé depuis sa découverte.
 

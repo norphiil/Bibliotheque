@@ -1,6 +1,6 @@
 # Lettre à Samaël
 
-Ser-An, dix-neuvième jour du Septième mois de l’An XII
+## Ser-An, dix-neuvième jour du Septième mois de l’An XII
 
 Cher Samaël,
 Vous ne me connaissez sans doute pas. Je suis chroniqueur de mon état, un peu magicien à mes heures perdues, féru d’érudition, et attiré comme un aimant par les nouveautés de tout acabit.

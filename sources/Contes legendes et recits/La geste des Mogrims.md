@@ -1,7 +1,5 @@
-La geste des Mogrims.
-Gilgomesh, le dieu qui devint homme,
+# La geste des Mogrims: Gilgomesh, le dieu qui devint homme
 
-----------------------------------------------
 «Le sang se cristallisa comme le témoignage funeste de ses derniers instants d'innocence»
 
                                          Anonyme, Second Manuscrit, Geste de Gilgomesh

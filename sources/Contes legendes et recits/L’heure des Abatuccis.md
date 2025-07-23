@@ -1,6 +1,6 @@
-L’heure des Abatuccis
+# L’heure des Abatuccis
 
-                                Edenorya, dernières heures de la foire d’été de l’an IX
+## Edenorya, dernières heures de la foire d’été de l’an IX
 
 Le passant qui erre dans les rues d’Edenorya, pour peu qu’il ait bonne œil et demeure un temps dans la cité marchande, ne manquera pas de croiser tôt ou tard un ou plusieurs individus gracieusement vêtus et masqués. La finesse de leurs tenues, la qualité de leurs bijoux, toujours portés avec élégance et sobriété, le travail fin de leur demi-masques artistiquement arrangés, leur port altier,  en ont fait des figures incontournables des lieux. On nomme le peuple qui a choisi de s’acoutrer ainsi les Abatuccis.
 
