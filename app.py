@@ -7,6 +7,7 @@ from queue import Queue, Empty
 from dotenv import load_dotenv
 from document_processor import DocumentProcessor
 from ai_assistant import AIAssistant
+from rag_chatbot import RAGChatbot
 
 # Charger les variables d'environnement
 load_dotenv()
@@ -18,6 +19,7 @@ app.config['UPLOAD_FOLDER'] = os.getenv('UPLOAD_FOLDER', 'sources')
 # Initialiser les composants
 doc_processor = DocumentProcessor(app.config['UPLOAD_FOLDER'])
 ai_assistant = AIAssistant()
+rag_chatbot = RAGChatbot()
 
 @app.route('/')
 def index():
@@ -649,6 +651,36 @@ def debug_documents_list():
             <pre>{traceback.format_exc()}</pre>
         </body></html>
         """
+
+@app.route('/rag_chat')
+def rag_chat_route():
+    """Page du chatbot RAG."""
+    return render_template('rag_chat.html')
+
+@app.route('/api/rag_chat', methods=['POST'])
+def rag_chat_api():
+    """API pour le chatbot RAG."""
+    data = request.get_json()
+    message = data.get('message', '')
+
+    if not message:
+        return jsonify({'success': False, 'error': 'Message vide'}), 400
+
+    try:
+        response = rag_chatbot.query(message)
+        return jsonify({
+            'success': True,
+            'response': response['result'],
+            'source_documents': [
+                {
+                    'source': doc.metadata.get('source', 'Unknown'),
+                    'page_content': doc.page_content
+                }
+                for doc in response['source_documents']
+            ]
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     # Créer le dossier sources s'il n'existe pas

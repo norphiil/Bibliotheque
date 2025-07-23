@@ -13,6 +13,7 @@ import time
 import tiktoken
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from langchain_core.prompts import ChatPromptTemplate
+from rag_chatbot import RAGChatbot
 
 NB_WORKERS = 1
 
@@ -976,3 +977,28 @@ Présente exclusivement ta réponse sous forme de **tableau JSON conforme aux in
             'history_size': len(self.search_history),
             'cached_queries': [entry['query'] for entry in self.search_cache.values()]
         }
+
+    def advanced_rag_query(self, query: str) -> Dict:
+        """
+        Performs an advanced RAG query using the RAGChatbot.
+        """
+        try:
+            rag_chatbot = RAGChatbot()
+            response = rag_chatbot.query(query)
+
+            return {
+                'success': True,
+                'response': response['result'],
+                'source_documents': [
+                    {
+                        'source': doc.metadata.get('source', 'Unknown'),
+                        'page_content': doc.page_content
+                    }
+                    for doc in response['source_documents']
+                ]
+            }
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            }

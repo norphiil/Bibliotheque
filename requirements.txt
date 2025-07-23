@@ -15,3 +15,5 @@ python-docx
 regex
 tiktoken
 pillow
+chromadb
+langchain-community
