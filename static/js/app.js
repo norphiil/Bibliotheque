@@ -37,6 +37,9 @@ class LibraryApp {
         
         // Nettoyer les anciennes positions de scroll au démarrage
         this.cleanupOldScrollPositions();
+        
+        // Gérer les paramètres d'URL pour le partage
+        this.handleShareParameters();
     }
     
     handleInitialLoading() {
@@ -270,6 +273,579 @@ class LibraryApp {
     
     // ========== FIN GESTION DES POSITIONS DE SCROLL ==========
     
+    // ========== GESTION DU PARTAGE ==========
+    
+    /**
+     * Initialise la gestion de la sélection de texte pour le partage
+     */
+    initializeTextSelection() {
+        let isProcessingShare = false;
+        
+        document.addEventListener('mouseup', () => {
+            // Ne pas traiter si on est en train de partager
+            if (isProcessingShare) return;
+            
+            const selection = window.getSelection();
+            if (selection.toString().trim() && this.currentModalDocId) {
+                // Petite pause pour éviter les conflits avec le clic
+                setTimeout(() => {
+                    if (!isProcessingShare && selection.toString().trim()) {
+                        this.showShareButton(selection);
+                    }
+                }, 100);
+            } else {
+                // Seulement cacher si on n'est pas en train de partager
+                if (!isProcessingShare) {
+                    this.hideShareButton();
+                }
+            }
+        });
+        
+        // Cacher le bouton si on clique ailleurs (mais pas sur les éléments de partage)
+        document.addEventListener('mousedown', (e) => {
+            // Ne pas cacher si on vient de créer le bouton ou si on traite un partage
+            if (this.justCreatedShareButton || isProcessingShare) {
+                return;
+            }
+            
+            // Ne pas cacher si on clique sur les éléments de partage
+            if (!e.target.closest('.share-popup') && 
+                !e.target.closest('.share-link-display') &&
+                !e.target.closest('.share-selection-btn') &&
+                !e.target.closest('.copy-link-btn') &&
+                !e.target.closest('.close-share-link') &&
+                !e.target.closest('.share-link-input')) {
+                
+                // Petite pause pour permettre au clic de s'exécuter
+                setTimeout(() => {
+                    if (!isProcessingShare) {
+                        this.hideShareButton();
+                    }
+                }, 150);
+            }
+        });
+        
+        // Stocker la référence pour pouvoir l'utiliser dans les méthodes
+        this.isProcessingShare = () => isProcessingShare;
+        this.setProcessingShare = (value) => { isProcessingShare = value; };
+    }
+    
+    /**
+     * Affiche le bouton de partage près de la sélection
+     */
+    showShareButton(selection) {
+        // Supprimer l'ancien bouton s'il existe
+        this.hideShareButton();
+        
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        
+        // Créer le bouton de partage
+        const shareButton = document.createElement('div');
+        shareButton.className = 'share-popup';
+        shareButton.innerHTML = `
+            <button class="share-selection-btn" title="Partager cette sélection">
+                <i class="fas fa-share-alt"></i>
+                Partager
+            </button>
+        `;
+        
+        // Positionner le bouton
+        shareButton.style.position = 'fixed';
+        shareButton.style.left = `${rect.left + (rect.width / 2)}px`;
+        shareButton.style.top = `${rect.top - 40}px`;
+        shareButton.style.zIndex = '10000';
+        shareButton.style.transform = 'translateX(-50%)';
+        
+        document.body.appendChild(shareButton);
+        
+        // Ajouter l'event listener avec stopPropagation pour éviter les conflits
+        const shareBtn = shareButton.querySelector('.share-selection-btn');
+        shareBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            // Marquer immédiatement qu'on traite un partage
+            this.setProcessingShare(true);
+            
+            // Petit délai pour éviter les conflits d'événements
+            setTimeout(() => {
+                this.shareSelection(selection);
+            }, 50);
+        });
+        
+        // Empêcher la fermeture lors du mousedown sur le bouton
+        shareBtn.addEventListener('mousedown', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+        });
+        
+        // Empêcher les événements de souris sur tout le bouton
+        shareButton.addEventListener('mousedown', (e) => {
+            e.stopPropagation();
+        });
+        
+        shareButton.addEventListener('mouseup', (e) => {
+            e.stopPropagation();
+        });
+        
+        // Stocker la référence
+        this.currentShareButton = shareButton;
+        
+        // Marquer que nous venons de créer un bouton
+        this.justCreatedShareButton = true;
+        setTimeout(() => {
+            this.justCreatedShareButton = false;
+        }, 200);
+    }
+    
+    /**
+     * Cache le bouton de partage
+     */
+    hideShareButton() {
+        // Ne pas cacher si on est en train de traiter un partage
+        if (this.isProcessingShare && this.isProcessingShare()) {
+            return;
+        }
+        
+        if (this.currentShareButton) {
+            // Nettoyer le timeout auto-hide
+            if (this.shareAutoHideTimeout) {
+                clearTimeout(this.shareAutoHideTimeout);
+                this.shareAutoHideTimeout = null;
+            }
+            
+            // Animation de sortie
+            this.currentShareButton.style.opacity = '0';
+            this.currentShareButton.style.transform = this.currentShareButton.classList.contains('share-link-display') 
+                ? 'translateX(-50%) scale(0.8) translateY(-10px)' 
+                : 'translateX(-50%) scale(0.5) translateY(10px)';
+            
+            setTimeout(() => {
+                if (this.currentShareButton && this.currentShareButton.parentNode) {
+                    this.currentShareButton.remove();
+                }
+                this.currentShareButton = null;
+            }, 200);
+        }
+    }
+    
+    /**
+     * Partage la sélection actuelle
+     */
+    shareSelection(selection) {
+        // Marquer qu'on est en train de traiter un partage
+        this.setProcessingShare(true);
+        
+        const selectedText = selection.toString().trim();
+        if (!selectedText || !this.currentModalDocId) {
+            this.setProcessingShare(false);
+            return;
+        }
+        
+        // Trouver la ligne de la sélection
+        const range = selection.getRangeAt(0);
+        const startContainer = range.startContainer;
+        
+        // Trouver l'élément parent avec data-line
+        let lineElement = startContainer.nodeType === Node.TEXT_NODE 
+            ? startContainer.parentElement 
+            : startContainer;
+            
+        while (lineElement && !lineElement.dataset.line) {
+            lineElement = lineElement.parentElement;
+        }
+        
+        const lineNumber = lineElement ? lineElement.dataset.line : 1;
+        
+        // Générer le lien de partage
+        const baseUrl = window.location.origin + window.location.pathname;
+        let shareUrl = `${baseUrl}?doc=${encodeURIComponent(this.currentModalDocId)}`;
+        
+        if (lineNumber) {
+            shareUrl += `&line=${lineNumber}`;
+        }
+        
+        if (selectedText) {
+            // Limiter la longueur du texte dans l'URL
+            const truncatedText = selectedText.length > 100 
+                ? selectedText.substring(0, 100) + '...' 
+                : selectedText;
+            shareUrl += `&text=${encodeURIComponent(truncatedText)}`;
+        }
+        
+        // Transformer le bouton de partage en affichage du lien
+        this.showShareLink(shareUrl, selectedText);
+        
+        // Relâcher le flag après transformation réussie
+        setTimeout(() => {
+            this.setProcessingShare(false);
+        }, 500);
+    }
+    
+    /**
+     * Affiche le lien de partage avec bouton de copie
+     */
+    showShareLink(shareUrl, selectedText) {
+        if (!this.currentShareButton) return;
+        
+        // Transformer le bouton existant en affichage de lien
+        this.currentShareButton.className = 'share-link-display';
+        this.currentShareButton.innerHTML = `
+            <div class="share-link-container">
+                <div class="share-link-header">
+                    <i class="fas fa-link"></i>
+                    <span>Lien de partage créé</span>
+                </div>
+                <div class="share-link-content">
+                    <input type="text" class="share-link-input" value="${shareUrl}" readonly>
+                    <button class="copy-link-btn" title="Copier le lien">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="share-link-info">
+                    <small>Passage: "${selectedText.length > 50 ? selectedText.substring(0, 50) + '...' : selectedText}"</small>
+                </div>
+                <button class="close-share-link" title="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+        
+        // Repositionner si nécessaire (le contenu est plus large maintenant)
+        this.currentShareButton.style.minWidth = '350px';
+        this.currentShareButton.style.maxWidth = '450px';
+        
+        // Ajuster la position pour éviter qu'elle sorte de l'écran
+        const rect = this.currentShareButton.getBoundingClientRect();
+        if (rect.right > window.innerWidth - 20) {
+            const overflow = rect.right - (window.innerWidth - 20);
+            const currentLeft = parseInt(this.currentShareButton.style.left);
+            this.currentShareButton.style.left = `${currentLeft - overflow}px`;
+        }
+        
+        // Event listeners
+        const copyBtn = this.currentShareButton.querySelector('.copy-link-btn');
+        const closeBtn = this.currentShareButton.querySelector('.close-share-link');
+        const linkInput = this.currentShareButton.querySelector('.share-link-input');
+        
+        // Empêcher la fermeture lors des interactions avec les éléments
+        [copyBtn, closeBtn, linkInput].forEach(element => {
+            element.addEventListener('mousedown', (e) => {
+                e.stopPropagation();
+            });
+            element.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+        
+        copyBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.copyToClipboard(shareUrl, selectedText);
+            
+            // Animation de feedback
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            copyBtn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                copyBtn.style.background = '';
+            }, 2000);
+        });
+        
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.hideShareButton();
+        });
+        
+        // Sélectionner le texte du lien quand on clique dessus
+        linkInput.addEventListener('click', () => {
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999); // Pour mobile
+        });
+        
+        // Auto-hide après 15 secondes (plus long car c'est interactif)
+        if (this.shareAutoHideTimeout) {
+            clearTimeout(this.shareAutoHideTimeout);
+        }
+        
+        this.shareAutoHideTimeout = setTimeout(() => {
+            if (this.currentShareButton && this.currentShareButton.classList.contains('share-link-display')) {
+                this.hideShareButton();
+            }
+        }, 15000);
+    }
+    
+    /**
+     * Affiche les options de partage
+     */
+    showShareOptions() {
+        if (!this.currentModalDocId) return;
+        
+        // Créer la modal de partage
+        const shareModal = document.createElement('div');
+        shareModal.className = 'share-modal-overlay';
+        shareModal.innerHTML = `
+            <div class="share-modal">
+                <div class="share-modal-header">
+                    <h3><i class="fas fa-share-alt"></i> Partager le document</h3>
+                    <button class="share-modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="share-modal-content">
+                    <div class="share-option">
+                        <h4>Partager le document entier</h4>
+                        <p>Créer un lien vers ce document</p>
+                        <button class="share-btn" data-type="document">
+                            <i class="fas fa-link"></i>
+                            Copier le lien
+                        </button>
+                    </div>
+                    <div class="share-option">
+                        <h4>Partager avec position actuelle</h4>
+                        <p>Créer un lien qui ouvrira le document à votre position de scroll actuelle</p>
+                        <button class="share-btn" data-type="position">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Copier le lien avec position
+                        </button>
+                    </div>
+                    <div class="share-instructions">
+                        <p><i class="fas fa-info-circle"></i> 
+                        <strong>Astuce :</strong> Sélectionnez du texte dans le document pour partager directement un passage spécifique.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(shareModal);
+        
+        // Event listeners
+        shareModal.querySelector('.share-modal-close').addEventListener('click', () => {
+            shareModal.remove();
+        });
+        
+        shareModal.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                shareModal.remove();
+            }
+        });
+        
+        // Boutons de partage
+        shareModal.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.dataset.type;
+                if (type === 'document') {
+                    this.createShareLink(this.currentModalDocId);
+                } else if (type === 'position') {
+                    const modalContent = document.getElementById('modalDocumentContent');
+                    const scrollPosition = modalContent ? modalContent.scrollTop : 0;
+                    const estimatedLine = this.estimateLineFromScroll(scrollPosition);
+                    this.createShareLink(this.currentModalDocId, estimatedLine);
+                }
+                shareModal.remove();
+            });
+        });
+        
+        // Animation d'entrée
+        setTimeout(() => {
+            shareModal.classList.add('active');
+        }, 10);
+    }
+    
+    /**
+     * Estime le numéro de ligne basé sur la position de scroll
+     */
+    estimateLineFromScroll(scrollPosition) {
+        const modalContent = document.getElementById('modalDocumentContent');
+        if (!modalContent) return 1;
+        
+        // Trouver l'élément visible au centre de l'écran
+        const viewportHeight = modalContent.clientHeight;
+        const centerY = scrollPosition + (viewportHeight / 2);
+        
+        // Chercher l'élément avec data-line le plus proche
+        const lines = modalContent.querySelectorAll('[data-line]');
+        let closestLine = 1;
+        let minDistance = Infinity;
+        
+        lines.forEach(line => {
+            const rect = line.getBoundingClientRect();
+            const modalRect = modalContent.getBoundingClientRect();
+            const elementY = rect.top - modalRect.top + scrollPosition;
+            const distance = Math.abs(elementY - centerY);
+            
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestLine = parseInt(line.dataset.line) || 1;
+            }
+        });
+        
+        return closestLine;
+    }
+    
+    /**
+     * Crée un lien de partage et le copie dans le presse-papiers
+     */
+    createShareLink(docId, lineNumber = null, selectedText = null) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        let shareUrl = `${baseUrl}?doc=${encodeURIComponent(docId)}`;
+        
+        if (lineNumber) {
+            shareUrl += `&line=${lineNumber}`;
+        }
+        
+        if (selectedText) {
+            // Limiter la longueur du texte dans l'URL
+            const truncatedText = selectedText.length > 100 
+                ? selectedText.substring(0, 100) + '...' 
+                : selectedText;
+            shareUrl += `&text=${encodeURIComponent(truncatedText)}`;
+        }
+        
+        // Copier dans le presse-papiers
+        this.copyToClipboard(shareUrl, selectedText);
+    }
+    
+    /**
+     * Copie le lien dans le presse-papiers et affiche une notification
+     */
+    async copyToClipboard(url, selectedText = null) {
+        try {
+            await navigator.clipboard.writeText(url);
+            
+            // Afficher une notification de succès
+            this.showNotification(
+                'Lien copié !', 
+                selectedText 
+                    ? `Le lien vers le passage sélectionné a été copié dans votre presse-papiers.`
+                    : `Le lien vers le document a été copié dans votre presse-papiers.`,
+                'success'
+            );
+        } catch (err) {
+            console.error('Erreur lors de la copie:', err);
+            
+            // Fallback pour les navigateurs qui ne supportent pas l'API Clipboard
+            this.fallbackCopyToClipboard(url);
+        }
+    }
+    
+    /**
+     * Méthode de fallback pour copier dans le presse-papiers
+     */
+    fallbackCopyToClipboard(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            this.showNotification('Lien copié !', 'Le lien a été copié dans votre presse-papiers.', 'success');
+        } catch (err) {
+            this.showNotification('Erreur', 'Impossible de copier le lien. Veuillez copier l\'URL manuellement.', 'error');
+        }
+        
+        document.body.removeChild(textArea);
+    }
+    
+    /**
+     * Affiche une notification
+     */
+    showNotification(title, message, type = 'info') {
+        // Créer la notification
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <div class="notification-icon">
+                    <i class="fas ${type === 'success' ? 'fa-check' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info'}"></i>
+                </div>
+                <div class="notification-text">
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                </div>
+                <button class="notification-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+        
+        // Ajouter au DOM
+        document.body.appendChild(notification);
+        
+        // Event listener pour fermer
+        notification.querySelector('.notification-close').addEventListener('click', () => {
+            this.hideNotification(notification);
+        });
+        
+        // Animation d'entrée
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        // Auto-hide après 5 secondes
+        setTimeout(() => {
+            this.hideNotification(notification);
+        }, 5000);
+    }
+    
+    /**
+     * Cache une notification
+     */
+    hideNotification(notification) {
+        notification.classList.add('hide');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }
+    
+    /**
+     * Gère les paramètres d'URL pour le partage
+     */
+    handleShareParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const docId = urlParams.get('doc');
+        const lineNumber = urlParams.get('line');
+        const sharedText = urlParams.get('text');
+        
+        if (docId) {
+            // Marquer que c'est un lien partagé
+            this.isSharedLink = true;
+            
+            // Ouvrir le document partagé
+            this.openDocumentModal(docId).then(() => {
+                if (lineNumber) {
+                    // Attendre que le document soit chargé puis naviguer vers la ligne
+                    setTimeout(() => {
+                        this.highlightLine(lineNumber);
+                        
+                        // Si du texte était partagé, l'afficher dans une notification
+                        if (sharedText) {
+                            this.showNotification(
+                                'Passage partagé',
+                                `Vous consultez un passage partagé : "${sharedText}"`,
+                                'info'
+                            );
+                        }
+                    }, 1000);
+                }
+            });
+            
+            // Nettoyer l'URL sans recharger la page
+            const cleanUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState(null, null, cleanUrl);
+        }
+    }
+    
+    // ========== FIN GESTION DU PARTAGE ==========
+    
     initializeEventListeners() {
         // Chat functionality
         // const chatInput = document.getElementById('chatInput');
@@ -386,10 +962,16 @@ class LibraryApp {
     initializeModalControls() {
         const modalCloseBtn = document.getElementById('modalCloseBtn');
         const modalFullscreenBtn = document.getElementById('modalFullscreenBtn');
+        const modalShareBtn = document.getElementById('modalShareBtn');
         const modalOverlay = document.getElementById('documentModal');
         
         modalCloseBtn.addEventListener('click', () => this.closeModal());
         modalFullscreenBtn.addEventListener('click', () => this.toggleModalFullscreen());
+        
+        // Bouton de partage
+        if (modalShareBtn) {
+            modalShareBtn.addEventListener('click', () => this.showShareOptions());
+        }
         
         // Fermer la modale en cliquant sur l'overlay
         modalOverlay.addEventListener('click', (e) => {
@@ -404,6 +986,9 @@ class LibraryApp {
                 this.closeModal();
             }
         });
+        
+        // Gérer la sélection de texte pour le partage
+        this.initializeTextSelection();
     }
     
     initializeDocumentTree() {
@@ -1315,10 +1900,23 @@ class LibraryApp {
             previousHighlight.classList.remove('line-highlight');
         }
         
+        // Supprimer les anciens surlignages de partage
+        const previousSharedHighlight = document.querySelector('.shared-highlight');
+        if (previousSharedHighlight) {
+            previousSharedHighlight.classList.remove('shared-highlight');
+        }
+        
         // Ajouter la surbrillance à la ligne
         const lineElement = document.querySelector(`[data-line=\"${lineNumber}\"]`);
         if (lineElement) {
             lineElement.classList.add('line-highlight');
+            
+            // Ajouter un effet spécial si c'est un lien partagé
+            if (this.isSharedLink) {
+                lineElement.classList.add('shared-highlight');
+                this.isSharedLink = false; // Reset flag
+            }
+            
             lineElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
