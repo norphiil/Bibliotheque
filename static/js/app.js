@@ -1001,6 +1001,7 @@ class LibraryApp {
         
         // Mettre à jour l'ID du document courant
         this.currentModalDocId = docId;
+        this.currentOpenDocument = { id: docId }; // Stocker pour la navigation par ligne
         
         // Afficher le placeholder de chargement
         modalContent.innerHTML = `
@@ -1009,6 +1010,9 @@ class LibraryApp {
                 <p>Chargement du document...</p>
             </div>
         `;
+        
+        // Ajouter l'ID du document comme attribut data
+        modalContent.dataset.docId = docId;
         
         // Mettre à jour le titre avec le nom du document
         const docName = this.getDocumentName(docId);
@@ -1128,7 +1132,7 @@ class LibraryApp {
     }
     
     convertMarkdownToHtml(rawText) {
-        // Fonction simple pour convertir Markdown basique en HTML
+        // Fonction simple pour convertir Markdown basique en HTML en préservant les numéros de ligne
         let html = rawText;
         
         // Nettoyer les caractères d'échappement
@@ -1157,77 +1161,54 @@ class LibraryApp {
         html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
         html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
         
-        // Convertir les paragraphes (lignes séparées par des retours à la ligne multiples)
-        html = html.split('\n\n').map(paragraph => {
-            paragraph = paragraph.trim();
-            if (paragraph && !paragraph.startsWith('<h') && !paragraph.startsWith('<div class="document-image-container">')) {
-                return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
+        // Convertir ligne par ligne pour préserver la correspondance des numéros de ligne
+        const lines = html.split('\n');
+        const htmlLines = lines.map((line, index) => {
+            const lineNumber = index + 1;
+            const trimmedLine = line.trim();
+            
+            // Ligne vide : créer un paragraphe vide avec numéro de ligne
+            if (trimmedLine === '') {
+                return `<p class="empty-line" data-line="${lineNumber}"><br></p>`;
             }
-            return paragraph;
-        }).join('\n');
+            
+            // Ligne qui commence par # (titre) : déjà convertie, ajouter data-line
+            if (trimmedLine.startsWith('<h')) {
+                // Préserver le niveau du titre (h1, h2, h3, etc.)
+                return line.replace(/^(\s*)<h(\d+)/, `$1<h$2 data-line="${lineNumber}" class="line"`);
+            }
+            
+            // Ligne avec image : ajouter data-line
+            if (trimmedLine.startsWith('<div class="document-image-container">')) {
+                return line.replace('<div class="document-image-container">', 
+                    `<div class="document-image-container line" data-line="${lineNumber}">`);
+            }
+            
+            // Ligne normale : créer un paragraphe avec numéro de ligne
+            if (trimmedLine) {
+                // Appliquer le formatage gras/italique sur la ligne
+                let formattedLine = line;
+                formattedLine = formattedLine.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                formattedLine = formattedLine.replace(/\*(.+?)\*/g, '<em>$1</em>');
+                
+                return `<p class="line" data-line="${lineNumber}">${formattedLine}</p>`;
+            }
+            
+            return `<p class="empty-line" data-line="${lineNumber}"><br></p>`;
+        });
         
-        // Convertir le texte en gras et italique
-        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-        html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        html = htmlLines.join('\n');
         
-        console.log('Markdown converti avec images:', html.substring(0, 500) + '...');
+        console.log('Markdown converti avec préservation des lignes:', html.substring(0, 500) + '...');
         return html;
     }
     
     enhanceDocumentDisplay(container) {
-        // Transformer les lignes commençant par # en titres H1 si elles ne l'ont pas été
+        // La conversion des titres est maintenant gérée par convertMarkdownToHtml
         const contentDiv = container.querySelector('.document-content-rendered');
         if (!contentDiv) return;
         
-        // D'abord, nettoyer le contenu de tous les caractères d'échappement
-        this.cleanupDocumentContent(contentDiv);
-        
-        // Chercher les paragraphes qui commencent par #
-        const paragraphs = contentDiv.querySelectorAll('p');
-        paragraphs.forEach(p => {
-            const text = p.textContent.trim();
-            if (text.startsWith('# ')) {
-                // Créer un nouveau H1
-                const h1 = document.createElement('h1');
-                h1.textContent = text.substring(2); // Enlever le "#" et l'espace
-                h1.classList.add('converted-title');
-                
-                // Remplacer le paragraphe par le H1
-                p.parentNode.replaceChild(h1, p);
-                console.log('Titre transformé:', text);
-            }
-        });
-        
-        // Chercher aussi directement les éléments de texte qui contiennent # au début
-        const walker = document.createTreeWalker(
-            contentDiv,
-            NodeFilter.SHOW_TEXT,
-            null,
-            false
-        );
-        
-        const textNodes = [];
-        let node;
-        while (node = walker.nextNode()) {
-            textNodes.push(node);
-        }
-        
-        textNodes.forEach(textNode => {
-            const text = textNode.textContent.trim();
-            if (text.startsWith('# ')) {
-                // Créer un H1 pour remplacer ce texte
-                const h1 = document.createElement('h1');
-                h1.textContent = text.substring(2);
-                h1.classList.add('converted-title');
-                
-                // Remplacer le nœud de texte par le H1
-                textNode.parentNode.insertBefore(h1, textNode);
-                textNode.remove();
-                console.log('Titre créé depuis texte brut:', text);
-            }
-        });
-        
-        // Forcer l'application des styles aux titres H1
+        // Appliquer les styles aux titres H1 déjà convertis
         const titles = contentDiv.querySelectorAll('h1');
         titles.forEach(title => {
             title.style.fontFamily = "'Cinzel', serif";
@@ -1242,36 +1223,6 @@ class LibraryApp {
             title.style.position = "relative";
             console.log('Style appliqué au titre:', title.textContent);
         });
-    }
-    
-    cleanupDocumentContent(contentDiv) {
-        // Nettoyer le contenu HTML brut de tous les caractères d'échappement
-        let innerHTML = contentDiv.innerHTML;
-        
-        // Remplacer les \n littéraux par de vrais retours à la ligne
-        innerHTML = innerHTML.replace(/\\n/g, '\n');
-        
-        // Remplacer les \t par des espaces
-        innerHTML = innerHTML.replace(/\\t/g, '    ');
-        
-        // Traiter les lignes qui commencent par # comme des titres
-        innerHTML = innerHTML.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-        innerHTML = innerHTML.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-        innerHTML = innerHTML.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-        
-        // Remplacer les doubles retours à la ligne par des paragraphes
-        innerHTML = innerHTML.replace(/\n\n+/g, '</p><p>');
-        
-        // S'assurer qu'on a des paragraphes autour
-        if (!innerHTML.startsWith('<')) {
-            innerHTML = '<p>' + innerHTML + '</p>';
-        }
-        
-        // Nettoyer les paragraphes vides
-        innerHTML = innerHTML.replace(/<p>\s*<\/p>/g, '');
-        
-        contentDiv.innerHTML = innerHTML;
-        console.log('Contenu nettoyé et formaté');
     }
     
     displayDocumentErrorInModal(error) {
@@ -2690,7 +2641,7 @@ class LibraryApp {
             const keywordsList = result.matches.map(m => m.keyword).join(', ');
             
             html += `
-                <div class="keyword-result-item" data-doc-name="${result.document}" style="animation-delay: ${index * 0.1}s">
+                <div class="keyword-result-item" data-doc-name="${result.document}" data-line-number="${result.line_number}" style="animation-delay: ${index * 0.1}s">
                     <div class="keyword-result-header">
                         <div class="keyword-result-document">${result.document}</div>
                         <div class="keyword-result-matches">${result.total_matches} occurrence(s)</div>
@@ -2707,8 +2658,9 @@ class LibraryApp {
         resultsContainer.querySelectorAll('.keyword-result-item').forEach((item, index) => {
             item.addEventListener('click', () => {
                 const docName = item.getAttribute('data-doc-name');
+                const lineNumber = parseInt(item.getAttribute('data-line-number'));
                 const resultData = sortedResults[index]; // Obtenir les données du résultat correspondant
-                this.openDocumentWithKeywordHighlights(docName, resultData);
+                this.openDocumentWithKeywordHighlights(docName, resultData, lineNumber);
             });
         });
     }
@@ -2774,11 +2726,12 @@ class LibraryApp {
         }
     }
     
-    async openDocumentWithKeywordHighlights(docName, keywordResultData) {
-        console.log('openDocumentWithKeywordHighlights appelée avec:', { docName, keywordResultData });
+    async openDocumentWithKeywordHighlights(docName, keywordResultData, specificLineNumber = null) {
+        console.log('openDocumentWithKeywordHighlights appelée avec:', { docName, keywordResultData, specificLineNumber });
         
         // Stocker les données de recherche par mots-clés pour le surlignage
         this.currentKeywordSearch = keywordResultData;
+        this.targetLineNumber = specificLineNumber || keywordResultData.line_number;
         
         // Trouver et ouvrir le document
         const document = this.allDocuments.find(doc => doc.name === docName);
@@ -2788,15 +2741,15 @@ class LibraryApp {
             
             // Attendre que le document soit chargé puis appliquer les surlignages
             setTimeout(() => {
-                this.applyKeywordHighlights(keywordResultData);
+                this.applyKeywordHighlights(keywordResultData, this.targetLineNumber);
             }, 500);
         } else {
             this.showMessage(`Document "${docName}" non trouvé.`, 'error');
         }
     }
     
-    applyKeywordHighlights(keywordResultData) {
-        console.log('applyKeywordHighlights appelée avec:', keywordResultData);
+    applyKeywordHighlights(keywordResultData, targetLineNumber = null) {
+        console.log('applyKeywordHighlights appelée avec:', keywordResultData, 'targetLineNumber:', targetLineNumber);
         
         const modalContent = document.getElementById('modalDocumentContent');
         if (!modalContent) {
@@ -2837,10 +2790,11 @@ class LibraryApp {
             this.highlightKeywordInDocument(keyword, isPrimary, wholeWordsOnly, caseSensitive);
         });
         
-        // Naviguer vers la ligne spécifique si disponible
-        if (keywordResultData.line_number) {
+        // Naviguer vers la ligne spécifique (priorité à targetLineNumber si fourni)
+        const lineToScrollTo = targetLineNumber || keywordResultData.line_number;
+        if (lineToScrollTo) {
             setTimeout(() => {
-                this.scrollToLineNumber(keywordResultData.line_number);
+                this.scrollToSpecificLineNumber(lineToScrollTo);
             }, 300);
         }
     }
@@ -2940,6 +2894,41 @@ class LibraryApp {
             }
         } else {
             // Si pas de numéros de ligne, essayer de trouver le premier surlignage
+            const firstHighlight = modalContent.querySelector('.keyword-text-highlight.primary');
+            if (firstHighlight) {
+                firstHighlight.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
+    }
+    
+    scrollToSpecificLineNumber(lineNumber) {
+        const modalContent = document.getElementById('modalDocumentContent');
+        if (!modalContent) return;
+        
+        console.log('Navigation directe vers la ligne:', lineNumber);
+        
+        // Chercher l'élément avec l'attribut data-line correspondant
+        const targetElement = modalContent.querySelector(`[data-line="${lineNumber}"]`);
+        
+        if (targetElement) {
+            console.log('Ligne trouvée avec data-line, navigation vers:', lineNumber);
+            targetElement.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+            
+            // Ajouter un effet de surbrillance spécial pour la ligne ciblée
+            targetElement.classList.add('keyword-line-highlight', 'target-line');
+            setTimeout(() => {
+                targetElement.classList.remove('keyword-line-highlight', 'target-line');
+            }, 4000);
+        } else {
+            console.log('Ligne', lineNumber, 'non trouvée dans le document');
+            
+            // Fallback simple : aller au premier mot-clé surligné
             const firstHighlight = modalContent.querySelector('.keyword-text-highlight.primary');
             if (firstHighlight) {
                 firstHighlight.scrollIntoView({ 

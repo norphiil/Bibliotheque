@@ -2435,7 +2435,6 @@ body::after {
 
 .document-content-rendered p {
     line-height: 1.8;
-    margin-bottom: 1rem;
 }
 
 .document-content-rendered code {
