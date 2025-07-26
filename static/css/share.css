@@ -577,3 +577,77 @@
         box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
     }
 }
+
+/* Styles pour le surlignage multiple de lignes partagées */
+.shared-multi-highlight {
+    background: linear-gradient(120deg, 
+        rgba(102, 187, 255, 0.25) 0%, 
+        rgba(102, 187, 255, 0.1) 50%, 
+        rgba(102, 187, 255, 0.25) 100%);
+    border-left: 4px solid var(--primary-blue, #66bbff);
+    border-radius: 2px;
+    animation: sharedMultiGlow 3s ease-in-out;
+    position: relative;
+}
+
+.shared-multi-highlight::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        var(--primary-blue, #66bbff) 20%, 
+        var(--primary-blue, #66bbff) 80%, 
+        transparent 100%);
+    animation: sharedMultiPulse 2s ease-in-out infinite;
+}
+
+@keyframes sharedMultiGlow {
+    0% { 
+        background: linear-gradient(120deg, 
+            rgba(102, 187, 255, 0.4) 0%, 
+            rgba(102, 187, 255, 0.2) 50%, 
+            rgba(102, 187, 255, 0.4) 100%);
+    }
+    50% { 
+        background: linear-gradient(120deg, 
+            rgba(102, 187, 255, 0.3) 0%, 
+            rgba(102, 187, 255, 0.15) 50%, 
+            rgba(102, 187, 255, 0.3) 100%);
+    }
+    100% { 
+        background: linear-gradient(120deg, 
+            rgba(102, 187, 255, 0.25) 0%, 
+            rgba(102, 187, 255, 0.1) 50%, 
+            rgba(102, 187, 255, 0.25) 100%);
+    }
+}
+
+@keyframes sharedMultiPulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Quand plusieurs lignes sont surlignées, ajouter une indication visuelle */
+.shared-multi-highlight:first-of-type::after {
+    content: '📍';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    opacity: 0.7;
+    animation: fadeInOut 4s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 0.7; }
+}

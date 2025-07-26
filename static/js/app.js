@@ -274,6 +274,30 @@ class LibraryApp {
     // ========== FIN GESTION DES POSITIONS DE SCROLL ==========
     
     // ========== GESTION DU PARTAGE ==========
+    /*
+     * SYSTÈME DE PARTAGE OPTIMISÉ
+     * 
+     * Le système de partage utilise maintenant une approche optimisée pour les URLs :
+     * 
+     * 1. Détection intelligente des lignes sélectionnées :
+     *    - Analyse de la sélection pour détecter toutes les lignes touchées
+     *    - Inclusion automatique des lignes intermédiaires dans les sélections continues
+     *    - Limitation automatique pour éviter les URLs trop longues
+     * 
+     * 2. Compression des plages de lignes :
+     *    - Format compact : "1-3,5,7-9" au lieu de "1,2,3,5,7,8,9"
+     *    - URLs plus courtes et plus lisibles
+     *    - Support des plages discontinues
+     * 
+     * 3. Surlignage multiple :
+     *    - Toutes les lignes partagées sont surlignées simultanément
+     *    - Styles visuels distinctifs pour les partages multiples
+     *    - Scroll automatique vers la première ligne
+     * 
+     * 4. Compatibilité :
+     *    - Support de l'ancien format pour les liens existants
+     *    - Migration transparente vers le nouveau système
+     */
     
     /**
      * Initialise la gestion de la sélection de texte pour le partage
@@ -443,39 +467,26 @@ class LibraryApp {
             return;
         }
         
-        // Trouver la ligne de la sélection
-        const range = selection.getRangeAt(0);
-        const startContainer = range.startContainer;
+        // Trouver toutes les lignes de la sélection
+        const selectedLines = this.getSelectedLines(selection);
         
-        // Trouver l'élément parent avec data-line
-        let lineElement = startContainer.nodeType === Node.TEXT_NODE 
-            ? startContainer.parentElement 
-            : startContainer;
-            
-        while (lineElement && !lineElement.dataset.line) {
-            lineElement = lineElement.parentElement;
+        if (selectedLines.length === 0) {
+            this.setProcessingShare(false);
+            return;
         }
         
-        const lineNumber = lineElement ? lineElement.dataset.line : 1;
-        
-        // Générer le lien de partage
+        // Générer le lien de partage avec les lignes
         const baseUrl = window.location.origin + window.location.pathname;
         let shareUrl = `${baseUrl}?doc=${encodeURIComponent(this.currentModalDocId)}`;
         
-        if (lineNumber) {
-            shareUrl += `&line=${lineNumber}`;
-        }
-        
-        if (selectedText) {
-            // Limiter la longueur du texte dans l'URL
-            const truncatedText = selectedText.length > 100 
-                ? selectedText.substring(0, 100) + '...' 
-                : selectedText;
-            shareUrl += `&text=${encodeURIComponent(truncatedText)}`;
+        // Passer les lignes sous forme de plages compressées pour optimiser la longueur de l'URL
+        if (selectedLines.length > 0) {
+            const compressedLines = this.compressLineRanges(selectedLines);
+            shareUrl += `&lines=${compressedLines}`;
         }
         
         // Transformer le bouton de partage en affichage du lien
-        this.showShareLink(shareUrl, selectedText);
+        this.showShareLink(shareUrl, selectedText, selectedLines);
         
         // Relâcher le flag après transformation réussie
         setTimeout(() => {
@@ -484,10 +495,192 @@ class LibraryApp {
     }
     
     /**
+     * Récupère toutes les lignes touchées par la sélection
+     */
+    getSelectedLines(selection) {
+        const range = selection.getRangeAt(0);
+        const linesSet = new Set();
+        
+        // Obtenir tous les éléments avec data-line dans la sélection
+        const commonAncestor = range.commonAncestorContainer;
+        const container = commonAncestor.nodeType === Node.TEXT_NODE 
+            ? commonAncestor.parentElement 
+            : commonAncestor;
+        
+        // Trouver tous les éléments avec data-line dans le range
+        const walker = document.createTreeWalker(
+            container,
+            NodeFilter.SHOW_ELEMENT,
+            {
+                acceptNode: function(node) {
+                    if (node.dataset && node.dataset.line) {
+                        // Vérifier si ce noeud intersecte avec la sélection
+                        if (range.intersectsNode(node)) {
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                    }
+                    return NodeFilter.FILTER_SKIP;
+                }
+            }
+        );
+        
+        let node;
+        while (node = walker.nextNode()) {
+            if (node.dataset.line) {
+                linesSet.add(parseInt(node.dataset.line));
+            }
+        }
+        
+        // Si aucune ligne n'a été trouvée par le walker, essayer de trouver les lignes de début et fin
+        if (linesSet.size === 0) {
+            const startLine = this.findLineNumber(range.startContainer);
+            const endLine = this.findLineNumber(range.endContainer);
+            
+            if (startLine) linesSet.add(startLine);
+            if (endLine && endLine !== startLine) linesSet.add(endLine);
+        }
+        
+        // Si nous avons trouvé des lignes, mais qu'il semble y en avoir entre les extrêmes
+        // (pour les sélections multi-lignes continues), ajouter les lignes intermédiaires
+        const sortedLines = Array.from(linesSet).sort((a, b) => a - b);
+        if (sortedLines.length >= 2) {
+            const minLine = sortedLines[0];
+            const maxLine = sortedLines[sortedLines.length - 1];
+            
+            // Si la différence est raisonnable (moins de 50 lignes), inclure toutes les lignes intermédiaires
+            if (maxLine - minLine < 50) {
+                for (let i = minLine; i <= maxLine; i++) {
+                    // Vérifier que cette ligne existe réellement dans le document
+                    const lineElement = document.querySelector(`[data-line="${i}"]`);
+                    if (lineElement) {
+                        linesSet.add(i);
+                    }
+                }
+            }
+        }
+        
+        // Convertir en tableau trié et limiter le nombre de lignes pour éviter les URLs trop longues
+        const finalLines = Array.from(linesSet).sort((a, b) => a - b);
+        
+        // Si plus de 20 lignes, ne garder que les 10 premières et les 10 dernières
+        if (finalLines.length > 20) {
+            const firstTen = finalLines.slice(0, 10);
+            const lastTen = finalLines.slice(-10);
+            const combined = [...firstTen, ...lastTen];
+            return [...new Set(combined)].sort((a, b) => a - b);
+        }
+        
+        return finalLines;
+    }
+    
+    /**
+     * Compresse une liste de lignes en plages (ex: [1,2,3,5,6] → "1-3,5-6")
+     * pour optimiser la longueur des URLs
+     */
+    compressLineRanges(lines) {
+        if (!lines || lines.length === 0) return '';
+        if (lines.length === 1) return lines[0].toString();
+        
+        const sortedLines = [...lines].sort((a, b) => a - b);
+        const ranges = [];
+        let rangeStart = sortedLines[0];
+        let rangeEnd = sortedLines[0];
+        
+        for (let i = 1; i < sortedLines.length; i++) {
+            const currentLine = sortedLines[i];
+            
+            if (currentLine === rangeEnd + 1) {
+                // Ligne consécutive, étendre la plage
+                rangeEnd = currentLine;
+            } else {
+                // Nouvelle plage, sauvegarder la précédente
+                if (rangeStart === rangeEnd) {
+                    ranges.push(rangeStart.toString());
+                } else {
+                    ranges.push(`${rangeStart}-${rangeEnd}`);
+                }
+                rangeStart = currentLine;
+                rangeEnd = currentLine;
+            }
+        }
+        
+        // Ajouter la dernière plage
+        if (rangeStart === rangeEnd) {
+            ranges.push(rangeStart.toString());
+        } else {
+            ranges.push(`${rangeStart}-${rangeEnd}`);
+        }
+        
+        return ranges.join(',');
+    }
+    
+    /**
+     * Décompresse une chaîne de plages en liste de lignes (ex: "1-3,5-6" → [1,2,3,5,6])
+     */
+    decompressLineRanges(rangesString) {
+        if (!rangesString) return [];
+        
+        const lines = [];
+        const ranges = rangesString.split(',');
+        
+        for (const range of ranges) {
+            if (range.includes('-')) {
+                const [start, end] = range.split('-').map(n => parseInt(n.trim()));
+                if (!isNaN(start) && !isNaN(end)) {
+                    for (let i = start; i <= end; i++) {
+                        lines.push(i);
+                    }
+                }
+            } else {
+                const line = parseInt(range.trim());
+                if (!isNaN(line)) {
+                    lines.push(line);
+                }
+            }
+        }
+        
+        return [...new Set(lines)].sort((a, b) => a - b);
+    }
+    
+    /**
+     * Trouve le numéro de ligne d'un noeud
+     */
+    findLineNumber(node) {
+        let current = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+        
+        while (current && !current.dataset.line) {
+            current = current.parentElement;
+        }
+        
+        return current ? parseInt(current.dataset.line) : null;
+    }
+    
+    /**
      * Affiche le lien de partage avec bouton de copie
      */
-    showShareLink(shareUrl, selectedText) {
+    showShareLink(shareUrl, selectedText, selectedLines = []) {
         if (!this.currentShareButton) return;
+        
+        // Générer l'info sur les lignes sélectionnées
+        let linesInfo = '';
+        if (selectedLines.length > 0) {
+            if (selectedLines.length === 1) {
+                linesInfo = `Ligne ${selectedLines[0]}`;
+            } else {
+                // Vérifier si c'est une plage continue
+                const isConsecutive = selectedLines.every((line, index) => 
+                    index === 0 || line === selectedLines[index - 1] + 1
+                );
+                
+                if (isConsecutive && selectedLines.length <= 10) {
+                    linesInfo = `Lignes ${selectedLines[0]} à ${selectedLines[selectedLines.length - 1]}`;
+                } else if (selectedLines.length <= 5) {
+                    linesInfo = `Lignes ${selectedLines.join(', ')}`;
+                } else {
+                    linesInfo = `${selectedLines.length} lignes sélectionnées`;
+                }
+            }
+        }
         
         // Transformer le bouton existant en affichage de lien
         this.currentShareButton.className = 'share-link-display';
@@ -504,7 +697,7 @@ class LibraryApp {
                     </button>
                 </div>
                 <div class="share-link-info">
-                    <small>Passage: "${selectedText.length > 50 ? selectedText.substring(0, 50) + '...' : selectedText}"</small>
+                    <small>${linesInfo ? `${linesInfo} - ` : ''}Texte: "${selectedText.length > 40 ? selectedText.substring(0, 40) + '...' : selectedText}"</small>
                 </div>
                 <button class="close-share-link" title="Fermer">
                     <i class="fas fa-times"></i>
@@ -691,17 +884,19 @@ class LibraryApp {
         const baseUrl = window.location.origin + window.location.pathname;
         let shareUrl = `${baseUrl}?doc=${encodeURIComponent(docId)}`;
         
+        // Utiliser le nouveau format lines même pour une seule ligne
         if (lineNumber) {
-            shareUrl += `&line=${lineNumber}`;
+            shareUrl += `&lines=${lineNumber}`;
         }
         
-        if (selectedText) {
-            // Limiter la longueur du texte dans l'URL
-            const truncatedText = selectedText.length > 100 
-                ? selectedText.substring(0, 100) + '...' 
-                : selectedText;
-            shareUrl += `&text=${encodeURIComponent(truncatedText)}`;
-        }
+        // Ne plus inclure le texte dans l'URL pour garder les liens courts
+        // if (selectedText) {
+        //     // Limiter la longueur du texte dans l'URL
+        //     const truncatedText = selectedText.length > 100 
+        //         ? selectedText.substring(0, 100) + '...' 
+        //         : selectedText;
+        //     shareUrl += `&text=${encodeURIComponent(truncatedText)}`;
+        // }
         
         // Copier dans le presse-papiers
         this.copyToClipboard(shareUrl, selectedText);
@@ -812,8 +1007,9 @@ class LibraryApp {
     handleShareParameters() {
         const urlParams = new URLSearchParams(window.location.search);
         const docId = urlParams.get('doc');
-        const lineNumber = urlParams.get('line');
-        const sharedText = urlParams.get('text');
+        const lineNumber = urlParams.get('line'); // Ancien paramètre pour compatibilité
+        const linesParam = urlParams.get('lines'); // Nouveau paramètre
+        const sharedText = urlParams.get('text'); // Déprécié mais maintenu pour compatibilité
         
         if (docId) {
             // Marquer que c'est un lien partagé
@@ -821,19 +1017,38 @@ class LibraryApp {
             
             // Ouvrir le document partagé
             this.openDocumentModal(docId).then(() => {
-                if (lineNumber) {
-                    // Attendre que le document soit chargé puis naviguer vers la ligne
+                // Parser les lignes à surligner
+                let linesToHighlight = [];
+                
+                if (linesParam) {
+                    // Nouveau format : plages de lignes compressées (ex: "1-3,5,7-9")
+                    linesToHighlight = this.decompressLineRanges(linesParam);
+                } else if (lineNumber) {
+                    // Ancien format : une seule ligne (compatibilité)
+                    const line = parseInt(lineNumber);
+                    if (!isNaN(line)) {
+                        linesToHighlight = [line];
+                    }
+                }
+                
+                if (linesToHighlight.length > 0) {
+                    // Attendre que le document soit chargé puis surligner les lignes
                     setTimeout(() => {
-                        this.highlightLine(lineNumber);
+                        this.highlightLines(linesToHighlight);
                         
-                        // Si du texte était partagé, l'afficher dans une notification
-                        if (sharedText) {
-                            this.showNotification(
-                                'Passage partagé',
-                                `Vous consultez un passage partagé : "${sharedText}"`,
-                                'info'
-                            );
+                        // Afficher une notification avec les informations du partage
+                        let message = '';
+                        if (linesToHighlight.length === 1) {
+                            message = `Vous consultez la ligne ${linesToHighlight[0]} partagée.`;
+                        } else {
+                            message = `Vous consultez ${linesToHighlight.length} lignes partagées (${linesToHighlight[0]} à ${linesToHighlight[linesToHighlight.length - 1]}).`;
                         }
+                        
+                        this.showNotification(
+                            'Passage partagé',
+                            message,
+                            'info'
+                        );
                     }, 1000);
                 }
             });
@@ -1919,6 +2134,44 @@ class LibraryApp {
             
             lineElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+    }
+    
+    /**
+     * Surligne plusieurs lignes pour le partage
+     */
+    highlightLines(lineNumbers) {
+        // Supprimer toutes les surbrillances précédentes
+        const previousHighlights = document.querySelectorAll('.line-highlight, .shared-highlight, .shared-multi-highlight');
+        previousHighlights.forEach(highlight => {
+            highlight.classList.remove('line-highlight', 'shared-highlight', 'shared-multi-highlight');
+        });
+        
+        if (!lineNumbers || lineNumbers.length === 0) return;
+        
+        let firstLineElement = null;
+        let highlightedCount = 0;
+        
+        // Surligner toutes les lignes demandées
+        lineNumbers.forEach(lineNumber => {
+            const lineElement = document.querySelector(`[data-line="${lineNumber}"]`);
+            if (lineElement) {
+                lineElement.classList.add('line-highlight', 'shared-multi-highlight');
+                highlightedCount++;
+                
+                // Garder référence de la première ligne pour le scroll
+                if (!firstLineElement) {
+                    firstLineElement = lineElement;
+                }
+            }
+        });
+        
+        // Scroller vers la première ligne surlignée
+        if (firstLineElement) {
+            firstLineElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // Log pour debug
+        console.log(`Surligné ${highlightedCount} lignes sur ${lineNumbers.length} demandées:`, lineNumbers);
     }
     
     navigateToDocument(documentName, lineNumber) {
