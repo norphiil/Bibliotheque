@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Conversion Tableau Markdown</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Crimson Text', serif;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--parchment);
+            padding: 20px;
+            border-radius: 10px;
+            color: var(--leather-dark);
+        }
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid var(--brass);
+            border-radius: 5px;
+        }
+        h2 {
+            color: var(--brass);
+            margin-bottom: 15px;
+        }
+        .markdown-input {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .html-output {
+            border: 1px solid var(--brass);
+            border-radius: 5px;
+            padding: 10px;
+            background: white;
+        }
+        button {
+            background: var(--brass);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        button:hover {
+            background: var(--gold-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test de Conversion des Tableaux Markdown</h1>
+        
+        <div class="test-section">
+            <h2>Exemple 1: Votre tableau complexe</h2>
+            <div class="markdown-input" id="markdown1">| Pacte des Empires du Levant | Protectorat | Mogrims | Blanche-Cime |
+| --- | --- | --- | --- |
+| Méridion | Royaume des Mers | Vendavel | Guilde des Marchands |
+| | Cymroghi | Indépendants | |
+
+| Duché de Lysdol
+
+Duchesse Mindaelind de Hresvelg
+
+[Ordre du Soleil d'Argent] | Duché de Lysdol
+
+Duchesse Mindaelind de Hresvelg
+
+[Ordre du Soleil d'Argent] | Duché de Lysdol
+
+Duchesse Mindaelind de Hresvelg
+
+[Ordre du Soleil d'Argent] | Duché de Lysdol
+
+Duchesse Mindaelind de Hresvelg
+
+[Ordre du Soleil d'Argent] |
+| --- | --- | --- | --- |
+| Baronnie de l'Esprit
+
+Baronne Neven Windhelm
+
+[Cercle de la Chimère] | Baronnie de l'Esprit
+
+Baronne Neven Windhelm
+
+[Cercle de la Chimère] | Baronnie du Fer
+
+Baron Daupel Mimic
+
+[Indépendants] | Baronnie du Fer
+
+Baron Daupel Mimic
+
+[Indépendants] |</div>
+            <button onclick="convertTable(1)">Convertir ce tableau</button>
+            <div class="html-output" id="output1"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Exemple 2: Tableau simple</h2>
+            <div class="markdown-input" id="markdown2">| Nom | Âge | Ville |
+| --- | --- | --- |
+| Alice | 25 | Paris |
+| Bob | 30 | Lyon |
+| Charlie | 35 | Marseille |</div>
+            <button onclick="convertTable(2)">Convertir ce tableau</button>
+            <div class="html-output" id="output2"></div>
+        </div>
+    </div>
+
+    <script src="static/js/app.js"></script>
+    <script>
+        // Créer une instance simplifiée pour tester
+        class TestConverter {
+            convertMarkdownToHtml(rawText) {
+                let html = rawText;
+                
+                // Nettoyer les caractères d'échappement
+                html = html.replace(/\\n/g, '\n');
+                html = html.replace(/\\t/g, '    ');
+                
+                // Convertir les tableaux Markdown AVANT tout le reste
+                html = this.convertMarkdownTables(html);
+                
+                // Convertir les liens
+                html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+                
+                // Convertir les titres
+                html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+                html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+                html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+                
+                // Pour ce test, on ne fait pas la conversion ligne par ligne
+                // Convertir les paragraphes simples
+                const lines = html.split('\n');
+                const htmlLines = lines.map((line, index) => {
+                    const trimmedLine = line.trim();
+                    
+                    if (trimmedLine === '') {
+                        return '<br>';
+                    }
+                    
+                    if (trimmedLine.startsWith('<table') || trimmedLine.startsWith('<thead') || 
+                        trimmedLine.startsWith('<tbody') || trimmedLine.startsWith('<tr') || 
+                        trimmedLine.startsWith('<th') || trimmedLine.startsWith('<td') ||
+                        trimmedLine.startsWith('</table') || trimmedLine.startsWith('</thead') ||
+                        trimmedLine.startsWith('</tbody') || trimmedLine.startsWith('</tr') ||
+                        trimmedLine.startsWith('</th') || trimmedLine.startsWith('</td') ||
+                        trimmedLine.includes('</table>')) {
+                        return line;
+                    }
+                    
+                    if (trimmedLine.startsWith('<h')) {
+                        return line;
+                    }
+                    
+                    if (trimmedLine) {
+                        let formattedLine = line;
+                        formattedLine = formattedLine.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                        formattedLine = formattedLine.replace(/\*(.+?)\*/g, '<em>$1</em>');
+                        return `<p>${formattedLine}</p>`;
+                    }
+                    
+                    return '<br>';
+                });
+                
+                return htmlLines.join('\n');
+            }
+            
+            convertMarkdownTables(text) {
+                const lines = text.split('\n');
+                const result = [];
+                let i = 0;
+                
+                while (i < lines.length) {
+                    const line = lines[i].trim();
+                    
+                    if (line.includes('|') && line.length > 1) {
+                        let nextLine = '';
+                        let separatorIndex = -1;
+                        
+                        for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
+                            const candidateLine = lines[j].trim();
+                            if (candidateLine.includes('|') && (candidateLine.includes('---') || candidateLine.includes('--'))) {
+                                nextLine = candidateLine;
+                                separatorIndex = j;
+                                break;
+                            }
+                        }
+                        
+                        if (separatorIndex !== -1) {
+                            const tableLines = [];
+                            
+                            for (let k = i; k < separatorIndex; k++) {
+                                if (lines[k].trim().includes('|')) {
+                                    tableLines.push(lines[k]);
+                                }
+                            }
+                            
+                            let j = separatorIndex + 1;
+                            while (j < lines.length) {
+                                const tableLine = lines[j].trim();
+                                if (tableLine.includes('|') && tableLine.length > 1) {
+                                    tableLines.push(lines[j]);
+                                    j++;
+                                } else if (tableLine === '') {
+                                    j++;
+                                } else {
+                                    break;
+                                }
+                            }
+                            
+                            if (tableLines.length > 0) {
+                                const htmlTable = this.convertTableLinesToHtml(tableLines);
+                                result.push(htmlTable);
+                                i = j;
+                            } else {
+                                result.push(lines[i]);
+                                i++;
+                            }
+                        } else {
+                            result.push(lines[i]);
+                            i++;
+                        }
+                    } else {
+                        result.push(lines[i]);
+                        i++;
+                    }
+                }
+                
+                return result.join('\n');
+            }
+            
+            convertTableLinesToHtml(tableLines) {
+                if (tableLines.length === 0) return '';
+                
+                let html = '<table class="markdown-table">\n';
+                
+                const headerLine = tableLines[0];
+                const headers = this.parseTableRow(headerLine);
+                
+                if (headers.length > 0) {
+                    html += '  <thead>\n    <tr>\n';
+                    headers.forEach(header => {
+                        html += `      <th>${header}</th>\n`;
+                    });
+                    html += '    </tr>\n  </thead>\n';
+                }
+                
+                const bodyLines = tableLines.slice(1).filter(line => {
+                    const trimmed = line.trim();
+                    return trimmed.includes('|') && 
+                           !trimmed.includes('---') && 
+                           !trimmed.includes('--') &&
+                           trimmed.length > 1;
+                });
+                
+                if (bodyLines.length > 0) {
+                    html += '  <tbody>\n';
+                    bodyLines.forEach(line => {
+                        const cells = this.parseTableRow(line);
+                        if (cells.length > 0) {
+                            html += '    <tr>\n';
+                            cells.forEach(cell => {
+                                html += `      <td>${cell}</td>\n`;
+                            });
+                            html += '    </tr>\n';
+                        }
+                    });
+                    html += '  </tbody>\n';
+                }
+                
+                html += '</table>';
+                
+                console.log('Tableau converti:', html);
+                return html;
+            }
+            
+            parseTableRow(line) {
+                const cells = line.split('|')
+                    .map(cell => cell.trim())
+                    .filter((cell, index, array) => {
+                        if (index === 0 || index === array.length - 1) {
+                            return cell !== '';
+                        }
+                        return true;
+                    });
+                
+                return cells;
+            }
+        }
+        
+        const converter = new TestConverter();
+        
+        function convertTable(testNumber) {
+            const markdown = document.getElementById(`markdown${testNumber}`).textContent;
+            const output = document.getElementById(`output${testNumber}`);
+            
+            console.log('Markdown input:', markdown);
+            
+            const html = converter.convertMarkdownToHtml(markdown);
+            
+            console.log('HTML output:', html);
+            
+            output.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

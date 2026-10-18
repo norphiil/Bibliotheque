@@ -3732,3 +3732,172 @@ body::after {
 .document-image-container img {
     animation: imageLoad 0.5s ease-out;
 }
+
+/* ================================ */
+/* STYLES POUR LES TABLEAUX MARKDOWN */
+/* ================================ */
+
+.markdown-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    background: linear-gradient(135deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+    border: 2px solid var(--brass);
+    border-radius: 8px;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Effet de texture parchemin sur le tableau */
+.markdown-table::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(205, 127, 50, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.markdown-table thead {
+    background: linear-gradient(135deg, var(--brass) 0%, var(--gold-dark) 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.markdown-table thead::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--brass), var(--gold-dark));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.markdown-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--leather-dark);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(139, 69, 19, 0.2);
+    position: relative;
+    z-index: 2;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.markdown-table th:last-child {
+    border-right: none;
+}
+
+.markdown-table tbody {
+    position: relative;
+    z-index: 2;
+}
+
+.markdown-table td {
+    padding: 10px 16px;
+    border-right: 1px solid rgba(139, 69, 19, 0.15);
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+    color: var(--leather-dark);
+    line-height: 1.5;
+    position: relative;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.markdown-table td:last-child {
+    border-right: none;
+}
+
+.markdown-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Effet de survol sur les lignes */
+.markdown-table tbody tr:hover {
+    background: rgba(205, 127, 50, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(205, 127, 50, 0.2);
+}
+
+.markdown-table tbody tr:hover td {
+    color: var(--leather-dark);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Alternance des couleurs pour les lignes */
+.markdown-table tbody tr:nth-child(even) {
+    background: rgba(139, 69, 19, 0.02);
+}
+
+.markdown-table tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Styles pour les cellules vides */
+.markdown-table td:empty::after {
+    content: '—';
+    color: rgba(139, 69, 19, 0.3);
+    font-style: italic;
+}
+
+/* Responsive design pour les tableaux */
+@media (max-width: 768px) {
+    .markdown-table {
+        font-size: 0.85rem;
+        margin: 1rem 0;
+    }
+    
+    .markdown-table th,
+    .markdown-table td {
+        padding: 8px 12px;
+    }
+    
+    .markdown-table th {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation d'apparition des tableaux */
+@keyframes tableLoad {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.markdown-table {
+    animation: tableLoad 0.6s ease-out;
+}
+
+/* Effet de lueur dorée pour les tableaux importants */
+.markdown-table.important {
+    border-color: var(--gold);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 215, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.markdown-table.important thead {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--brass) 100%);
+}

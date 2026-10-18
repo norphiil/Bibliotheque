@@ -1,0 +1,23 @@
+# Apologue de la Création et de la Loi
+
+Premier apologue
+
+«Il fut jadis un temps où les Dragons, les Totémiques, les Primordiaux et Séphérie existaient, mais non les espèces mortelles. Quand le temps que le destin avait assigné à leur création fut venu, chacun façonna les siennes dans les entrailles de la terre d’un mélange d’existence et de vide.
+
+Quand le moment de les amener à la lumière approcha, chacun se chargea d’attribuer à chaque espèce des qualités appropriées.
+
+Séphérie la première s’avança et fit son partage, et, en le faisant, attribua aux uns la force sans la vitesse, aux autres la vitesse sans la force ; elle donna des armes à ceux-ci, les refusa à ceux-là, mais elle imagina pour eux d’autres moyens de conservation ; car à ceux d’entre eux qu’elle logeait dans un corps de petite taille, elle donna des ailes pour fuir ou un refuge souterrain ; pour ceux qui avaient l’avantage d’une grande taille, leur grandeur suffit à les conserver, et elle appliqua ce procédé de compensation à tous les animaux. Ces mesures de précaution étaient destinées à prévenir la disparition des races.
+
+Mais quand elle leur eut fourni les moyens d’échapper à une destruction mutuelle, elle voulut les aider à supporter les saisons; elle imagina pour cela de les revêtir de poils épais et de peaux serrées, suffisantes pour les garantir du froid, capables aussi de les protéger contre la chaleur et destinées enfin à servir, pour le temps du sommeil, de couvertures naturelles, propres à chacun d’eux ; elle leur donna en outre comme chaussures, soit des sabots de cornes, soit des peaux calleuses et dépourvues de sang, ensuite elle leur fournit des aliments variés suivant les espèces, aux uns l’herbe du sol, aux autres les fruits des arbres, aux autres des racines ; à quelques uns mêmes elle donna d’autres animaux à manger ; mais elle limita leur fécondité et multiplia celle de leur victime pour assurer le salut de la race.
+
+Vint le tour des Humains et les Dragons s’avancèrent alors mais ils ne surent d’abord que faire car tout avait déjà été distribué aux autres espèces mortelles.
+
+Un très grand Dragon vint pour examiner le partage ; il vit les animaux bien pourvus, mais l’homme nu, sans chaussures, ni couvertures ni armes, et le jour fixé approchait où il fallait l’amener du sein de la terre à la lumière.
+
+Alors le Grand Dragon, ne sachant qu’imaginer pour donner à l’homme le moyen de se conserver, se saisit de  la connaissance des arts et du feu ; car, sans le feu, la connaissance des arts était impossible et inutile ; et il en fit présent à l’homme. L’homme obtint ainsi non seulement le pouvoir de se protéger mais également celui de créer.
+
+Quand l’homme fut en possession de son lot précieux, d’abord à cause de son affinité avec les Dragons, il crut à leur existence et les honora, privilège qu’il eut seul de tous les animaux, et il mit à profit son tout nouveau don des arts pour leur dresser des statues et peindre leurs effigies ; ensuite il eut bientôt fait, grâce à la science qu’il avait d’articuler sa voix, et de former les noms des choses, d’inventer les maisons, les habits, les chaussures, les lits, et de tirer les aliments du sol. Avec ces ressources, les hommes, à l’origine, vivaient isolés, et les villes n’existaient pas ; aussi périssaient-ils sous les coups des bêtes fauves toujours plus fortes qu’eux ; les arts mécaniques suffisaient à les faire vivre ; mais ils étaient d’un secours insuffisant dans la guerre contre les bêtes ; car ils ne possédaient ni lois ni art politique. En conséquence ils cherchaient à se rassembler et à se mettre en sûreté en fondant des villes ; mais quand ils s’étaient rassemblés, ils se faisaient du mal les uns aux autres, parce que la science politique et les lois leur manquaient, en sorte qu’ils se séparaient de nouveau et périssaient.
+
+Alors le Grand Dragon, craignant que notre race ne fut anéantie, envoya l’un des siens porter aux hommes la loi pour servir de règles aux cités et unir les hommes par des liens indissolubles. L’envoyé  demanda alors au Grand Dragon de quelle manière il devait donner aux hommes la justice et la loi.
+
+« Dois-je les partager comme on a partagé les arts ? Or les arts ont été partagés de manière qu’un seul homme, expert en l’art médical, suffît pour un grand nombre de profanes, et les autres artisans de même. Dois-je répartir ainsi la loi et la justice parmi les hommes ou les partager entre tous ? »– «Entre tous répondit le Grand Dragon ; que tous y aient part, car les villes ne sauraient exister, si ces vertus étaient comme les arts, le partage exclusif de quelques uns ; établis en outre en mon nom ce décret que tout homme incapable de justice et d’obéissance à la loi sera exterminé comme un fléau de la société ».

@@ -1,0 +1,43 @@
+# Lettre à Samaël
+
+Ser-An, dix-neuvième jour du Septième mois de l’An XII
+
+Cher Samaël,
+Vous ne me connaissez sans doute pas. Je suis chroniqueur de mon état, un peu magicien à mes heures perdues, féru d’érudition, et attiré comme un aimant par les nouveautés de tout acabit.
+Je crois bien avoir entendu parler de vous pour la première fois durant l’été de l’an X.
+
+Un de mes frères s’était mêlé à un groupe qui remontait le cours de la rivière de corrosium qui passe sous Edenorya. Je pense que vous voyez très bien de quoi je veux parler en évoquant cette rivière. Ce petit groupe a fini par vous croiser. Plus exactement, ils vous ont observé à distance. Vous psalmodiez en Pragma et officiiez sur un autel cultuel. Vous étiez le maître de cérémonie d’une sorte de rite où des inconnus vêtus de blanc allaient être sacrifiés. Votre nom a été prononcé. Vous assuriez vouloir reconquérir Kandorya et le restituer à qui de de droit.
+Je vous dis cela sous toute réserve car c’est ce qu’a compris et m’a rapporté l’une de mes soeurs après avoir entendu le récit de mon frère (j’ai une très grande famille, ne préjugez pas des identités des uns et des autres quand je parle d’une soeur ou d’un frère).
+Mon frère a tendu à juger que c’était votre rituel qui provoquait l’écoulement de corrosium. Qu’en pensez-vous ? Le peuple des Abatuccis voit dans cette substance une abomination absolue qui associe dans un mélange improbable l’organique et le magique. Les plus versés d’entre eux disent même que le corrosium est une entité. Intéressant. Un authentique rêve de biomancien, non ?
+Il y avait des objets d’art, sur le chemin qui menait à votre autel. Je connais votre goût pour l’art. Je me suis demandé récemment s’ils vous avaient appartenu ou même si l’un d’eux pouvait vous avoir représenté.
+Le fait est que je n’ai plus entendu parler de vous pendant un bon moment mais…vous aviez piqué ma curiosité.
+
+Votre nom a de nouveau résonné à mes oreilles au printemps dernier.
+Depuis l’automne de l’an XI, un arbre est apparu au beau milieu de la cité d’Edenorya. Oh…pardon pour ce nom qui doit vous être désagréable. J’ai bien compris qu’autrefois, c’était une grande et fière cité, de pierre taillée et de marbre, et, qu’à vos yeux, désormais, il n’y a plus là qu’un assemblage de cabanes de bois mal construites et péniblement ficelées.
+Samaël, j’ai besoin de savoir qui vous êtes. Je ne sais pas si je dois vous appeler Eldritch, et, si c’est le cas, je vous prie de me pardonner par avance de mal avoir orthographié votre nom.
+Votre nom ressemble un peu à celui du premier bourgmestre d’Edenorya, Eldric.
+
+Je vous avoue que Samaël n’est pas un nom commun : il a évoqué auprès d’oreilles averties auxquelles je relatais vos aventures le nom d’un habitant illustre de votre magnifique cité. Il s’appelle Salamos. Cela vous dit quelque chose ? Il a bien des points communs avec vous. Comme vous, il raffole des expériences magiques, comme vous, il a un laboratoire qui excite toutes les convoitises, et comme vous, il a mis au point de nouveaux procédés de recréation. L’une de ses œuvres est devenue célébrissime : elle s’appelle Aëthéor et bien des habitants des terres de Kersiskal  lui vouent un authentique culte. Après…il n’a peut-être pas tout à fait utilisé la même méthode que vous. J’en sais un peu plus mais il faudrait que nous nous rencontrions pour en discuter, si vous m’en faisiez l’honneur.
+Je m’égare peut-être, Samaël. Pardonnez mes approximations, je suis convaincu qu’elles sont nombreuses.
+J’ai fait la rencontre, avec quelques amis, d’une troupe de théâtre que vous avez longtemps subventionnée. Vous savez, celle au sein de laquelle se trouvait votre amie, Rhéa. Pardon si j’orthographie mal à nouveau. Nous avons pu en apprendre un peu plus sur vous, grâce à eux.
+Cela n’a pas été simple, ils avaient de sérieux trous de mémoire. Ils sont bien tombés, en venant nous confier leurs troubles. Mes amis et disciples thanatologues et moi-même les avons pris en charge et patiemment écoutés. Il nous a fallu un certain temps pour poser un diagnostic et encore plus pour établir une relation de confiance et de coopération avec eux. Ils se sont livrés progressivement à nous. Je crois qu’ils étaient contents, à l’issue de leur séance de remédiation psychique.
+Votre troupe, à ce que j’ai perçu, a indisposé la Reine de jadis par son irrévérence. J’imagine qu’ils doivent vraiment être drôles et talentueux et/ou très bien protégés, pour avoir survécu à leurs petites insolences.
+Nous avons bien compris que vous n’étiez pas en odeur de sainteté dans votre cité : hostile au pouvoir absolu qu’exerçait la Reine, en butte aux accusations d’hérésie en raison de vos recherches…votre vie n’a pas dû être facile…
+Vous étiez un archimage puissant et expérimenté. Vos rivaux vous en ont voulu de vos succès. Ils n’ont pas supporté votre audace et vos idées novatrices. Je sais bien que Kersiskal, autrefois, était une cité de remarquables sorciers. Je crois l’avoir écrit dans le fabuleux héritage de Kersiskal. Vous étiez l’un d’eux et votre prodigieuse ascension, votre popularité auprès des gens modestes n’ont pas plu. Vous avez réussi trop bien, trop vite…
+Je vous comprends, vous savez. Moi aussi j’ai dû partir de chez moi en raison d’une situation politique difficile.
+Je crois comprendre que des gens indélicats se sont rendus à plusieurs reprises dans votre laboratoire et y ont semé un certain désordre. Les champignons, c’est un accident ou c’est une mesure de rétorsion de votre part ? Et l’automate ?
+Je vous avoue être un peu perdu, avec les champignons. Il y en a un peu partout et de toutes les couleurs.
+J’ai bien noté qu’on en trouve des verts et des bleus principalement.
+
+Certes, dans vos alcôves, on trouve des squelettes avec des champignons bleus, mais rien ne dit que ce sont les vôtres. Vous, vous avez l’air de préférer le vert, mais je me trompe peut-être.
+Nous sommes quelques savants, scientifiques et érudits venus d’horizons divers à avoir élaboré une hypothèse.
+Abaccia, le plan avec lequel nous avons fusionné, nous, Kersiskal, en l’an VII, comme je l’ai raconté dans ma chronique Chaos planaire, dispose d’une entité créatrice, un peu comme notre Séphérie. A vrai dire, le Dracosire (je suis absolument convaincu que le nom de Negens ne vous est pas étranger) et moi en avions émis l’hypothèse dès les premières manifestations de cet événement cosmique. Il semble bien qu’elle se soit éveillée et que, faute d’Archiviste disponible actuellement, elle se soit mis dans la tête l’idée d’archiver ce qu’il restait des souvenirs de l’Archiviste chez nous. Donc, en somme, non seulement elle crée, mais en plus, elle archive ou…elle apprend à archiver…Elle est venue aussi pour cela : apprendre. Ses hommes-feuilles fonctionnent un peu comme cela aussi, au demeurant. Ils répètent vraiment n’importe quoi…si si…n’importe quoi, je vous assure…J’ai des preuves ! Je suis convaincu qu’en réalité, ils intègrent des éléments de compréhension du monde qui les entoure de cette manière.
+Mais, revenons à nos champignons : les bleus, en fait, je veux dire les champignons bleus, quand on les trouve dans les squelettes, ils servent à récupérer les souvenirs des individus ? Mais vous, votre intérêt, là-dedans, c’est quoi exactement ? Est-ce que vous vous dites que la créatrice d’Abaccia est dans un processus de recréation et que c’est une trop belle opportunité pour ne pas en profiter puisque votre biomancie est, au fond, une sorte de science de la recréation ? Peut-être avez-vous modifié les champignons ?
+Je vous avoue que mes idées ne sont  pas encore complètement claires, mais, vous savez, je n’ai lu que les pages principales des rapports que l’on m’a fait tout au long de la foire. L’automne venu, je suis assez confiant, je pense que j’en saurai plus et que je ferai moins d’erreurs.
+Je passerai du côté de l’arène : si vous voulez, on peut se donner rendez-vous là-bas et aller prendre un verre amical à la Cuillère Dorée ou à l’Okami si vous avez du goût pour la gastronomie shin. En fait, dans n’importe quel endroit qui vous plaira.
+J’aurai plein d’autres choses à vous dire. Je vous les aurais exposées avec plaisir mais, vous le comprenez, dans une lettre publique comme celle-là, je ne puis me permettre de tout dire…
+Samaël, je ressens un profond émerveillement pour votre œuvre et votre détermination. Je ne sais pas si je partage vos buts, mais votre capacité à vous élever au-dessus du commun, l’énergie et la résilience que vous avez déployées envers et contre tout sont dignes d’admiration.
+J’espère que nous aurons l’occasion de nous rencontrer et que vous considérez ma proposition.
+A très bientôt je l’espère.
+
+Nohmäs de Darivelle

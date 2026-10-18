@@ -1939,6 +1939,9 @@ class LibraryApp {
         html = html.replace(/\\n/g, '\n');
         html = html.replace(/\\t/g, '    ');
         
+        // Convertir les tableaux Markdown AVANT tout le reste
+        html = this.convertMarkdownTables(html);
+        
         // Convertir les images AVANT les liens pour éviter les conflits
         html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
             console.log('Image trouvée dans JS:', { alt, src });
@@ -1984,6 +1987,23 @@ class LibraryApp {
                     `<div class="document-image-container line" data-line="${lineNumber}">`);
             }
             
+            // Ligne de tableau : ajouter data-line
+            if (trimmedLine.startsWith('<table') || trimmedLine.startsWith('<thead') || 
+                trimmedLine.startsWith('<tbody') || trimmedLine.startsWith('<tr') || 
+                trimmedLine.startsWith('<th') || trimmedLine.startsWith('<td') ||
+                trimmedLine.startsWith('</table') || trimmedLine.startsWith('</thead') ||
+                trimmedLine.startsWith('</tbody') || trimmedLine.startsWith('</tr') ||
+                trimmedLine.startsWith('</th') || trimmedLine.startsWith('</td')) {
+                
+                // Pour les éléments de tableau, ajouter data-line seulement aux éléments principaux
+                if (trimmedLine.startsWith('<table')) {
+                    return line.replace('<table', `<table data-line="${lineNumber}"`);
+                } else if (trimmedLine.startsWith('<tr>') || (trimmedLine.startsWith('<tr ') && !trimmedLine.includes('data-line'))) {
+                    return line.replace('<tr', `<tr data-line="${lineNumber}"`);
+                }
+                return line; // Garder les autres éléments de tableau tels quels
+            }
+            
             // Ligne normale : créer un paragraphe avec numéro de ligne
             if (trimmedLine) {
                 // Appliquer le formatage gras/italique sur la ligne
@@ -2001,6 +2021,144 @@ class LibraryApp {
         
         console.log('Markdown converti avec préservation des lignes:', html.substring(0, 500) + '...');
         return html;
+    }
+    
+    convertMarkdownTables(text) {
+        // Convertir les tableaux Markdown en HTML
+        const lines = text.split('\n');
+        const result = [];
+        let i = 0;
+        
+        while (i < lines.length) {
+            const line = lines[i].trim();
+            
+            // Détecter le début d'un tableau (ligne avec des |)
+            if (line.includes('|') && line.length > 1) {
+                // Vérifier si la ligne suivante est un séparateur (contient des --- ou similaire)
+                let nextLine = '';
+                let separatorIndex = -1;
+                
+                // Chercher la ligne de séparation dans les 3 prochaines lignes
+                for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
+                    const candidateLine = lines[j].trim();
+                    if (candidateLine.includes('|') && (candidateLine.includes('---') || candidateLine.includes('--'))) {
+                        nextLine = candidateLine;
+                        separatorIndex = j;
+                        break;
+                    }
+                }
+                
+                if (separatorIndex !== -1) {
+                    // C'est un tableau ! Traiter toutes les lignes du tableau
+                    const tableLines = [];
+                    
+                    // Ajouter les lignes d'en-tête (toutes les lignes avant le séparateur)
+                    for (let k = i; k < separatorIndex; k++) {
+                        if (lines[k].trim().includes('|')) {
+                            tableLines.push(lines[k]);
+                        }
+                    }
+                    
+                    // Chercher toutes les lignes après le séparateur qui font partie du tableau
+                    let j = separatorIndex + 1;
+                    while (j < lines.length) {
+                        const tableLine = lines[j].trim();
+                        if (tableLine.includes('|') && tableLine.length > 1) {
+                            tableLines.push(lines[j]);
+                            j++;
+                        } else if (tableLine === '') {
+                            // Ligne vide : continuer pour voir si le tableau reprend
+                            j++;
+                        } else {
+                            // Fin du tableau
+                            break;
+                        }
+                    }
+                    
+                    // Convertir le tableau en HTML
+                    if (tableLines.length > 0) {
+                        const htmlTable = this.convertTableLinesToHtml(tableLines);
+                        result.push(htmlTable);
+                        i = j; // Avancer après le tableau
+                    } else {
+                        result.push(lines[i]);
+                        i++;
+                    }
+                } else {
+                    // Pas un tableau, garder la ligne telle quelle
+                    result.push(lines[i]);
+                    i++;
+                }
+            } else {
+                // Pas une ligne de tableau
+                result.push(lines[i]);
+                i++;
+            }
+        }
+        
+        return result.join('\n');
+    }
+    
+    convertTableLinesToHtml(tableLines) {
+        if (tableLines.length === 0) return '';
+        
+        let html = '<table class="markdown-table">\n';
+        
+        // Première ligne = en-têtes
+        const headerLine = tableLines[0];
+        const headers = this.parseTableRow(headerLine);
+        
+        if (headers.length > 0) {
+            html += '  <thead>\n    <tr>\n';
+            headers.forEach(header => {
+                html += `      <th>${header}</th>\n`;
+            });
+            html += '    </tr>\n  </thead>\n';
+        }
+        
+        // Corps du tableau (ignorer les lignes vides et les séparateurs)
+        const bodyLines = tableLines.slice(1).filter(line => {
+            const trimmed = line.trim();
+            return trimmed.includes('|') && 
+                   !trimmed.includes('---') && 
+                   !trimmed.includes('--') &&
+                   trimmed.length > 1;
+        });
+        
+        if (bodyLines.length > 0) {
+            html += '  <tbody>\n';
+            bodyLines.forEach(line => {
+                const cells = this.parseTableRow(line);
+                if (cells.length > 0) {
+                    html += '    <tr>\n';
+                    cells.forEach(cell => {
+                        html += `      <td>${cell}</td>\n`;
+                    });
+                    html += '    </tr>\n';
+                }
+            });
+            html += '  </tbody>\n';
+        }
+        
+        html += '</table>';
+        
+        console.log('Tableau converti:', html);
+        return html;
+    }
+    
+    parseTableRow(line) {
+        // Parser une ligne de tableau en cellules
+        const cells = line.split('|')
+            .map(cell => cell.trim())
+            .filter((cell, index, array) => {
+                // Retirer les cellules vides en début et fin (dues aux | en début/fin de ligne)
+                if (index === 0 || index === array.length - 1) {
+                    return cell !== '';
+                }
+                return true;
+            });
+        
+        return cells;
     }
     
     enhanceDocumentDisplay(container) {
